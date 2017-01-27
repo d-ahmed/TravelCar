@@ -1,0 +1,31 @@
+{% form_theme form "bootstrap.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="col-lg-8 col-lg-offset-3" >
+    <small> {{ 'text.demande_compte'|trans({},'TravelCarBundlePersonne')}} : <a class="btn btn-bg btn-social btn-default" href="{{ path('fos_user_security_login') }}">{{'btn.connexion'|trans({},'TravelCarBundlePersonne')}}</a></small>
+</div>
+
+    
+    <div class="col-md-6" style="border-right: solid; border-width: 0.5px;">
+            <div class="">
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register', 'role':'form', 'style':'margin-top:15px;'} }) }}
+
+                            <div class="form-group">
+                                {{ form_widget(form) }}
+                                <div>
+                                    <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+                                </div>
+                            </div>
+                {{ form_end(form) }}
+            </div>
+    </div>
+            
+    <div class="col-md-6" >
+        
+        <a style='margin-top: 3em' href="#" class="button b facebook col-lg-12"><span><i class="fa fa-facebook"></i></span>{{'connexion.avec.fb'|trans({},'TravelCarBundlePersonne')}}</a>
+  
+        <a href="#" class="button b twitter col-lg-12"><span><i class="fa fa-twitter"></i></span>{{'connexion.avec.tw'|trans({},'TravelCarBundlePersonne')}}</a>
+
+        <a href="#" class="button b google-plus col-lg-12"><span><i class="fa fa-google-plus"></i></span>{{'connexion.avec.go'|trans({},'TravelCarBundlePersonne')}}</a>
+    </div>

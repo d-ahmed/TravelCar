@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- permet de parametrer le responsive -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>{% block title %}{% endblock %} - TravelCar</title>
+        
+        {% block stylesheets %}{% endblock %}
+        
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+        <!-- Theme CSS -->
+        <link href="{{ asset('template/css/clean-blog.css')}}" rel="stylesheet">
+        
+        
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/annonce.css')}}">
+    
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.datetimepicker.css')}}">
+        
+    <!-- Custom Fonts -->
+    <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+        {% include 'navbar.html.twig' %}
+        
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="header" class="intro-header" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>{% block header_heading %}{% endblock %}</h1>
+                        <hr class="small">
+                        
+                            <div id="subheading" class="row">
+                                {% block header_subheading %}{% endblock %}
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        
+
+        <!-- Main Content -->
+        <div class="container">
+            <div class="row">
+                {% block body %}{% endblock %}  
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <ul class="list-inline text-center">
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted">Copyright &copy; Daniel Anasse </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+                
+        <!-- jQuery UI libray -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        
+        
+        <!-- jQuery -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{{ asset('template/js/clean-blog.min.js') }}"></script>
+    
+    <!-- Datetimepiker -->
+    <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
+        
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

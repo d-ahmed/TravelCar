@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %} annonce {% endblock %}
+{% block header_heading %} {{ annonce.villeDep }} - {{ annonce.villeArriv }} {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        {% include 'TravelCarAnnonceBundle:Annonce:view.html.twig' %}
+    </div>
+    <div class="col-md-4">
+        {% if app.user.id is defined and app.user.id != annonce.personne.id%}
+            {% if annonce.nbPlaces %}
+                <div class="col-md-3">
+                    {% include 'TravelCarAnnonceBundle:Annonce:reserver.html.twig' %}
+                </div>
+
+            {% else %}
+                <small class="text-danger" > {{'text.complet'|trans({},'TravelCarAnnonceBundle')}} </small>
+            {% endif %}
+        {% elseif app.user.id is not defined %}
+            {% if annonce.nbPlaces %}
+                <div class="col-md-3 pull-right">
+                    {% include 'TravelCarAnnonceBundle:Annonce:reserver.html.twig' %}
+                </div>
+
+            {% else %}
+                <small class="text-danger" > {{'text.complet'|trans({},'TravelCarAnnonceBundle')}} </small>
+            {% endif %}
+        {% else %}
+            <small class="text-danger" >Postée par vous</small>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts_layout %}
+         <script type="text/javascript">
+             $('document').ready(function(){
+                 $('#comment').keypress(function(e){
+                     if(e.keyCode == 13){
+                        $('#comment').parent().submit();
+                     }
+                 })
+             })       
+         </script>
+{% endblock %}
+

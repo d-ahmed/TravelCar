@@ -1,0 +1,7 @@
+travel_car:
+    resource: "@TravelCarBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+    defaults:
+        _locale: fr
+    requirements:
+        _locale: en|fr

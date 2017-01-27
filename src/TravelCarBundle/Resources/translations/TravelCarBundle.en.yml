@@ -1,0 +1,58 @@
+form:
+  nom: Name
+  prenom: First name
+  date_naissance: Birth date
+  numero: Phone number
+  
+text:
+    complet: Full up
+    exemple: Exempl
+    demande: Are you a new user?
+    demande_compte: Already have an account?
+    nb:
+        reservation: Number of reservations
+    ville:
+        arriv: City of arrival
+        dep: Departure city
+    date:
+        dep: Date of departure
+    heading: Travel
+    panel:
+        itineraire: Route
+        horaire: Date and hour
+        info_voit: About your vehicle
+    annonce:
+        prix: Price per person
+        temps_trajet: Travel time
+        heading: Add your advert.
+        trouve: The listings found.
+        nb_place: Number of places
+        voiture:
+            matricule: ID number
+            modele: Model
+            carburant: Fuel
+            couleur: Color     
+btn:
+    cherche: Search
+    ajouter: Add
+    reserver: Reserve
+    inscription: Sign up
+    connexion: Sign in
+    deconnexion: Sign out
+
+connexion:
+    avec:
+        fb: continue with Facebook
+        tw: continue with Twitter
+        go: continue with Google +
+        
+menue:
+   acceuil: Home
+   a_propos: About
+   proposer_trajet: Submit a route
+   
+header:
+    connexion:
+         titre: Connect.
+    registration:
+         titre: Create your account.

@@ -1,0 +1,23 @@
+# User root
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+home:
+    path:     /
+    defaults: { _controller: TravelCarBundle:TravelCar:home }
+
+# Annonce root
+
+ajouter:
+    path:     annonce/ajouter
+    defaults: { _controller: TravelCarBundle:Annonce:ajouter }
+
+
+view_annonce:
+    path: /view/{id}
+    defaults:
+        _controller: TravelCarBundle:Annonce:view
+    requirements:
+        id: \d+
+
+# Reservation root

@@ -1,0 +1,75 @@
+{% trans_default_domain 'TravelCarBundle' %}
+{{ form_start(form) }}
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'text.panel.itineraire'|trans}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>{{'text.ville.dep'|trans}}</label>
+                    {{ form_widget(form.villeDep, {'attr': {'placeholder': 'Exemple : Nantes' } }) }}
+                    {{form_errors(form.villeDep)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.ville.arriv'|trans}}</label>
+                    {{ form_widget(form.villeArriv, {'attr': {'placeholder': 'Exemple : Paris' } }) }}
+                    {{form_errors(form.villeArriv)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.annonce.prix'|trans}}</label>
+                    {{ form_widget(form.prixPersonne, {'attr': {'placeholder': 'Exemple : 18' } }) }}
+                    {{form_errors(form.prixPersonne)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.annonce.nb_place'|trans}}</label>
+                    {{ form_widget(form.nbPlaces, {'attr': {'placeholder': 'Exemple : 5' } }) }}
+                    {{form_errors(form.nbPlaces)}}
+                </div>
+            </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'text.panel.horaire'|trans}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>{{'text.annonce.horaire'|trans}}</label>
+                    {{ form_widget(form.dateDep) }}
+                    {{form_errors(form.dateDep)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.annonce.temps_trajet'|trans}}</label>
+                    {{ form_widget(form.tempsTrajet) }}
+                    {{form_errors(form.tempsTrajet)}}
+                </div>
+            </div>      
+    </div>
+
+    {% set voiture = form.voiture.children %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'text.panel.info_voit'|trans}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>{{'text.annonce.voiture.matricule'|trans}}</label>
+                    {{ form_widget(voiture.matricule) }}
+                    {{form_errors(voiture.matricule)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.annonce.voiture.modele'|trans}}</label>
+                    {{ form_widget(voiture.modele) }}
+                    {{form_errors(voiture.modele)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.annonce.voiture.carburant'|trans}}</label>
+                    {{ form_widget(voiture.carburant) }}
+                    {{form_errors(voiture.carburant)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'text.annonce.voiture.couleur'|trans}}</label>
+                    {{ form_widget(voiture.couleur) }}
+                    {{form_errors(voiture.couleur)}}
+                </div>
+            </div>      
+    </div>
+
+<input type="submit" value="{{'btn.ajouter'|trans}}" class="btn btn-primary"/>
+
+{{ form_end(form) }}
+   
