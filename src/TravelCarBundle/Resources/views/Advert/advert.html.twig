@@ -5,23 +5,23 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{'text.ville.dep'|trans}}</label>
-                    {{ form_widget(form.villeDep, {'attr': {'placeholder': 'Exemple : Nantes' } }) }}
-                    {{form_errors(form.villeDep)}}
+                    {{ form_widget(form.departureCity, {'attr': {'placeholder': 'Exemple : Nantes' } }) }}
+                    {{form_errors(form.departureCity)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.ville.arriv'|trans}}</label>
-                    {{ form_widget(form.villeArriv, {'attr': {'placeholder': 'Exemple : Paris' } }) }}
-                    {{form_errors(form.villeArriv)}}
+                    {{ form_widget(form.cityOfArrival, {'attr': {'placeholder': 'Exemple : Paris' } }) }}
+                    {{form_errors(form.cityOfArrival)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.annonce.prix'|trans}}</label>
-                    {{ form_widget(form.prixPersonne, {'attr': {'placeholder': 'Exemple : 18' } }) }}
-                    {{form_errors(form.prixPersonne)}}
+                    {{ form_widget(form.pricePerPersonne, {'attr': {'placeholder': 'Exemple : 18' } }) }}
+                    {{form_errors(form.pricePerPersonne)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.annonce.nb_place'|trans}}</label>
-                    {{ form_widget(form.nbPlaces, {'attr': {'placeholder': 'Exemple : 5' } }) }}
-                    {{form_errors(form.nbPlaces)}}
+                    {{ form_widget(form.numberOfPlace, {'attr': {'placeholder': 'Exemple : 5' } }) }}
+                    {{form_errors(form.numberOfPlace)}}
                 </div>
             </div>
     </div>
@@ -30,41 +30,41 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{'text.annonce.horaire'|trans}}</label>
-                    {{ form_widget(form.dateDep) }}
-                    {{form_errors(form.dateDep)}}
+                    {{ form_widget(form.departureDate, {'attr':{'class':'dateTimePicker'} }) }}
+                    {{form_errors(form.departureDate)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.annonce.temps_trajet'|trans}}</label>
-                    {{ form_widget(form.tempsTrajet) }}
-                    {{form_errors(form.tempsTrajet)}}
+                    {{ form_widget(form.travelTime, {'attr':{'class':'timePicker'} }) }}
+                    {{form_errors(form.travelTime)}}
                 </div>
             </div>      
     </div>
 
-    {% set voiture = form.voiture.children %}
+    {% set vehicle = form.vehicle.children %}
 
     <div class="panel panel-default">
         <div class="panel-heading">{{'text.panel.info_voit'|trans}}</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{'text.annonce.voiture.matricule'|trans}}</label>
-                    {{ form_widget(voiture.matricule) }}
-                    {{form_errors(voiture.matricule)}}
+                    {{ form_widget(vehicle.idNumber) }}
+                    {{form_errors(vehicle.idNumber)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.annonce.voiture.modele'|trans}}</label>
-                    {{ form_widget(voiture.modele) }}
-                    {{form_errors(voiture.modele)}}
+                    {{ form_widget(vehicle.model) }}
+                    {{form_errors(vehicle.model)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.annonce.voiture.carburant'|trans}}</label>
-                    {{ form_widget(voiture.carburant) }}
-                    {{form_errors(voiture.carburant)}}
+                    {{ form_widget(vehicle.fuel) }}
+                    {{form_errors(vehicle.fuel)}}
                 </div>
                 <div class="form-group">
                     <label>{{'text.annonce.voiture.couleur'|trans}}</label>
-                    {{ form_widget(voiture.couleur) }}
-                    {{form_errors(voiture.couleur)}}
+                    {{ form_widget(vehicle.color) }}
+                    {{form_errors(vehicle.color)}}
                 </div>
             </div>      
     </div>

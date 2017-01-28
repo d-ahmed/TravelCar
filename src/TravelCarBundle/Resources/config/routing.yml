@@ -8,15 +8,15 @@ home:
 
 # Annonce root
 
-ajouter:
-    path:     annonce/ajouter
-    defaults: { _controller: TravelCarBundle:Annonce:ajouter }
+add_advert:
+    path:     advert/add
+    defaults: { _controller: TravelCarBundle:Advert:add }
 
 
-view_annonce:
+view_advert:
     path: /view/{id}
     defaults:
-        _controller: TravelCarBundle:Annonce:view
+        _controller: TravelCarBundle:Advert:view
     requirements:
         id: \d+
 

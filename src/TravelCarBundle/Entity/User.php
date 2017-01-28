@@ -51,21 +51,21 @@ class User extends BaseUser
     
     /**
     * 
-    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Advert", mappedBy="users")
+    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Advert", mappedBy="users", cascade={"persist"})
     */
-    private $advert;
+    private $adverts;
     
     
     /**
     * 
-    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="users")
+    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="users", cascade={"persist"})
     */
     private $reservations;
     
    public function __construct()
    {
        parent::__construct();
-       $this->advert = new ArrayCollection();
+       $this->adverts = new ArrayCollection();
        $this->reservations = new ArrayCollection();
        
    }
@@ -176,7 +176,7 @@ class User extends BaseUser
      */
     public function addAdvert(Advert $advert)
     {
-        $this->advert[] = $advert;
+        $this->adverts[] = $advert;
 
         return $this;
     }
@@ -188,7 +188,7 @@ class User extends BaseUser
      */
     public function removeAdvert(Advert $advert)
     {
-        $this->advert->removeElement($advert);
+        $this->adverts->removeElement($advert);
     }
 
     /**
@@ -198,7 +198,7 @@ class User extends BaseUser
      */
     public function getAdvert()
     {
-        return $this->advert;
+        return $this->adverts;
     }
 
     /**

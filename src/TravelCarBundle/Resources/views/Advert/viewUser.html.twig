@@ -1,33 +1,34 @@
 {% extends "base.html.twig" %}
+{% trans_default_domain 'TravelCarBundle' %}
 
-{% block title %} annonce {% endblock %}
-{% block header_heading %} {{ annonce.villeDep }} - {{ annonce.villeArriv }} {% endblock %}
+{% block title %} advert {% endblock %}
+{% block header_heading %} {{ advert.departureCity }} - {{ advert.cityOfArrival }} {% endblock %}
 {% block body %}
 <div class="row">
     <div class="col-md-8">
-        {% include 'TravelCarAnnonceBundle:Annonce:view.html.twig' %}
+        {% include 'TravelCarBundle:Advert:view.html.twig' %}
     </div>
     <div class="col-md-4">
-        {% if app.user.id is defined and app.user.id != annonce.personne.id%}
-            {% if annonce.nbPlaces %}
+        {% if app.user.id is defined and app.user.id != advert.user.id%}
+            {% if advert.nbPlaces %}
                 <div class="col-md-3">
-                    {% include 'TravelCarAnnonceBundle:Annonce:reserver.html.twig' %}
+                    {% include 'TravelCarBundle:Advert:reserver.html.twig' %}
                 </div>
 
             {% else %}
-                <small class="text-danger" > {{'text.complet'|trans({},'TravelCarAnnonceBundle')}} </small>
+                <small class="text-danger" > {{'text.complet'|trans}} </small>
             {% endif %}
         {% elseif app.user.id is not defined %}
-            {% if annonce.nbPlaces %}
+            {% if advert.numberOfPlace %}
                 <div class="col-md-3 pull-right">
-                    {% include 'TravelCarAnnonceBundle:Annonce:reserver.html.twig' %}
+                    {% include 'TravelCarBundle:Advert:reserver.html.twig' %}
                 </div>
 
             {% else %}
-                <small class="text-danger" > {{'text.complet'|trans({},'TravelCarAnnonceBundle')}} </small>
+                <small class="text-danger" > {{'text.complet'|trans}} </small>
             {% endif %}
         {% else %}
-            <small class="text-danger" >Postée par vous</small>
+            <small class="text-danger" >{{'text.addedByYou'|trans}}</small>
         {% endif %}
     </div>
 </div>

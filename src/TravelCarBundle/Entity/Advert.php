@@ -29,7 +29,7 @@ class Advert
     private $vehicle;
     
     /**
-   * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\User", inversedBy="advert", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\User", inversedBy="adverts", cascade={"persist"})
    * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
    * @Assert\Valid()
    */
@@ -124,6 +124,16 @@ class Advert
             $this->numberOfPlace--;
         }
         return $this;
+    }
+    
+    /**
+     * Get departureTime
+     *
+     * @return \DateTime
+     */
+    public function getDepartureTime()
+    {
+        return $this->departureDate->format('h:m');
     }
 
     /**

@@ -15,7 +15,7 @@
 {% block body %}
     <div class='row'>
         <div class='col-md-6'>
-         {% include "TravelCarBundle:Annonce:annonce.html.twig" %}
+         {% include "TravelCarBundle:Advert:advert.html.twig" %}
         </div>
         <div class='col-md-6'>
         </div>
@@ -25,14 +25,14 @@
  {% block javascripts %}
          <script type="text/javascript">
              $.datetimepicker.setLocale('fr');
-             $('#travelcar_annoncebundle_annonce_dateDep').datetimepicker({
+             $('.dateTimePicker').datetimepicker({
                 mask:'19/39/9999 29:59',
                 format:'d/m/Y h:m',
                 formatDate:'d/m/Y',
                 minDate:'0',
              });
              
-             $('#travelcar_annoncebundle_annonce_tempsTrajet').datetimepicker({
+             $('.timePicker').datetimepicker({
                 mask:'29:59',
                 format:'h:m',
                 datepicker: false
