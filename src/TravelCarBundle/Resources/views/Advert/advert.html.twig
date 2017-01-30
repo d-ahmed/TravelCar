@@ -30,7 +30,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>{{'text.annonce.horaire'|trans}}</label>
-                    {{ form_widget(form.departureDate, {'attr':{'class':'dateTimePicker'} }) }}
+                    {{ form_widget(form.departureDate, {'attr':{'class':'dateTimePicker', 'placeholder' : date().format('d/m/Y h:m') } }) }}
                     {{form_errors(form.departureDate)}}
                 </div>
                 <div class="form-group">

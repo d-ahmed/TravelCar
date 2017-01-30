@@ -1,0 +1,86 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'TravelCarBundle' %}
+
+{% block header_heading %} {{'text.found'|trans}} {% endblock %}
+
+{% block header_subheading %}
+
+        {% include "TravelCarBundle:TravelCar:search.html.twig" %}
+                          
+{% endblock %}
+
+{% block body %}
+    
+    <div class="jumbotron">
+        <h2>{{numberOfAdvert}} {% if numberOfAdvert <= 1 %} annonce trouvée {% else %} annonces trouvées {% endif %}</h2>
+        <p>...</p>  
+     </div>
+    
+    {% if adverts is not empty %}
+        <div class="list-group">
+        {% for advert in adverts %}
+            <a href="{{path('view_advert', {'id':advert.id})}}" class="list-group-item">
+                <div class="row">
+                    <div  class="col-md-3">
+                        <small class="list-group-item-heading"> {{ advert.user.name }} {{ advert.user.lastName }}</small>
+                    </div>
+                    <div style="border-left: solid; border-width: 0.5px;" class="col-md-7">
+                            <h4 class="list-group-item-heading">
+                                
+                                {% if advert.departureDate.format("d/m/Y") == 'now'| date("d/m/Y") %}
+                                    
+                                    Aujourd'hui à {{ advert.departureTime }} </h4>
+                                
+                                {% elseif advert.departureDate.format("d/m/Y") == date().modify('+1 day').format("d/m/Y") %}
+                                    
+                                    Demain à {{ advert.departureTime}} </h4>
+                                 
+                                {% else %}    
+                                    {{ advert.departureDate|date('d/m/Y')}} à {{ advert.departureTime}}</h4>
+                                {% endif %}
+                                
+                            <small class="list-group-item-text">{{ advert.departureCity }} <span class="glyphicon glyphicon-arrow-right "></span> {{ advert.cityOfArrival }}</small>
+                            <br/>
+                            <small><span class="glyphicon glyphicon-record text-primary"></span> RDV à {{ advert.departureCity }} </small>
+                            <br/>
+                            <small><span class="glyphicon glyphicon-record text-danger"></span> {{ advert.cityOfArrival }} </small>
+                    </div>
+                    <div class="col-md-2">
+                        <small class="list-group-item-heading pull-right"> {{ advert.pricePerPersonne}} <span class="glyphicon glyphicon-eur"/></small>
+                        <small class="list-group-item-heading pull-right"> {{ advert.numberOfPlace}} places disponibles</small>
+                    </div>
+                </div>
+            </a>
+            
+        {% endfor %}
+        </div>
+        <ul class="pagination"></ul>
+    {% else %}
+            <div class="form form-group">
+                Pas de réponse
+            </div>
+    {% endif %}
+
+    <ul class="pagination">
+        {% if numberPage > 1 %}
+            {% for p in range(1, numberPage) %}
+                <li{% if p == page %} class="active" {% endif %}>
+                    <a href="{{path('view_adverts', {'departureCity':departureCity,'cityOfArrival':cityOfArrival,'departureDate':departureDate,'page':p})}}"> {{ p }} </a>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+{% endblock %}
+
+{% block javascripts %}
+         <script type="text/javascript">
+             $.datetimepicker.setLocale('fr');
+             $('#form_date_dep').datetimepicker({
+                mask:'19 39 9999',
+                format:'d m Y',
+                timepicker:false
+             });
+         </script>
+{% endblock %}

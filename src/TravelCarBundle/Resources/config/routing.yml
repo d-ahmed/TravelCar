@@ -20,4 +20,17 @@ view_advert:
     requirements:
         id: \d+
 
+view_adverts:
+    path: /adverts/{departureCity}/{cityOfArrival}/{departureDate}/{page}/{numberPerPage}
+    defaults:
+        _controller: TravelCarBundle:Advert:viewAdverts
+        page: 1
+        numberPerPage: 5
+        departureCity: ''
+        cityOfArrival: ''
+        departureDate: ''
+    requirements:
+        page: \d*
+        numberPerPage: \d*
+        
 # Reservation root

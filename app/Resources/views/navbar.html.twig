@@ -15,19 +15,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">{{'menue.acceuil'|trans}}</a>
+                        <a href="{{path('home')}}">{{'navbar.home'|trans}}</a>
                     </li>
                     <li>
-                        <a href="#">{{'menue.a_propos'|trans}}</a>
+                        <a href="#">{{'navbar.about'|trans}}</a>
                     </li>
                     <li>
-                        <a href="#">{{'menue.proposer_trajet'|trans}}</a>
+                        <a href="#">{{'navbar.submitARoute'|trans}}</a>
                     </li>
                     <li>
                         {%if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li><a href="{{ path('fos_user_security_logout')}}">{{'btn.deconnexion'|trans}}</a></li>
+                            <li><a href="{{ path('fos_user_security_logout')}}">{{'text.signOut'|trans}}</a></li>
                         {% else %}
-                            <li><a href="{{ path('fos_user_security_login')}}">{{'btn.connexion'|trans}}</a></li>
+                            <li><a href="{{ path('fos_user_security_login')}}">{{'ext.signIn'|trans}}</a></li>
                         {%endif%}
                     </li>
                 </ul>

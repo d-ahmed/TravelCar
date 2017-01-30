@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelCarBundle\Entity\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * AdvertRepository
@@ -10,4 +11,24 @@ namespace TravelCarBundle\Entity\Repository;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage){
+        
+        $queryBuilder = $this->createQueryBuilder('a');
+        $departureDate = $departureDate->modify('-1 day');
+        
+        $queryBuilder->where('a.departureCity like :departureCity')
+                ->setParameter('departureCity', $departureCity)
+                ->andWhere('a.cityOfArrival like :cityOfArrival')
+                ->setParameter('cityOfArrival', $cityOfArrival)
+                ->andWhere('a.departureDate > :departureDate')
+                ->setParameter('departureDate', $departureDate)
+                ->orderBy('a.departureDate', 'ASC');  
+        
+        $adverts = $queryBuilder->getQuery();
+        
+        $adverts->setFirstResult(($page-1)*$numberPerPage)
+                ->setMaxResults($numberPerPage);
+        
+        return new Paginator($adverts, true);     
+    }
 }
