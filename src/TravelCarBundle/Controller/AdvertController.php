@@ -45,9 +45,12 @@ class AdvertController extends Controller
                     'cityOfArrival'=>$form->get('cityOfArrival')->getData()
                 ));
             }
+        }else{
+            throw $this->createNotFoundException('Page non trouvée');
         }
-        return $this->redirectToRoute('homme');
+        return 0;
     }
+    
     
     /**
      * @Security("has_role('ROLE_USER')")
@@ -89,6 +92,7 @@ class AdvertController extends Controller
                 ));
             }
         }
+        
         return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array('form' => $form->createView(), 'nameBtn'=>'btn.add'));
     }
     

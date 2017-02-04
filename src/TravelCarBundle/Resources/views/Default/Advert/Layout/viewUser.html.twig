@@ -9,7 +9,7 @@
         <div  class="col-md-8">
             {% include 'TravelCarBundle:Default:Advert/Containts/view.html.twig' %}
             <div  class="col-md-12">
-                {{ render(controller('TravelCarBundle:Post:add', { 'advertId': advert.id })) }}
+                {{ render(controller('TravelCarBundle:Post:renderForm', { 'advertId': advert.id })) }}
             </div>                         
         </div>
         <div class="col-md-4">

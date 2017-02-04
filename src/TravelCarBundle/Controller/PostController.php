@@ -36,11 +36,23 @@ class PostController extends Controller{
     /**
      * @ParamConverter("advert", options={"id": "advertId"})
      */
+    public function renderFormAction(Advert $advert){
+        $form = $this->createForm('TravelCarBundle\Form\PostType');
+        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/add.html.twig',array(
+            'post'=>$form->createView(),
+            'advert'=>$advert
+        ));
+    }
+    
+    /**
+     * @ParamConverter("advert", options={"id": "advertId"})
+     */
     public function addAction(Advert $advert, Request $request){
         
         if(!$advert) $this->createNotFoundException ('Problème de serveur');
         
         $post = new Post();
+        
         $form = $this->createForm('TravelCarBundle\Form\PostType', $post);
         
         if($request->isMethod('POST')){
@@ -59,12 +71,10 @@ class PostController extends Controller{
             return $this->redirectToRoute('view_advert', array(
                 'id' => $advert->getId(),
             ));
+        }else{
+            throw $this->createNotFoundException('Page non trouvée');
         }
-        
-        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/add.html.twig',array(
-            'post'=>$form->createView(),
-            'advert'=>$advert
-        ));
+        return 0;
     }
     
     /**

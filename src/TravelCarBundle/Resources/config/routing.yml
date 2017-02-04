@@ -20,6 +20,12 @@ searchTreatment_adverts:
     requirements:
         page: \d+
         numberPerPage: \d+
+
+
+    
+renderModifiyForm_advert:
+    path:     adverts/formModify
+    defaults: { _controller: TravelCarBundle:Advert:renderModifyForm }
     
 add_advert:
     path:     adverts/add

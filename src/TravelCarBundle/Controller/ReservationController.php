@@ -20,7 +20,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class ReservationController extends Controller{
     
-    
+    public function renderFormAction(){
+        return $this->render();
+    }
     /**
      * 
      * @Security("has_role('ROLE_USER')")
@@ -73,9 +75,11 @@ class ReservationController extends Controller{
             'id' => $advertId,
             ));
             
+        }else{
+            throw $this->createNotFoundException('Page non trouvée');
         }
         
-        return $this->redirectToRoute('home');
+        return 0;
     }
     
     /**
