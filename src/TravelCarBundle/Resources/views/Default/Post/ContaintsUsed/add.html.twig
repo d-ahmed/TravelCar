@@ -1,0 +1,10 @@
+<h3>{{'text.askQuestion'|trans}}</h3> 
+{{ form_start(post, {'attr':{'action': path('add_post',{'advertId':advert.id}), 'role':'form'} })}}
+<div class="form-group">
+{{ form_widget(post.comment) }}
+</div>
+<div class="form-group">
+{{ form_widget(post.response, {'required':false, 'attr':{'class':'hidden'} }) }}
+</div>
+<button type="submit" class="btn">{{'text.send'|trans}}</button>  
+{{ form_end(post) }}

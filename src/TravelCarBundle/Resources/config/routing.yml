@@ -7,9 +7,22 @@ home:
     defaults: { _controller: TravelCarBundle:TravelCar:home }
 
 # Annonce root
-
+search_adverts:
+    path:     search
+    defaults: { _controller: TravelCarBundle:Advert:search }
+    
+searchTreatment_adverts:
+    path:     search/adverts/{page}/{numberPerPage}
+    defaults:
+        _controller: TravelCarBundle:Advert:searchTreatment
+        page: 1
+        numberPerPage: 5
+    requirements:
+        page: \d+
+        numberPerPage: \d+
+    
 add_advert:
-    path:     advert/add
+    path:     adverts/add
     defaults: { _controller: TravelCarBundle:Advert:add }
 
 
@@ -19,18 +32,39 @@ view_advert:
         _controller: TravelCarBundle:Advert:view
     requirements:
         id: \d+
-
-view_adverts:
-    path: /adverts/{departureCity}/{cityOfArrival}/{departureDate}/{page}/{numberPerPage}
-    defaults:
-        _controller: TravelCarBundle:Advert:viewAdverts
-        page: 1
-        numberPerPage: 5
-        departureCity: ''
-        cityOfArrival: ''
-        departureDate: ''
+        
+modify_advert:
+    path:     adverts/modify/{id}
+    defaults: { _controller: TravelCarBundle:Advert:modify }
     requirements:
-        page: \d*
-        numberPerPage: \d*
+        id: \d+
+        
+remove_advert:
+    path: adverts/remove/{id}
+    defaults: {_controller: TravelCarBundle:Advert:remove }
+    requirements:
+        id: \d+
         
 # Reservation root
+add_reservation:
+    path:     reservations/add
+    defaults: { _controller: TravelCarBundle:Reservation:add }
+    
+remove_reservation:
+    path: reservations/remove/{advertId}
+    defaults: {_controller: TravelCarBundle:Reservation:remove }
+    requirements:
+        advertId: \d+
+        
+# Post root
+view_posts:
+    path: posts/view/{advertId}
+    defaults: {_controller: TravelCarBundle:Post:view }
+    requirements:
+        advertId: \d+
+        
+add_post:
+    path: posts/add/{advertId}
+    defaults: {_controller: TravelCarBundle:Post:add }
+    requirements:
+        advertId: \d+

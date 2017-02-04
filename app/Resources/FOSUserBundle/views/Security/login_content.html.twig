@@ -1,6 +1,6 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
-
+{% set target = app.request.headers.get('referer') %}
 
 <div class="col-lg-8 col-lg-offset-3" >
     <small> {{'text.demande'|trans({}, 'TravelCarBundlePersonne') }}  <a class="btn btn-bg btn-social btn-default" href="{{ path('fos_user_registration_register') }}">{{'btn.inscription'|trans({}, 'TravelCarBundlePersonne') }}</a></small>
@@ -12,7 +12,9 @@
 
 
             <form action="{{ path("fos_user_security_check") }}" method="post" class="form">
-
+                
+                <input type="hidden" name="_target_path" value="{{target}}" />
+                
                 {% if csrf_token %}
                     <input class="form-control" type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                 {% endif %}

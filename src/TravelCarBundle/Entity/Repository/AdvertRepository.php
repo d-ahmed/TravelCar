@@ -12,7 +12,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
 	public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage){
-        
+
         $queryBuilder = $this->createQueryBuilder('a');
         $departureDate = $departureDate->modify('-1 day');
         
@@ -30,5 +30,36 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
                 ->setMaxResults($numberPerPage);
         
         return new Paginator($adverts, true);     
+    }
+    
+    public function findByUserDepartureDate($user, $departureDate){
+
+        $queryBuilder = $this->createQueryBuilder('a');
+        $queryBuilder->where('a.departureDate > :departureDate1')
+                ->andWhere('a.user = :user')
+                ->setParameter('departureDate1', $departureDate->modify('-1 day'))
+                ->setParameter('user', $user)
+                ;
+        
+        $adverts = $queryBuilder->getQuery()->getResult();
+        $departureDate->modify('+1 day');
+        $newAdvert = array();
+        
+        foreach ($adverts as $advert){
+            
+            $timeBetween2Advert = $advert->getDepartureDate()->diff($departureDate)->h;
+            $travelTime = intval($advert->getTravelTime()->format('h'))+1;
+            $intervalYear = $advert->getDepartureDate()->diff($departureDate)->y;
+            $intervalMonth = $advert->getDepartureDate()->diff($departureDate)->d;
+            $intervalDay = $advert->getDepartureDate()->diff($departureDate)->m;
+            dump($timeBetween2Advert);
+            dump($travelTime);
+            
+            if( $timeBetween2Advert <= $travelTime && $intervalDay==0 && $intervalMonth==0 && $intervalYear==0){
+                $newAdvert[]=$advert;
+            }
+        }
+
+        return $newAdvert;
     }
 }

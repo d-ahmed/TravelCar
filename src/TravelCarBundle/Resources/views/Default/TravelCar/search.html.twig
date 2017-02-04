@@ -1,0 +1,22 @@
+{% trans_default_domain 'TravelCarBundle' %}
+<form id="contactForm" class="form-inline" action="{{path('view_adverts')}}" method="GET">
+    <div  class="form-group col-md-3 floating-label-form-group controls">
+        <label>{{'text.ville.dep'|trans}}</label>
+        <input name='departureCity' style='color: white;' type="text" class="form-control" placeholder="{{'text.ville.dep'|trans}}" id="" required data-validation-required-message="Please enter your name.">
+        <p class="help-block text-danger"></p>
+    </div>
+    <div class="form-group col-md-3 floating-label-form-group controls">
+        <label>{{'text.ville.arriv'|trans}}</label>
+        <input name='cityOfArrival' style='color: white;' type="text" class="form-control" placeholder="{{'text.ville.arriv'|trans}}" id="" required data-validation-required-message="Please enter your name.">
+        <p class="help-block text-danger"></p>
+    </div>
+    <div class="form-group col-md-3 floating-label-form-group controls">
+        <label>{{'text.date.dep'|trans}}</label>
+        <input name='departureDate' style='color: white;' id="form_date_dep" type="text" class="form-control" placeholder="{{'text.date.dep'|trans}}" id="" required data-validation-required-message="Please enter your name.">
+        <p class="help-block text-danger"></p>
+    </div>
+    <div class="form-group">
+        <input  type="submit" name="" style="margin-top: 10px;" value="{{'btn.cherche'|trans}}" class="btn btn-info" />
+    </div>
+</form>
+

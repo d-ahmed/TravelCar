@@ -5,14 +5,58 @@ namespace TravelCarBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TravelCarBundle\Entity\Advert;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use TravelCarBundle\Modele\AdvertModele;
+
 
 class AdvertController extends Controller
 {
+    public function searchAction(Request $request){
+        $form = $this->createForm('TravelCarBundle\Form\SearchType');
+        return $this->render('TravelCarBundle:Default:Advert/ContaintsUsed/search.html.twig',array('search'=>$form->createView()));
+    }
+    
+    public function searchTreatmentAction($page,$numberPerPage,Request $request){
+        
+        if($page < 1) throw $this->createNotFoundException('Traduction : page n existe pas');
+        
+        $form = $this->createForm('TravelCarBundle\Form\SearchType');
+        
+        if($request->isMethod('POST')){
+            
+            $form->handleRequest($request);
+            
+            if($form->isValid()){
+                $adverts = $this->getDoctrine()
+                        ->getRepository('TravelCarBundle:Advert')
+                        ->findBymatchAnnonces($form->get('departureCity')->getData(), $form->get('cityOfArrival')->getData(), $form->get('departureDate')->getData(),$page,$numberPerPage);
+                $numberPage = ceil(count($adverts)/$numberPerPage);
+
+                if($page>$numberPage) throw $this->createNotFoundException('Traduction : page n existe pas');
+
+                return $this->render('TravelCarBundle:Default:Advert/Layout/viewAll.html.twig', array(
+                    'adverts' => $adverts, 
+                    'numberOfAdvert' => count($adverts), 
+                    'page'=>$page, 
+                    'numberPage'=>$numberPage,
+                    'departureDate'=>$form->get('departureDate')->getData()->format('d/m/Y'),
+                    'departureCity'=>$form->get('departureCity')->getData(),
+                    'cityOfArrival'=>$form->get('cityOfArrival')->getData()
+                ));
+            }
+        }
+        return $this->redirectToRoute('homme');
+    }
+    
+    /**
+     * @Security("has_role('ROLE_USER')")
+     */
     public function addAction(Request $request){
+        
         $advert = new Advert();
         
         $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
-        
         
         if ($request->isMethod('POST')) {
             
@@ -21,7 +65,15 @@ class AdvertController extends Controller
             if ($form->isValid()) {
                 
                 $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
-
+                
+                $advertConflict = $this->getDoctrine()
+                        ->getRepository('TravelCarBundle:Advert')
+                        ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
+                
+                if(count($advertConflict)>0){
+                    throw $this->createNotFoundException('Traduction : Conflit d annonce');
+                }
+                
                 $em = $this->getDoctrine()->getManager(); // Recupération entityManager
 
                 $em->merge($advert);
@@ -32,79 +84,75 @@ class AdvertController extends Controller
                         ->getRepository('TravelCarBundle:Advert')
                         ->findOneBy(array('user' => $this->getUser()), array('id' => 'desc'));
                 
-                $idAdvert = $last->getId();
-                
-                return $this->redirectToRoute('view_advert', array('id' => $idAdvert));
+                return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
+                'advert' => $last,
+                ));
             }
         }
-        
-        return $this->render('TravelCarBundle:Advert:add.html.twig', array('form' => $form->createView()));
+        return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array('form' => $form->createView(), 'nameBtn'=>'btn.add'));
     }
     
     
     public function viewAction(Advert $advert) {
 
-        return $this->render('TravelCarBundle:Advert:viewUser.html.twig', array(
-        'advert' => $advert
+        return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
+        'advert' => $advert,
         ));
     }
     
-    public function viewAdvertsAction($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage, Request $request){
-     
-        if($page < 1){
-            throw $this->createNotFoundException('Traduction : page n existe pas');
-        }
-     
-        $adverts = array();
-     
-     
-            if($request->isMethod('GET')){
+    /**
+     * @Security("has_role('ROLE_DRIVER')")
+     */
+    public function modifyAction(Advert $advert, Request $request){
+        
+        $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
+        
+        if ($request->isMethod('POST')) {
+            
+            $form->handleRequest($request);
 
-                if($request->query->count()!=0){
-                    $departureCity = $request->query->get("departureCity");
-                    $cityOfArrival = $request->query->get("cityOfArrival");
-                    $departureDate = $request->query->get("departureDate");
-                }
-
-                preg_match('/[a-zA-Z]+/',$departureCity, $departureCity_match);
-                preg_match('/[a-zA-Z]+/',$cityOfArrival, $cityOfArrival_match);
-                preg_match('/\d{2} \d{2} \d{4}/',$departureDate, $departureDate_match);
-
-                if((!isset($departureCity_match[0] ) || !isset($cityOfArrival_match[0] ) || !isset($departureDate_match[0] ) ) || ($departureCity_match[0]!=$departureCity || $cityOfArrival_match[0]!=$cityOfArrival || $departureDate_match[0]!=$departureDate)){
-                    throw $this->createNotFoundException('Traduction : annonces n existe pas');
-                }else{
-
-                // On split la date en 3 variables , puis on créé un 
-                // objet Datetime auquel on attribue ces 3 valeurs pour la BDD
-
-                list($day, $month, $year) = preg_split('/ /', $departureDate);
-                $departureDate = new \DateTime();
-                $departureDate->setDate($year, $month, $day);
-
-                $adverts = $this->getDoctrine()
+            if ($form->isValid()) {
+                
+                $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
+                
+                $advertConflict = $this->getDoctrine()
                         ->getRepository('TravelCarBundle:Advert')
-                        ->findBymatchAnnonces($departureCity, $cityOfArrival, $departureDate,$page,$numberPerPage);
-
-                // On calcule le nombre total de page
-                $numberPage = ceil(count($adverts)/$numberPerPage);
-
-                if($page>$numberPage){
-                    throw $this->createNotFoundException('Traduction : page n existe pas');
+                        ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
+                
+                if(count($advertConflict)>0){
+                    throw $this->createNotFoundException('Traduction : Conflit d annonce');
                 }
+                
+                $em = $this->getDoctrine()->getManager(); // Recupération entityManager
 
-                return $this->render('TravelCarBundle:Advert:viewAll.html.twig', array(
-                    'adverts' => $adverts, 
-                    'numberOfAdvert' => count($adverts), 
-                    'page'=>$page, 
-                    'numberPage'=>$numberPage,
-                    'departureDate'=>$departureDate->format('d m Y'),
-                    'departureCity'=>$departureCity,
-                    'cityOfArrival'=>$cityOfArrival
+                $em->merge($advert);
+
+                $em->flush();
+                
+                return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
+                'advert' => $advert,
                 ));
             }
         }
-            
-        return $this->render('TravelCarBundle:TravelCar:home.html.twig');
+        
+        return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array('form' => $form->createView(), 'nameBtn'=>'btn.modify'));
+    }
+    
+    /**
+     * @Security("has_role('ROLE_DRIVER')")
+     */
+    public function removeAction(Advert $advert, Request $request){
+        if($request->isMethod('GET')){
+            if($advert->getUser()!=$this->getUser()){
+                throw $this->createNotFoundException('Pas le doit');
+            }else{
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($advert);
+                $em->flush();
+                // Message annonce bien supprimé
+            }
+        }
+        return new Response('Annonce supprimer');
     }
 
 }

@@ -24,7 +24,7 @@ class Advert
     
    /**
    * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Vehicle", cascade={"persist"})
-   * @ORM\JoinColumn(referencedColumnName="id_number", nullable=false)
+   * @ORM\JoinColumn(referencedColumnName="id_number", nullable=true)
    */
     private $vehicle;
     
@@ -93,6 +93,11 @@ class Advert
      */
     private $numberOfPlace;
 
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $detail;
     
     function __construct() {
         $this->date = new \Datetime();
@@ -104,7 +109,7 @@ class Advert
      * @return Annonce
      */
     public function increaseNbPlaces($numberOfPlace = null){
-        if($nbPalace){
+        if($numberOfPlace){
             $this->numberOfPlace+=$numberOfPlace;
         }else{
             $this->numberOfPlace++;
@@ -118,7 +123,7 @@ class Advert
      * @return Annonce
      */
     public function decreaseNbPlaces($numberOfPlace = null){
-        if($nbPalace){
+        if($numberOfPlace){
             $this->numberOfPlace-=$numberOfPlace;
         }else{
             $this->numberOfPlace--;
@@ -360,5 +365,29 @@ class Advert
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param string $detail
+     *
+     * @return Advert
+     */
+    public function setDetail($detail)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return string
+     */
+    public function getDetail()
+    {
+        return $this->detail;
     }
 }

@@ -21,7 +21,7 @@
                         <a href="#">{{'navbar.about'|trans}}</a>
                     </li>
                     <li>
-                        <a href="#">{{'navbar.submitARoute'|trans}}</a>
+                        <a href="{{path('add_advert')}}">{{'navbar.submitARoute'|trans}}</a>
                     </li>
                     <li>
                         {%if is_granted('IS_AUTHENTICATED_FULLY') %}

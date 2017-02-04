@@ -92,7 +92,8 @@ class Reservation
      * @return Reservation
      */
     public function setAdvert(Advert $advert)
-    {
+    {   
+        $advert->decreaseNbPlaces($this->numberOfPlace);
         $this->advert = $advert;
 
         return $this;
@@ -106,5 +107,9 @@ class Reservation
     public function getAdvert()
     {
         return $this->advert;
+    }
+    
+    public function deleteReservation(){
+        $this->advert->increaseNbPlaces($this->numberOfPlace);
     }
 }

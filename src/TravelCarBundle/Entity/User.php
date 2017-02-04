@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use TravelCarBundle\Entity\Advert;
 use TravelCarBundle\Entity\Reservation;
+use TravelCarBundle\Entity\Vehicle;
 
 
 
@@ -51,22 +52,32 @@ class User extends BaseUser
     
     /**
     * 
-    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Advert", mappedBy="users", cascade={"persist"})
+    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Advert", mappedBy="user", cascade={"persist"})
     */
     private $adverts;
     
     
     /**
     * 
-    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="users", cascade={"persist"})
+    * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="user", cascade={"persist"})
     */
     private $reservations;
+    
+    /**
+    * @ORM\ManyToMany(targetEntity="TravelCarBundle\Entity\Vehicle", cascade={"persist"})
+    * @ORM\JoinTable(name="users_vehicles",
+    *      joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
+    *      inverseJoinColumns={@ORM\JoinColumn(name="vehicle_id", referencedColumnName="id_number", unique=true)}
+    * )
+    */
+     private $vehicles;
     
    public function __construct()
    {
        parent::__construct();
        $this->adverts = new ArrayCollection();
        $this->reservations = new ArrayCollection();
+       $this->vehicles = new ArrayCollection();
        
    }
 
@@ -233,5 +244,49 @@ class User extends BaseUser
     public function getReservations()
     {
         return $this->reservations;
+    }
+
+    /**
+     * Get adverts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdverts()
+    {
+        return $this->adverts;
+    }
+
+    /**
+     * Add vehicle
+     *
+     * @param \TravelCarBundle\Entity\Vehicle $vehicle
+     *
+     * @return User
+     */
+    public function addVehicle(Vehicle $vehicle)
+    {
+        $this->vehicles[] = $vehicle;
+
+        return $this;
+    }
+
+    /**
+     * Remove vehicle
+     *
+     * @param \TravelCarBundle\Entity\Vehicle $vehicle
+     */
+    public function removeVehicle(Vehicle $vehicle)
+    {
+        $this->vehicles->removeElement($vehicle);
+    }
+
+    /**
+     * Get vehicles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVehicles()
+    {
+        return $this->vehicles;
     }
 }

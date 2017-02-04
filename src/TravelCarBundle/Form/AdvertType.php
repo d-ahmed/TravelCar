@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use TravelCarBundle\Form\VehicleType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -18,13 +17,12 @@ class AdvertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('departureDate', DateTimeType::class, array('widget' => 'single_text', 'format' => 'dd/MM/yyyy h:m', 'data' => new \DateTime()))
-                ->add('travelTime', DateTimeType::class, array('widget' => 'single_text', 'format' => 'h:m'))
+                ->add('departureDate', DateTimeType::class, array('widget' => 'single_text', 'format' => 'dd/MM/yyyy H:m', 'data' => new \DateTime()))
+                ->add('travelTime', DateTimeType::class, array('widget' => 'single_text', 'format' => 'H:m'))
                 ->add('departureCity', TextType::class)
                 ->add('cityOfArrival', TextType::class)
                 ->add('pricePerPersonne', MoneyType::class)
                 ->add('numberOfPlace', IntegerType::class)
-                ->add('vehicle', VehicleType::class)
                 ;
                 
         

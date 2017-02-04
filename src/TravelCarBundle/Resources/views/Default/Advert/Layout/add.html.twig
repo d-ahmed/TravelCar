@@ -15,7 +15,7 @@
 {% block body %}
     <div class='row'>
         <div class='col-md-6'>
-         {% include "TravelCarBundle:Advert:advert.html.twig" %}
+         {% include "TravelCarBundle:Default:Advert/Containts/advert.html.twig" %}
         </div>
         <div class='col-md-6'>
         </div>
@@ -27,14 +27,14 @@
              $.datetimepicker.setLocale('fr');
              $('.dateTimePicker').datetimepicker({
                 mask:'19/39/9999 29:59',
-                format:'d/m/Y h:m',
+                format:'d/m/Y H:m',
                 formatDate:'d/m/Y',
-                minDate:'0',
+                minDate:'0'
              });
              
              $('.timePicker').datetimepicker({
                 mask:'29:59',
-                format:'h:m',
+                format:'H:m',
                 datepicker: false
              });
              

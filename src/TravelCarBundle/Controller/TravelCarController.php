@@ -8,9 +8,7 @@ class TravelCarController extends Controller
 {
     public function homeAction()
     {
-        return $this->render('TravelCarBundle:TravelCar:home.html.twig', array(
-            // ...
-        ));
+        return $this->render('TravelCarBundle:Default:TravelCar/Layout/home.html.twig');
     }
 
 }
