@@ -158,5 +158,16 @@ class AdvertController extends Controller
         }
         return new Response('Annonce supprimer');
     }
+    
+    /**
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function myAdvertsAction(){
+        $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')
+                ->findBy(array('user'=>$this->getUser()));
+        dump($adverts);
+        
+        return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array('user'=>$this->getUser(), 'adverts'=>$adverts));
+    }
 
 }

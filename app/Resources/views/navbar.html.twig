@@ -24,11 +24,17 @@
                         <a href="{{path('add_advert')}}">{{'navbar.submitARoute'|trans}}</a>
                     </li>
                     <li>
-                        {%if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <li><a href="{{ path('fos_user_security_logout')}}">{{'text.signOut'|trans}}</a></li>
+                            <li>
+                                <a> </a>
+                            </li>
+                            <li>
+                                <a> </a>
+                            </li>
                         {% else %}
                             <li><a href="{{ path('fos_user_security_login')}}">{{'ext.signIn'|trans}}</a></li>
-                        {%endif%}
+                        {% endif %}
                     </li>
                 </ul>
             </div>

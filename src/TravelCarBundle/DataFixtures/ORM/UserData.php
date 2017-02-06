@@ -29,8 +29,8 @@ class UserData extends AbstractFixture implements OrderedFixtureInterface{
                 ->setEmail('test@test.com')
                 ->setPlainPassword('user')
                 ->setRoles(array('ROLE_USER'))
-                ->setName('Annasse')
-                ->setLastName('Zoughar')
+                ->setName('Anasse')
+                ->setLastName('Zougarh')
                 ->setEnabled(TRUE)
                 ->addVehicle($this->getReference('vehicle1'))
                 ->addVehicle($this->getReference('vehicle3'));

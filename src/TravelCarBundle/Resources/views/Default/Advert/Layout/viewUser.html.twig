@@ -13,7 +13,7 @@
             </div>                         
         </div>
         <div class="col-md-4">
-            {% if app.user.id is defined and app.user.id != advert.user.id%}
+            {% if app.user.id is defined and app.user.id != advert.user.id %}
                 {% if advert.numberOfPlace %}
                     <div class="col-md-12">
                         {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
@@ -43,7 +43,7 @@
 </div>
 {% endblock %}
 
-{% block javascripts_layout %}
+{% block javascripts %}
          <script type="text/javascript">
              $('document').ready(function(){
                  $('#comment').keypress(function(e){

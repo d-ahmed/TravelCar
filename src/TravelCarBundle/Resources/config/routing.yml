@@ -1,4 +1,8 @@
 # User root
+travelCar_profile:
+    resource: "@TravelCarBundle/Resources/config/routing/profile.yml"
+
+# User root
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
@@ -7,10 +11,7 @@ home:
     defaults: { _controller: TravelCarBundle:TravelCar:home }
 
 # Annonce root
-search_adverts:
-    path:     search
-    defaults: { _controller: TravelCarBundle:Advert:search }
-    
+
 searchTreatment_adverts:
     path:     search/adverts/{page}/{numberPerPage}
     defaults:

@@ -7,7 +7,7 @@
         
         <title>{% block title %}{% endblock %} - TravelCar</title>
         
-        {% block stylesheets %}{% endblock %}
+        
         
         <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -18,6 +18,8 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/annonce.css')}}">
     
         <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.datetimepicker.css')}}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/navbarAnim.css')}}">
         
     <!-- Custom Fonts -->
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
@@ -26,10 +28,11 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
         
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
 
-        {% include 'navbar.html.twig' %}
+        {% include '::navbar.html.twig' %}
         
 
     <!-- Page Header -->
@@ -55,9 +58,34 @@
 
         <!-- Main Content -->
         <div class="container">
-            <div class="row">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <nav class="navbar navbar-fixed-right navbar-minimal animate" role="navigation">
+                    <div class="navbar-toggler animate">
+                        <span class="menu-icon"></span>
+                    </div>
+                    <ul class="navbar-menu animate">
+                        <li>
+                            <a href="{{path('fos_user_profile_show')}}" class="animate">
+                                <span class="desc animate"> Mon profile </span>
+                                <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#blog" class="animate">
+                                <span class="desc animate"> What We Say </span>
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact-us" class="animate">
+                                <span class="desc animate"> How To Reach Us </span>
+                                <span class="glyphicon glyphicon-comment"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
                 {% block body %}{% endblock %}  
-            </div>
         </div>
 
         <hr>
@@ -107,6 +135,8 @@
     
     <!-- Datetimepiker -->
     <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
+
+    <script src="{{ asset('js/navbarAnim.js') }}"></script>
         
         {% block javascripts %}{% endblock %}
     </body>

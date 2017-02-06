@@ -1,0 +1,4 @@
+my_adverts:
+    path: /myAdverts/
+    defaults:
+        _controller: TravelCarBundle:Advert:myAdverts
