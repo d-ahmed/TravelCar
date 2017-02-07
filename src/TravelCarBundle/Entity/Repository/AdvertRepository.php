@@ -11,7 +11,18 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage){
+    public function findByUser($user, $page, $numberPerPage){
+        $queryBuilder = $this->createQueryBuilder('a');
+        $queryBuilder->where('a.user = :user')
+                ->setParameter('user', $user)
+                ->orderBy('a.date', 'ASC');
+        $adverts = $queryBuilder->getQuery();
+        $adverts->setFirstResult(($page-1)*$numberPerPage)
+                ->setMaxResults($numberPerPage);
+        
+        return new Paginator($adverts, TRUE);
+    }
+    public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage){
 
         $queryBuilder = $this->createQueryBuilder('a');
         $departureDate = $departureDate->modify('-1 day');

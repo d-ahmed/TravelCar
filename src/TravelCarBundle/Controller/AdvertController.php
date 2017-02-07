@@ -162,12 +162,18 @@ class AdvertController extends Controller
     /**
      * @Security("has_role('ROLE_USER')")
      */
-    public function myAdvertsAction(){
+    public function myAdvertsAction($mode, $page ,$numberPerPage ,Request $request){
+        if(!$page){
+            $page=1;
+        }
         $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')
-                ->findBy(array('user'=>$this->getUser()));
-        dump($adverts);
-        
-        return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array('user'=>$this->getUser(), 'adverts'=>$adverts));
+                ->findByUser($this->getUser(),$page, $numberPerPage);
+        $numberPage = ceil(count($adverts)/$numberPerPage);
+        return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array(
+        'adverts'=>$adverts,
+        'page'=>$page,
+        'numberPage'=>$numberPage,
+        'mode'=>$mode));
     }
 
 }

@@ -92,6 +92,13 @@ class Advert
      * @ORM\Column(type="integer", nullable=false)
      */
     private $numberOfPlace;
+    
+    /**
+     * 
+     * 
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberOfReservation;
 
     /**
      *
@@ -101,6 +108,7 @@ class Advert
     
     function __construct() {
         $this->date = new \Datetime();
+        $this->numberOfReservation = 0;
     }
     
     /**
@@ -110,9 +118,9 @@ class Advert
      */
     public function increaseNbPlaces($numberOfPlace = null){
         if($numberOfPlace){
-            $this->numberOfPlace+=$numberOfPlace;
+            $this->numberOfReservation-=$numberOfPlace;
         }else{
-            $this->numberOfPlace++;
+            $this->numberOfReservation--;
         }
         return $this;
     }
@@ -124,9 +132,9 @@ class Advert
      */
     public function decreaseNbPlaces($numberOfPlace = null){
         if($numberOfPlace){
-            $this->numberOfPlace-=$numberOfPlace;
+            $this->numberOfReservation+=$numberOfPlace;
         }else{
-            $this->numberOfPlace--;
+            $this->numberOfReservation++;
         }
         return $this;
     }
@@ -389,5 +397,29 @@ class Advert
     public function getDetail()
     {
         return $this->detail;
+    }
+
+    /**
+     * Set numberOfReservation
+     *
+     * @param integer $numberOfReservation
+     *
+     * @return Advert
+     */
+    public function setNumberOfReservation($numberOfReservation)
+    {
+        $this->numberOfReservation = $numberOfReservation;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfReservation
+     *
+     * @return integer
+     */
+    public function getNumberOfReservation()
+    {
+        return $this->numberOfReservation;
     }
 }

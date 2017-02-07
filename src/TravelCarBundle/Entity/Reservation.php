@@ -33,8 +33,15 @@ class Reservation
      */
     private $numberOfPlace;
 
-    
+    /**
+     * 
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $date;
 
+    function __construct() {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Set numberOfPlace
@@ -46,7 +53,7 @@ class Reservation
     public function setNumberOfPlace($numberOfPlace)
     {
         $this->numberOfPlace = $numberOfPlace;
-
+        
         return $this;
     }
 
@@ -111,5 +118,29 @@ class Reservation
     
     public function deleteReservation(){
         $this->advert->increaseNbPlaces($this->numberOfPlace);
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Reservation
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

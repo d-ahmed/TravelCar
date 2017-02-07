@@ -26,12 +26,12 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{path('my_adverts')}}">Annonces</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5})}}">Annonces</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="#">Reservations</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{path('my_reservations')}}">Reservations</a>
                                 </td>
                             </tr>
                             <tr>

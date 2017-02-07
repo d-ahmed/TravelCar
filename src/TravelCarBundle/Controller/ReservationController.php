@@ -127,4 +127,19 @@ class ReservationController extends Controller{
                     ->findBy(array('user'=>$this->getUser()));
         
     }
+    
+    /**
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function myReservationsAction($page ,$numberPerPage ,Request $request){
+        if(!$page){
+            $page=1;
+        }
+        $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
+                ->findByUser($this->getUser(),$page, $numberPerPage);
+        $numberPage = ceil(count($reservations)/$numberPerPage);
+        dump($reservations);
+        die();
+        return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array('reservation'=>$reservations,'page'=>$page,'numberPage'=>$numberPage));
+    }
 }

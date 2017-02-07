@@ -12,6 +12,11 @@
 
 {% block body %}
     
+    <div class="jumbotron">
+        <h2>{{numberOfAdvert}} {% if numberOfAdvert <= 1 %} annonce trouvée {% else %} annonces trouvées {% endif %}</h2>
+        <p>...</p>  
+     </div>
+    
     {% include 'TravelCarBundle:Default:Advert/Containts/listView.html.twig' %}
 
 {% endblock %}

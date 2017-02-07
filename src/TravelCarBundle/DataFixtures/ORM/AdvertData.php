@@ -21,43 +21,58 @@ use TravelCarBundle\Entity\Advert;
 class AdvertData extends AbstractFixture implements OrderedFixtureInterface{
     //put your code here
     public function load(ObjectManager $manager) {
-        $date = new \DateTime();
+        $date1 = new \DateTime();
         
         $advert1 = new Advert();
-        $date->setDate(2017, 02, 28);
-        $date->setTime(06, 30, 00);
+        $date1->setDate(2017, 02, 28);
+        $date1->setTime(06, 30, 00);
         $advert1->setDepartureCity('Nantes')
                 ->setCityOfArrival('Paris')
-                ->setDepartureDate($date)
+                ->setDepartureDate($date1)
                 ->setUser($this->getReference('user1'))
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(21)
-                ->setTravelTime($date);
+                ->setTravelTime($date1);
         $manager->persist($advert1);
         
+        $date2 = new \DateTime();
         $advert2 = new Advert();
-        $date->setDate(2017, 02, 20);
-        $date->setTime(12, 30, 00);
+        $date2->setDate(2017, 02, 20);
+        $date2->setTime(12, 30, 00);
         $advert2->setDepartureCity('Nantes')
                 ->setCityOfArrival('Marseille')
-                ->setDepartureDate($date)
+                ->setDepartureDate($date2)
                 ->setUser($this->getReference('user2'))
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(21)
-                ->setTravelTime($date->setTime(3, 30, 00));
+                ->setTravelTime($date2->setTime(3, 30, 00));
         $manager->persist($advert2);
         
+        $date3 = new \DateTime();
         $advert3 = new Advert();
-        $date->setDate(2017, 02, 20);
-        $date->setTime(12, 30, 00);
+        $date3->setDate(2017, 02, 20);
+        $date3->setTime(12, 30, 00);
         $advert3->setDepartureCity('Nantes')
                 ->setCityOfArrival('Paris')
-                ->setDepartureDate($date)
+                ->setDepartureDate($date3)
                 ->setUser($this->getReference('user1'))
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(22)
-                ->setTravelTime($date->setTime(3, 30, 00));
+                ->setTravelTime($date3->setTime(3, 30, 00));
         $manager->persist($advert3);
+        
+        $date4 = new \DateTime();
+        $advert4 = new Advert();
+        $date4->setDate(2017, 01, 20);
+        $date4->setTime(12, 30, 00);
+        $advert4->setDepartureCity('Nantes')
+                ->setCityOfArrival('Paris')
+                ->setDepartureDate($date4)
+                ->setUser($this->getReference('user2'))
+                ->setNumberOfPlace(3)
+                ->setPricePerPersonne(22)
+                ->setTravelTime($date4->setTime(3, 30, 00));
+        $manager->persist($advert4);
         
         
         $manager->flush();
@@ -65,6 +80,7 @@ class AdvertData extends AbstractFixture implements OrderedFixtureInterface{
         $this->addReference('advert1', $advert1);
         $this->addReference('advert2', $advert2);
         $this->addReference('advert3', $advert3);
+        $this->addReference('advert4', $advert4);
                 
     }
     
