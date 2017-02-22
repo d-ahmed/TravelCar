@@ -18,23 +18,47 @@
                         <a href="{{path('home')}}">{{'navbar.home'|trans}}</a>
                     </li>
                     <li>
-                        <a href="#">{{'navbar.about'|trans}}</a>
+                        <a href="{{path('tc_travelcarbundle_about')}}">{{'navbar.about'|trans}}</a>
                     </li>
                     <li>
                         <a href="{{path('add_advert')}}">{{'navbar.submitARoute'|trans}}</a>
                     </li>
                     <li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li><a href="{{ path('fos_user_security_logout')}}">{{'text.signOut'|trans}}</a></li>
-                            <li>
-                                <a> </a>
-                            </li>
-                            <li>
-                                <a> </a>
-                            </li>
+                            <a href="{{ path('fos_user_security_logout')}}">{{'text.signOut'|trans}}</a>
                         {% else %}
-                            <li><a href="{{ path('fos_user_security_login')}}">{{'ext.signIn'|trans}}</a></li>
+                            <a href="{{ path('fos_user_security_login')}}">{{'ext.signIn'|trans}}</a>
                         {% endif %}
+                    </li>
+                    <li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <nav class="navbar  navbar-minimal animate" role="navigation">
+                            <div class="navbar-toggler animate">
+                                <span class="menu-icon"></span>
+                            </div>
+                            <ul class="navbar-menu animate">
+                                <li>
+                                    <a href="{{path('fos_user_profile_show')}}" class="animate">
+                                        <span class="desc animate"> Mon profile </span>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#blog" class="animate">
+                                        <span class="desc animate"> What We Say </span>
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#contact-us" class="animate">
+                                        <span class="desc animate"> How To Reach Us </span>
+                                        <span class="glyphicon glyphicon-comment"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    {% endif %}
+                            
                     </li>
                 </ul>
             </div>

@@ -1,0 +1,40 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    <h1>Vehicle</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idnumber</th>
+                <td>{{ vehicle.idNumber }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ vehicle.model }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ vehicle.color }}</td>
+            </tr>
+            <tr>
+                <th>Fuel</th>
+                <td>{{ vehicle.fuel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('my_vehicles') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

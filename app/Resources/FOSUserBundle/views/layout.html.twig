@@ -11,7 +11,7 @@
         {% endfor %}
     {% endfor %}
     {% endif %}
-    <div class="col-md-3 col-md-push-9 col-sm-3 col-sm-push-9 col-xs-3 col-xs-push-9">
+    <div class="col-md-3 col-md-push-9 col-sm-3 col-sm-push-9">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -36,7 +36,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="#">Vehicles</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{path('my_vehicles')}}">Vehicles</a>
                                 </td>
                             </tr>
                             <tr>
@@ -75,10 +75,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
+        
         {% endif %}
     </div>
-    <div class="col-md-9 col-md-pull-3 col-sm-9 col-sm-pull-3 col-xs-9 col-xs-pull-3">
+    <div class="col-md-9 col-md-pull-3 col-sm-9 col-sm-pull-3">
         {% block fos_user_content %}
         {% endblock fos_user_content %}
     </div>

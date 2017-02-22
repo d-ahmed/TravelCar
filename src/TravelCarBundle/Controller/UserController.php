@@ -20,4 +20,5 @@ class UserController extends Controller
         // Lors de la suppression d'une personne, il faut supprimer toutes les informations concernant la personne
     }
     
+    
 }

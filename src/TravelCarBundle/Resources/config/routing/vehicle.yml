@@ -1,0 +1,29 @@
+vehicle_index:
+    path:     /
+    defaults: { _controller: "TravelCarBundle:Vehicle:index" }
+    methods:  GET
+
+vehicle_show:
+    path:     /show/{id}
+    defaults: { _controller: "TravelCarBundle:Vehicle:show" }
+    methods:  GET
+
+vehicle_new:
+    path:     /new
+    defaults: { _controller: "TravelCarBundle:Vehicle:new" }
+    methods:  [GET, POST]
+
+vehicle_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "TravelCarBundle:Vehicle:edit" }
+    methods:  [GET, POST]
+
+vehicle_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "TravelCarBundle:Vehicle:delete" }
+    methods:  DELETE
+    
+my_vehicles:
+    path: /myVehicle/
+    defaults: { _controller: "TravelCarBundle:Vehicle:MyVehicle" }
+    methods:  GET

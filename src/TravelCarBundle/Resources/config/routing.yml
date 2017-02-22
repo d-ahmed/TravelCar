@@ -6,6 +6,12 @@ travelCar_profile:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+# User root
+travelCar_vehicle:
+    prefix: /vehicle/
+    resource: "@TravelCarBundle/Resources/config/routing/vehicle.yml"
+    
+    
 home:
     path:     /
     defaults: { _controller: TravelCarBundle:TravelCar:home }
@@ -75,3 +81,9 @@ add_post:
     defaults: {_controller: TravelCarBundle:Post:add }
     requirements:
         advertId: \d+
+        
+tc_travelcarbundle_about:
+    path : /about
+    defaults:
+        _controller: TravelCarBundle:TravelCar:about
+    methods: GET

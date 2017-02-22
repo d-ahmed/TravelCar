@@ -11,8 +11,8 @@ text:
     signUp: Sign up
     signIn: Sign in
     signOut: Sign out
-    continueWithFb: continue with Facebook
-    continueWithGo: continue with Google +
+    continueWithFb: Continue with Facebook
+    continueWithGo: Continue with Google +
     home: Home
     about: About
     submitARoute: Submit a route

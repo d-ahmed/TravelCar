@@ -10,5 +10,10 @@ class TravelCarController extends Controller
     {
         return $this->render('TravelCarBundle:Default:TravelCar/Layout/home.html.twig');
     }
+    
+    public function aboutAction()
+    {
+        return $this->render('TravelCarBundle:Default:TravelCar/Layout/about.html.twig');
+    }       
 
 }

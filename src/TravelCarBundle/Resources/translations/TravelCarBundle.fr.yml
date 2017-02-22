@@ -5,15 +5,15 @@ form:
  numero: Portable
   
 text:
-    search: Search
+    search: Chercher
     add: Ajouter
     reserve: Reserver
     signUp: Créer un compte
     signIn: Se connecter
     signOut: Se déconnecter
-    continueWithFb: continuer avec Facebook
-    continueWithGo: continuer avec Google +
+    continueWithFb: Continuer avec Facebook
+    continueWithGo: Continuer avec Google +
     home: Accueil
-    about: A propos
+    about: À propos
     submitARoute: Proposer un trajet
     createAccount: Créer votre compte
