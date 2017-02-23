@@ -80,3 +80,6 @@ fos_user:
     registration:
         form:
             type: TravelCarBundle\Form\UserType
+    from_email:
+        address: you@example.com
+        sender_name: You
