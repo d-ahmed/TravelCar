@@ -4,7 +4,7 @@ form:
   birthDate: Birth date
   phoneNumber: Phone number
   
-text:
+label:
     search: Search
     add: Add
     reserve: Reserve

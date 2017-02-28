@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use TravelCarBundle\Modele\AdvertModele;
-
+use TravelCarBundle\Form\AdvertType;
 
 class AdvertController extends Controller
 {
@@ -59,24 +59,18 @@ class AdvertController extends Controller
         
         $advert = new Advert();
         
-        $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
+        $form = $this->createForm(AdvertType::class, $advert);
         
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)) {
             
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-                
-                $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
-                
                 $advertConflict = $this->getDoctrine()
-                        ->getRepository('TravelCarBundle:Advert')
-                        ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
+                                        ->getRepository('TravelCarBundle:Advert')
+                                        ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
                 
                 if(count($advertConflict)>0){
                     throw $this->createNotFoundException('Traduction : Conflit d annonce');
                 }
-                
+                $advert->setUser($this->getUser());
                 $em = $this->getDoctrine()->getManager(); // Recupération entityManager
 
                 $em->merge($advert);
@@ -84,13 +78,14 @@ class AdvertController extends Controller
                 $em->flush();
                 // Permet de récuperer l'id de la dernière annonce créee
                 $last = $this->getDoctrine()
-                        ->getRepository('TravelCarBundle:Advert')
-                        ->findOneBy(array('user' => $this->getUser()), array('id' => 'desc'));
+                            ->getRepository('TravelCarBundle:Advert')
+                            ->findOneBy(array('user' => $this->getUser()),
+                                        array('id' => 'desc'));
                 
-                return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
-                'advert' => $last,
+                return $this->redirectToRoute('view_advert', array(
+                'id' => $last->getId(),
                 ));
-            }
+
         }
         
         return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array('form' => $form->createView(), 'nameBtn'=>'btn.add'));
@@ -111,11 +106,7 @@ class AdvertController extends Controller
         
         $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
         
-        if ($request->isMethod('POST')) {
-            
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
                 
                 $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
                 
@@ -133,10 +124,9 @@ class AdvertController extends Controller
 
                 $em->flush();
                 
-                return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
-                'advert' => $advert,
+                return $this->redirectToRoute('view_advert', array(
+                'id' => $advert->getId(),
                 ));
-            }
         }
         
         return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array('form' => $form->createView(), 'nameBtn'=>'btn.modify'));

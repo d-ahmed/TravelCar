@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
 * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\ReservationRepository")
 * @ORM\Table(name="travelCar_reservations")
+ *@ORM\HasLifecycleCallbacks()
 */
 class Reservation
 {
@@ -49,12 +50,30 @@ class Reservation
      * @param integer $numberOfPlace
      *
      * @return Reservation
+     * @ORM\PostPersist
      */
     public function setNumberOfPlace($numberOfPlace)
     {
         $this->numberOfPlace = $numberOfPlace;
         
         return $this;
+    }
+    
+    /**
+     * @ORM\PostRemove
+     */
+    public function increaseNbPlaces(){
+
+        $this->getAdvert()->increaseNbPlaces($this->getNumberOfPlace());
+
+    }
+    
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function decreaseNbPlaces(){
+        $this->getAdvert()->decreaseNbPlaces($this->getNumberOfPlace());
     }
 
     /**
@@ -100,7 +119,7 @@ class Reservation
      */
     public function setAdvert(Advert $advert)
     {   
-        $advert->decreaseNbPlaces($this->numberOfPlace);
+        //$advert->decreaseNbPlaces($this->numberOfPlace);
         $this->advert = $advert;
 
         return $this;
@@ -116,9 +135,9 @@ class Reservation
         return $this->advert;
     }
     
-    public function deleteReservation(){
+    /*public function deleteReservation(){
         $this->advert->increaseNbPlaces($this->numberOfPlace);
-    }
+    }*/
 
     /**
      * Set date

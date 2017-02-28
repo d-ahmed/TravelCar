@@ -1,4 +1,4 @@
-{% trans_default_domain 'TravelCarBundlePersonne' %}
+{% trans_default_domain 'TravelCarBundle' %}
 <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -15,17 +15,17 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{path('home')}}">{{'navbar.home'|trans}}</a>
+                        <a href="{{path('home')}}">{{'label.home'|trans}}</a>
                     </li>
                     <li>
-                        <a href="{{path('tc_travelcarbundle_about')}}">{{'navbar.about'|trans}}</a>
+                        <a href="{{path('tc_travelcarbundle_about')}}">{{'label.about'|trans}}</a>
                     </li>
                     <li>
-                        <a href="{{path('add_advert')}}">{{'navbar.submitARoute'|trans}}</a>
+                        <a href="{{path('add_advert')}}">{{'label.submitARoute'|trans}}</a>
                     </li>
                     <li>
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <a href="{{ path('fos_user_security_login')}}">{{'ext.signIn'|trans}}</a>
+                            <a href="{{ path('fos_user_security_login')}}">{{'label.signIn'|trans}}</a>
                         {% endif %}
                     </li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -51,7 +51,7 @@
                                     </a>
                               </li>
                               <li>
-                                  <a href="{{ path('fos_user_security_logout')}}">{{'text.signOut'|trans}}</a>
+                                  <a href="{{ path('fos_user_security_logout')}}">{{'label.signOut'|trans}}</a>
                               </li>
                             </ul>
                         </li>
