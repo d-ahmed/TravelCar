@@ -23,6 +23,5 @@ class TravelCarController extends Controller
     public function aboutAction()
     {
         return $this->render('TravelCarBundle:Default:TravelCar/Layout/about.html.twig');
-    }       
-
+    }
 }

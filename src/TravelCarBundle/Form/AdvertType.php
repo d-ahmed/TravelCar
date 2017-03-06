@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 class AdvertType extends AbstractType
 {
     /**
@@ -24,8 +25,6 @@ class AdvertType extends AbstractType
                 ->add('pricePerPersonne', MoneyType::class)
                 ->add('numberOfPlace', IntegerType::class)
                 ;
-                
-        
     }
     
     /**
@@ -45,6 +44,4 @@ class AdvertType extends AbstractType
     {
         return 'travelcarbundle_advert';
     }
-
-
 }

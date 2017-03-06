@@ -15,12 +15,14 @@ use TravelCarBundle\Entity\Post;
 use \Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 /**
  * Description of PostController
  *
  * @author danielahmed
  */
-class PostController extends Controller{
+class PostController extends Controller
+{
 
     /**
      * @param Advert $advert
@@ -29,12 +31,13 @@ class PostController extends Controller{
      * @ParamConverter("advert", options={"id": "advertId"})
      * @Route("posts/view/{advertId}", name="view_posts", requirements={"advertId"="\d+"})
      */
-    public function viewAction(Advert $advert, Request $request){
+    public function viewAction(Advert $advert, Request $request)
+    {
         $posts = $this->getDoctrine()
                 ->getRepository('TravelCarBundle:Post')
                 ->findBy(array('advert'=>$advert));
         
-        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/listPost.html.twig',array(
+        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/listPost.html.twig', array(
             'posts'=>$posts,
         ));
     }
@@ -42,9 +45,10 @@ class PostController extends Controller{
     /**
      * @ParamConverter("advert", options={"id": "advertId"})
      */
-    public function renderFormAction(Advert $advert){
+    public function renderFormAction(Advert $advert)
+    {
         $form = $this->createForm('TravelCarBundle\Form\PostType');
-        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/add.html.twig',array(
+        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/add.html.twig', array(
             'post'=>$form->createView(),
             'advert'=>$advert
         ));
@@ -57,31 +61,33 @@ class PostController extends Controller{
      * @ParamConverter("advert", options={"id": "advertId"})
      * @Route("posts/add/{advertId}", name="add_post", requirements={"advertId"="\d+"})
      */
-    public function addAction(Advert $advert, Request $request){
-        
-        if(!$advert) $this->createNotFoundException ('Problème de serveur');
+    public function addAction(Advert $advert, Request $request)
+    {
+        if (!$advert) {
+            $this->createNotFoundException('Problème de serveur');
+        }
         
         $post = new Post();
         
         $form = $this->createForm('TravelCarBundle\Form\PostType', $post);
         
-        if($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             
             if ($form->isValid()) {
-                if($this->getUser()){
+                if ($this->getUser()) {
                     $post->setAdvert($advert)->setUser($this->getUser());
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($post);
                     $em->flush();
-                }else{
+                } else {
                     return $this->redirectToRoute('fos_user_security_login');
-                }   
+                }
             }
             return $this->redirectToRoute('view_advert', array(
                 'id' => $advert->getId(),
             ));
-        }else{
+        } else {
             throw $this->createNotFoundException('Page non trouvée');
         }
         return 0;
@@ -90,14 +96,14 @@ class PostController extends Controller{
     /**
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function viewAllAction(){
-        
+    public function viewAllAction()
+    {
     }
     
     /**
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function removeAction(){
-        
+    public function removeAction()
+    {
     }
 }

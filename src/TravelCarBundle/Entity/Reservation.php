@@ -1,10 +1,10 @@
 <?php
 
 namespace TravelCarBundle\Entity;
+
 use TravelCarBundle\Entity\Advert;
 use TravelCarBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
-
 
 /**
 * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\ReservationRepository")
@@ -29,18 +29,19 @@ class Reservation
     private $advert;
     
     /**
-     * 
+     *
      * @ORM\Column(type="integer", nullable=true)
      */
     private $numberOfPlace;
 
     /**
-     * 
+     *
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $date;
 
-    function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
     }
 
@@ -62,17 +63,17 @@ class Reservation
     /**
      * @ORM\PostRemove
      */
-    public function increaseNbPlaces(){
-
+    public function increaseNbPlaces()
+    {
         $this->getAdvert()->increaseNbPlaces($this->getNumberOfPlace());
-
     }
     
     
     /**
      * @ORM\PrePersist
      */
-    public function decreaseNbPlaces(){
+    public function decreaseNbPlaces()
+    {
         $this->getAdvert()->decreaseNbPlaces($this->getNumberOfPlace());
     }
 
@@ -118,7 +119,7 @@ class Reservation
      * @return Reservation
      */
     public function setAdvert(Advert $advert)
-    {   
+    {
         //$advert->decreaseNbPlaces($this->numberOfPlace);
         $this->advert = $advert;
 

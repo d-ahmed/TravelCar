@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelCarBundle\Entity;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,15 +10,13 @@ use TravelCarBundle\Entity\Advert;
 use TravelCarBundle\Entity\Reservation;
 use TravelCarBundle\Entity\Vehicle;
 
-
-
 /**
 * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\UserRepository")
 * @ORM\Table(name="travelCar_users")
 */
 class User extends BaseUser
 {
-   /**
+    /**
     * @ORM\Id
     * @ORM\Column(type="integer")
     * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,39 +25,39 @@ class User extends BaseUser
    
    
    /**
-    * 
+    *
     * @ORM\Column(type="string", nullable=true)
     */
     private $name;
     
     /**
-    * 
+    *
     * @ORM\Column(type="string", nullable=true)
     */
     private $lastName;
     
     
     /**
-    * 
+    *
     * @ORM\Column(type="integer", nullable=true)
     */
     private $phoneNumber;
     
     /**
-    * 
+    *
     * @ORM\Column(type="date", nullable=true)
     */
     private $birthDate;
     
     /**
-    * 
+    *
     * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Advert", mappedBy="user", cascade={"persist"})
     */
     private $adverts;
     
     
     /**
-    * 
+    *
     * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="user", cascade={"persist"})
     */
     private $reservations;
@@ -72,14 +71,13 @@ class User extends BaseUser
     */
      private $vehicles;
     
-   public function __construct()
-   {
-       parent::__construct();
-       $this->adverts = new ArrayCollection();
-       $this->reservations = new ArrayCollection();
-       $this->vehicles = new ArrayCollection();
-       
-   }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->adverts = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->vehicles = new ArrayCollection();
+    }
 
 
     /**

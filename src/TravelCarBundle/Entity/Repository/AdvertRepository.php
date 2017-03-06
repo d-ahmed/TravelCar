@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelCarBundle\Entity\Repository;
+
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
@@ -11,7 +12,8 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByUser($user, $page, $numberPerPage){
+    public function findByUser($user, $page, $numberPerPage)
+    {
         $queryBuilder = $this->createQueryBuilder('a');
         $queryBuilder->where('a.user = :user')
                 ->setParameter('user', $user)
@@ -20,10 +22,10 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         $adverts->setFirstResult(($page-1)*$numberPerPage)
                 ->setMaxResults($numberPerPage);
         
-        return new Paginator($adverts, TRUE);
+        return new Paginator($adverts, true);
     }
-    public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage){
-
+    public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage)
+    {
         $queryBuilder = $this->createQueryBuilder('a');
         $departureDate = $departureDate->modify('-1 day');
         
@@ -33,18 +35,18 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('cityOfArrival', $cityOfArrival)
                 ->andWhere('a.departureDate > :departureDate')
                 ->setParameter('departureDate', $departureDate)
-                ->orderBy('a.departureDate', 'ASC');  
+                ->orderBy('a.departureDate', 'ASC');
         
         $adverts = $queryBuilder->getQuery();
         
         $adverts->setFirstResult(($page-1)*$numberPerPage)
                 ->setMaxResults($numberPerPage);
         
-        return new Paginator($adverts, true);     
+        return new Paginator($adverts, true);
     }
     
-    public function findByUserDepartureDate($user, $departureDate){
-
+    public function findByUserDepartureDate($user, $departureDate)
+    {
         $queryBuilder = $this->createQueryBuilder('a');
         $queryBuilder->where('a.departureDate > :departureDate1')
                 ->andWhere('a.user = :user')
@@ -56,8 +58,7 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         $departureDate->modify('+1 day');
         $newAdvert = array();
         
-        foreach ($adverts as $advert){
-            
+        foreach ($adverts as $advert) {
             $timeBetween2Advert = $advert->getDepartureDate()->diff($departureDate)->h;
             $travelTime = intval($advert->getTravelTime()->format('h'))+1;
             $intervalYear = $advert->getDepartureDate()->diff($departureDate)->y;
@@ -66,7 +67,7 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
             dump($timeBetween2Advert);
             dump($travelTime);
             
-            if( $timeBetween2Advert <= $travelTime && $intervalDay==0 && $intervalMonth==0 && $intervalYear==0){
+            if ($timeBetween2Advert <= $travelTime && $intervalDay==0 && $intervalMonth==0 && $intervalYear==0) {
                 $newAdvert[]=$advert;
             }
         }

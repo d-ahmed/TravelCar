@@ -7,23 +7,28 @@
  */
 
 namespace TravelCarBundle\DataFixtures\ORM;
+
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 use TravelCarBundle\Entity\Vehicle;
+
 /**
  * Description of VehicleData
  *
  * @author danielahmed
  */
-class VehicleData extends AbstractFixture implements OrderedFixtureInterface{
+class VehicleData extends AbstractFixture implements OrderedFixtureInterface
+{
     //put your code here
-    public function getOrder(){
+    public function getOrder()
+    {
         return 1;
     }
 
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
         $vehicle1 = new Vehicle();
         $vehicle1->setIdNumber('AZE23A')
                 ->setColor('Rouge')
@@ -51,5 +56,4 @@ class VehicleData extends AbstractFixture implements OrderedFixtureInterface{
         $this->addReference('vehicle2', $vehicle2);
         $this->addReference('vehicle3', $vehicle3);
     }
-
 }

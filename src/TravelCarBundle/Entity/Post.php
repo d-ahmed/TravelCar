@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelCarBundle\Entity;
+
 use TravelCarBundle\Entity\Advert;
 use TravelCarBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,14 +21,14 @@ class Post
     private $id;
     
     /**
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\User",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
     
     /**
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Advert", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -48,7 +49,8 @@ class Post
      */
     private $date;
 
-    function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
     }
 

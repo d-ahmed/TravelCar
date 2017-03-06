@@ -35,5 +35,4 @@ class SearchType extends AbstractType
     {
         return 'search_adverts';
     }
-
 }

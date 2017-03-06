@@ -8,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-
 class UserType extends AbstractType
 {
     /**
@@ -47,6 +46,4 @@ class UserType extends AbstractType
     {
         return 'travelcarbundle_user';
     }
-
-
 }

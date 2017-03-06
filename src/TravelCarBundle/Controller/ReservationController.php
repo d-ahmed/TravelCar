@@ -7,6 +7,7 @@
  */
 
 namespace TravelCarBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use  \TravelCarBundle\Entity\Reservation;
@@ -14,14 +15,16 @@ use TravelCarBundle\Entity\Advert;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 /**
  * Description of ReservationController
  *
  * @author danielahmed
  */
-class ReservationController extends Controller{
-    
-    public function renderFormAction(){
+class ReservationController extends Controller
+{
+    public function renderFormAction()
+    {
         return $this->render();
     }
 
@@ -31,9 +34,9 @@ class ReservationController extends Controller{
      * @Security("has_role('ROLE_USER')")
      * @Route("reservations/add", name="add_reservation", methods={"GET","POST"})
      */
-    public function addAction(Request $request){
-        
-        if($request->isMethod('POST')){
+    public function addAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
             $advertId = $request->get('advertId');
             
             $nbOfReservation = $request->get('nbOfReservation');
@@ -42,28 +45,27 @@ class ReservationController extends Controller{
                 ->getRepository('TravelCarBundle:Advert')
                 ->find($advertId);
 
-            $canAdd = TRUE;
-            if($nbOfReservation<1){
-    
+            $canAdd = true;
+            if ($nbOfReservation<1) {
                 $request->getSession()->getFlashBag()->add('notice', 'Nombre positif attendu');
-                $canAdd = FALSE;
+                $canAdd = false;
             }
             
-            if($nbOfReservation > $advert->getNumberOfPlace()){
+            if ($nbOfReservation > $advert->getNumberOfPlace()) {
                 $request->getSession()->getFlashBag()->add('notice', 'Nombre inferieur attendu');
-                $canAdd = FALSE;
+                $canAdd = false;
             }
             
             $reservation = $this->getDoctrine()
                 ->getRepository('TravelCarBundle:Reservation')
                 ->findOneBy(array('advert'=>$advert, 'user'=>$this->getUser()));
 
-            if($reservation){
+            if ($reservation) {
                 $request->getSession()->getFlashBag()->add('notice', 'Reservation existe');
-                $canAdd = FALSE;
+                $canAdd = false;
             }
 
-            if($canAdd){
+            if ($canAdd) {
                 $reservation = new Reservation();
             
                 $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
@@ -78,8 +80,7 @@ class ReservationController extends Controller{
             return $this->redirectToRoute('view_advert', array(
             'id' => $advertId,
             ));
-            
-        }else{
+        } else {
             throw $this->createNotFoundException('Page non trouvée');
         }
         
@@ -94,20 +95,20 @@ class ReservationController extends Controller{
      * @Security("has_role('ROLE_USER')")
      * @Route("reservations/remove/{advertId}", name="remove_reservation", requirements={"advertId"="\d+"})
      */
-    public function removeAction(Advert $advert, Request $request){
-        
+    public function removeAction(Advert $advert, Request $request)
+    {
         $user = $this->getUser();
         
         $reservation = $this->getDoctrine()
                 ->getRepository('TravelCarBundle:Reservation')
                 ->findOneBy(array('advert'=>$advert,'user'=> $user));
 
-        if($reservation){
+        if ($reservation) {
             $reservation->deleteReservation();
             $em = $this->getDoctrine()->getManager();
             $em->remove($reservation);
             $em->flush();
-        }else{
+        } else {
             throw $this->createNotFoundException('Permission non accordée');
         }
 
@@ -120,21 +121,22 @@ class ReservationController extends Controller{
      * @Security("has_role('ROLE_ADMIN')")
      *
      */
-    public function viewAllAction(){
+    public function viewAllAction()
+    {
         $reservations = $this->getDoctrine()
                     ->getRepository('TravelCarBundle:Reservation')
                     ->findAll();
     }
     
     /**
-     * 
+     *
      * @Security("has_role('ROLE_USER')")
      */
-    public function viewAllMyAction(Request $request){
+    public function viewAllMyAction(Request $request)
+    {
         $reservations = $this->getDoctrine()
                     ->getRepository('TravelCarBundle:Reservation')
                     ->findBy(array('user'=>$this->getUser()));
-        
     }
 
     /**
@@ -147,12 +149,13 @@ class ReservationController extends Controller{
      *      defaults={"page"=1, "numberPerPage"=5}, requirements={"page"="\d+", "numberPerPage"="\d+"}
      * )
      */
-    public function myReservationsAction($page ,$numberPerPage ,Request $request){
-        if(!$page){
+    public function myReservationsAction($page, $numberPerPage, Request $request)
+    {
+        if (!$page) {
             $page=1;
         }
         $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
-                ->findByUser($this->getUser(),$page, $numberPerPage);
+                ->findByUser($this->getUser(), $page, $numberPerPage);
         $numberPage = ceil(count($reservations)/$numberPerPage);
 
         return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array('reservation'=>$reservations,'page'=>$page,'numberPage'=>$numberPage));

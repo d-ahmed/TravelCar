@@ -12,5 +12,4 @@ class AnnonceControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', 'annonce/ajouter');
     }
-
 }

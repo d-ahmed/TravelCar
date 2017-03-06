@@ -12,9 +12,10 @@ use TravelCarBundle\Form\AdvertType;
 
 class AdvertController extends Controller
 {
-    public function searchAction(Request $request){
+    public function searchAction(Request $request)
+    {
         $form = $this->createForm('TravelCarBundle\Form\SearchType');
-        return $this->render('TravelCarBundle:Default:Advert/ContaintsUsed/search.html.twig',array(
+        return $this->render('TravelCarBundle:Default:Advert/ContaintsUsed/search.html.twig', array(
             'search'=>$form->createView()
         ));
     }
@@ -28,17 +29,18 @@ class AdvertController extends Controller
      *     defaults={"page"=1, "numberPerPage"=5}, requirements={"page"="\d+", "numberPerPage"="\d+"}
      * )
      */
-    public function searchTreatmentAction($page,$numberPerPage,Request $request){
-        
-        if($page < 1) throw $this->createNotFoundException('Traduction : page n existe pas');
+    public function searchTreatmentAction($page, $numberPerPage, Request $request)
+    {
+        if ($page < 1) {
+            throw $this->createNotFoundException('Traduction : page n existe pas');
+        }
         
         $form = $this->createForm('TravelCarBundle\Form\SearchType');
         
-        if($request->isMethod('POST')){
-            
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             
-            if($form->isValid()){
+            if ($form->isValid()) {
                 $adverts = $this->getDoctrine()
                         ->getRepository('TravelCarBundle:Advert')
                         ->findBymatchAnnonces(
@@ -50,19 +52,21 @@ class AdvertController extends Controller
                         );
                 $numberPage = ceil(count($adverts)/$numberPerPage);
 
-                if($page>$numberPage) throw $this->createNotFoundException('Traduction : page n existe pas');
+                if ($page>$numberPage) {
+                    throw $this->createNotFoundException('Traduction : page n existe pas');
+                }
 
                 return $this->render('TravelCarBundle:Default:Advert/Layout/viewAll.html.twig', array(
-                    'adverts' => $adverts, 
-                    'numberOfAdvert' => count($adverts), 
-                    'page'=>$page, 
+                    'adverts' => $adverts,
+                    'numberOfAdvert' => count($adverts),
+                    'page'=>$page,
                     'numberPage'=>$numberPage,
                     'departureDate'=>$form->get('departureDate')->getData()->format('d/m/Y'),
                     'departureCity'=>$form->get('departureCity')->getData(),
                     'cityOfArrival'=>$form->get('cityOfArrival')->getData()
                 ));
             }
-        }else{
+        } else {
             throw $this->createNotFoundException('Page non trouvée');
         }
         return $this->redirectToRoute('home');
@@ -75,37 +79,35 @@ class AdvertController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @Route("adverts/add", name="add_advert", methods={"GET", "POST"})
      */
-    public function addAction(Request $request){
-        
+    public function addAction(Request $request)
+    {
         $advert = new Advert();
         
         $form = $this->createForm(AdvertType::class, $advert);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)) {
-            
-                $advertConflict = $this->getDoctrine()
+            $advertConflict = $this->getDoctrine()
                                         ->getRepository('TravelCarBundle:Advert')
                                         ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
                 
-                if(count($advertConflict)>0){
-                    throw $this->createNotFoundException('Traduction : Conflit d annonce');
-                }
-                $advert->setUser($this->getUser());
-                $em = $this->getDoctrine()->getManager(); // Recupération entityManager
+            if (count($advertConflict)>0) {
+                throw $this->createNotFoundException('Traduction : Conflit d annonce');
+            }
+            $advert->setUser($this->getUser());
+            $em = $this->getDoctrine()->getManager(); // Recupération entityManager
 
                 $em->merge($advert);
 
-                $em->flush();
+            $em->flush();
                 // Permet de récuperer l'id de la dernière annonce créee
                 $last = $this->getDoctrine()
                             ->getRepository('TravelCarBundle:Advert')
                             ->findOneBy(array('user' => $this->getUser()),
                                         array('id' => 'desc'));
                 
-                return $this->redirectToRoute('view_advert', array(
+            return $this->redirectToRoute('view_advert', array(
                 'id' => $last->getId(),
                 ));
-
         }
         
         return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array(
@@ -119,8 +121,8 @@ class AdvertController extends Controller
      * @return Response
      * @Route("/view/{id}", name="view_advert", requirements={"id"="\d+"})
      */
-    public function viewAction(Advert $advert) {
-
+    public function viewAction(Advert $advert)
+    {
         return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
         'advert' => $advert,
         ));
@@ -133,29 +135,28 @@ class AdvertController extends Controller
      * @Security("has_role('ROLE_DRIVER')")
      * @Route("adverts/modify/{id}", name="modify_advert", requirements={"id"="\d+"})
      */
-    public function modifyAction(Advert $advert, Request $request){
-        
+    public function modifyAction(Advert $advert, Request $request)
+    {
         $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
                 
-                $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
-                
-                $advertConflict = $this->getDoctrine()
+            $advertConflict = $this->getDoctrine()
                         ->getRepository('TravelCarBundle:Advert')
                         ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
                 
-                if(count($advertConflict)>0){
-                    throw $this->createNotFoundException('Traduction : Conflit d annonce');
-                }
+            if (count($advertConflict)>0) {
+                throw $this->createNotFoundException('Traduction : Conflit d annonce');
+            }
                 
-                $em = $this->getDoctrine()->getManager(); // Recupération entityManager
+            $em = $this->getDoctrine()->getManager(); // Recupération entityManager
 
                 $em->merge($advert);
 
-                $em->flush();
+            $em->flush();
                 
-                return $this->redirectToRoute('view_advert', array(
+            return $this->redirectToRoute('view_advert', array(
                 'id' => $advert->getId(),
                 ));
         }
@@ -173,11 +174,12 @@ class AdvertController extends Controller
      * @Security("has_role('ROLE_DRIVER')")
      * @Route("adverts/remove/{id}", name="remove_advert", requirements={"id"="\d+"})
      */
-    public function removeAction(Advert $advert, Request $request){
-        if($request->isMethod('GET')){
-            if($advert->getUser()!=$this->getUser()){
+    public function removeAction(Advert $advert, Request $request)
+    {
+        if ($request->isMethod('GET')) {
+            if ($advert->getUser()!=$this->getUser()) {
                 throw $this->createNotFoundException('Pas le doit');
-            }else{
+            } else {
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($advert);
                 $em->flush();
@@ -193,12 +195,13 @@ class AdvertController extends Controller
      *     requirements={"page"="\d*", "numberPerPage"="\d*", "mode"="list|block"}
      * )
      */
-    public function myAdvertsAction($mode, $page ,$numberPerPage ,Request $request){
-        if(!$page){
+    public function myAdvertsAction($mode, $page, $numberPerPage, Request $request)
+    {
+        if (!$page) {
             $page=1;
         }
         $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')
-                ->findByUser($this->getUser(),$page, $numberPerPage);
+                ->findByUser($this->getUser(), $page, $numberPerPage);
         $numberPage = ceil(count($adverts)/$numberPerPage);
         return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array(
         'adverts'=>$adverts,
@@ -206,5 +209,4 @@ class AdvertController extends Controller
         'numberPage'=>$numberPage,
         'mode'=>$mode));
     }
-
 }

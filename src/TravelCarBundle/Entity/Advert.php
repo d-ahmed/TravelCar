@@ -7,15 +7,16 @@ use TravelCarBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- * 
+ *
  * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\AdvertRepository")
  * @ORM\Table(name="travelCar_advert")
  */
 class Advert
 {
     /**
-     * 
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -37,65 +38,65 @@ class Advert
     
     
     /**
-    * 
+    *
     * @ORM\Column(type="datetime", nullable=false)
     * @Assert\DateTime()
     */
     private $date;
     
     /**
-     * 
+     *
      * @ORM\Column(type="datetime", nullable=false)
-     * 
-     * 
+     *
+     *
      */
     private $departureDate;
     
     /**
-     * 
+     *
      * @ORM\Column(type="time", nullable=false)
-     * 
+     *
      */
     private $travelTime;
 
 
     /**
-     * 
+     *
      * @ORM\Column(type="string", nullable=false, length=50)
      */
     private $departureCity;
     
     /**
-     * 
+     *
      * @ORM\Column(type="string", nullable=false, length=50)
-     * 
+     *
      */
     private $cityOfArrival;
     
     /**
-     * 
+     *
      */
     private $departureTime;
     
     
     /**
-     * 
-     * 
+     *
+     *
      * @ORM\Column(type="float", nullable=false)
      */
     private $pricePerPersonne;
     
     
     /**
-     * 
-     * 
+     *
+     *
      * @ORM\Column(type="integer", nullable=false)
      */
     private $numberOfPlace;
     
     /**
-     * 
-     * 
+     *
+     *
      * @ORM\Column(type="integer", nullable=true)
      */
     private $numberOfReservation;
@@ -106,7 +107,8 @@ class Advert
      */
     private $detail;
     
-    function __construct() {
+    public function __construct()
+    {
         $this->date = new \Datetime();
         $this->numberOfReservation = 0;
     }
@@ -116,10 +118,11 @@ class Advert
      *
      * @return Annonce
      */
-    public function increaseNbPlaces($numberOfPlace = null){
-        if($numberOfPlace){
+    public function increaseNbPlaces($numberOfPlace = null)
+    {
+        if ($numberOfPlace) {
             $this->numberOfReservation-=$numberOfPlace;
-        }else{
+        } else {
             $this->numberOfReservation--;
         }
         return $this;
@@ -130,10 +133,11 @@ class Advert
      *
      * @return Annonce
      */
-    public function decreaseNbPlaces($numberOfPlace = null){
-        if($numberOfPlace){
+    public function decreaseNbPlaces($numberOfPlace = null)
+    {
+        if ($numberOfPlace) {
             $this->numberOfReservation+=$numberOfPlace;
-        }else{
+        } else {
             $this->numberOfReservation++;
         }
         return $this;

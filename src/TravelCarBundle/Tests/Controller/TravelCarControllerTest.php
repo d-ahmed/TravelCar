@@ -12,5 +12,4 @@ class TravelCarControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/home');
     }
-
 }

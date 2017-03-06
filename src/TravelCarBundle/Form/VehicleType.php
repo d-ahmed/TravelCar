@@ -33,6 +33,4 @@ class VehicleType extends AbstractType
     {
         return 'travelcarbundle_vehicle';
     }
-
-
 }

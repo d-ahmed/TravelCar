@@ -7,6 +7,7 @@
  */
 
 namespace TravelCarBundle\DataFixtures\ORM;
+
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -18,9 +19,11 @@ use TravelCarBundle\Entity\Advert;
  *
  * @author danielahmed
  */
-class AdvertData extends AbstractFixture implements OrderedFixtureInterface{
+class AdvertData extends AbstractFixture implements OrderedFixtureInterface
+{
     //put your code here
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
         $date1 = new \DateTime();
         
         $advert1 = new Advert();
@@ -81,7 +84,6 @@ class AdvertData extends AbstractFixture implements OrderedFixtureInterface{
         $this->addReference('advert2', $advert2);
         $this->addReference('advert3', $advert3);
         $this->addReference('advert4', $advert4);
-                
     }
     
     public function getOrder()

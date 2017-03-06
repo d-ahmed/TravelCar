@@ -3,6 +3,7 @@
 namespace TravelCarBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
 * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\VehicleRepository")
 * @ORM\Table(name="travelCar_vehicles")
@@ -18,19 +19,19 @@ class Vehicle
     private $idNumber;
     
     /**
-    * 
+    *
     * @ORM\Column(type="string", nullable=true)
     */
     private $model;
     
     /**
-    * 
+    *
     * @ORM\Column(type="string", nullable=true)
     */
     private $color;
     
     /**
-    * 
+    *
     * @ORM\Column(type="string", nullable=true)
     */
     private $fuel;
