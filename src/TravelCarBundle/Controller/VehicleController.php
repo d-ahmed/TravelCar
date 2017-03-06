@@ -62,7 +62,6 @@ class VehicleController extends Controller
      */
     public function showAction(Vehicle $vehicle)
     {
-        dump($vehicle);
         $deleteForm = $this->createDeleteForm($vehicle);
 
         return $this->render('TravelCarBundle:Default:vehicle/show.html.twig', array(

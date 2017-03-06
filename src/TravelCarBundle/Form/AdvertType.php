@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class AdvertType extends AbstractType
 {
@@ -24,7 +26,12 @@ class AdvertType extends AbstractType
                 ->add('cityOfArrival', TextType::class)
                 ->add('pricePerPersonne', MoneyType::class)
                 ->add('numberOfPlace', IntegerType::class)
-                ;
+                ->add('luggage', ChoiceType::class, array(
+                    'choices' => array('Petite'=>'Petite', 'Moyenne'=>'Moyenne', 'Grande'=>'Grande'),
+                ))->add('highway', CheckboxType::class, array(
+                    'required' => false,
+                    'data' => true,
+                ));
     }
     
     /**

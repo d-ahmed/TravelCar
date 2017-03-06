@@ -106,6 +106,17 @@ class Advert
      * @ORM\Column(type="string", nullable=true)
      */
     private $detail;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $luggage;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $highway;
+    
     
     public function __construct()
     {
@@ -425,5 +436,53 @@ class Advert
     public function getNumberOfReservation()
     {
         return $this->numberOfReservation;
+    }
+
+    /**
+     * Set luggage
+     *
+     * @param string $luggage
+     *
+     * @return Advert
+     */
+    public function setLuggage($luggage)
+    {
+        $this->luggage = $luggage;
+
+        return $this;
+    }
+
+    /**
+     * Get luggage
+     *
+     * @return string
+     */
+    public function getLuggage()
+    {
+        return $this->luggage;
+    }
+
+    /**
+     * Set highway
+     *
+     * @param boolean $highway
+     *
+     * @return Advert
+     */
+    public function setHighway($highway)
+    {
+        $this->highway = $highway;
+
+        return $this;
+    }
+
+    /**
+     * Get highway
+     *
+     * @return boolean
+     */
+    public function getHighway()
+    {
+        return $this->highway;
     }
 }
