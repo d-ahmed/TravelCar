@@ -4,12 +4,10 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_PASSAGER: ROLE_USER
-        ROLE_CONDUCTEUR: ROLE_USER
         ROLE_ADMIN:       
               - ROLE_USER
-              - ROLE_PASSAGER
-              - ROLE_CONDUCTEUR
+              - ROLE_PASSENGER
+              - ROLE_DRIVER
               
         ROLE_SUPER_ADMIN: 
                    - ROLE_ADMIN
@@ -24,7 +22,6 @@ security:
             form_login:
                 check_path: fos_user_security_check
                 login_path: fos_user_security_login
-                default_target_path: home
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 
@@ -40,10 +37,4 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /ajouter, role: ROLE_USER }
-        - { path: /reserver, role: ROLE_USER }
-        - { path: /modifier, role: ROLE_CONDUCTEUR }
-        - { path: /supprimer, role: ROLE_CONDUCTEUR }
-        - { path: /mesAnnonces, role: ROLE_USER }
-        - { path: /mesReservations, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }

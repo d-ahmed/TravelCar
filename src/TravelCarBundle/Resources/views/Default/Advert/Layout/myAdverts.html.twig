@@ -1,0 +1,42 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div class="col-md-12">
+        <nav class="navbar ">
+            <ul class="nav navbar-nav">
+                <li style="margin: 18px;">
+                    <strong>Vos annonces</strong>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li style="margin: 18px;">
+                    <select class="selectpicker">
+                        <option>Date</option>
+                        <option>Temps trajet</option>
+                        <option>Prix décroissant</option>
+                        <option>Prix croissant</option>
+                    </select>
+                </li>
+                <li>
+                    <a href="{{path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5})}}" class="btn btn-default"><span class="glyphicon glyphicon-th-large"></span></a>
+                </li>
+                <li>
+                    <a href="{{path('my_adverts',{'mode':'list','page':1, 'numberPerPage':5})}}" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
+                </li>
+                
+            </ul>
+        </nav>
+        
+        <hr>
+        <p>Ici sont présentes les annonces passées et en cours.</p>
+        {% if mode == 'block' %}
+            {% include 'TravelCarBundle:Default:Advert/Containts/myViewBlock.html.twig' %}
+        {% else %}
+            {% include 'TravelCarBundle:Default:Advert/Containts/myListView.html.twig' %}
+        {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

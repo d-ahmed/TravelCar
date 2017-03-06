@@ -1,4 +1,4 @@
-{% trans_default_domain 'TravelCarBundlePersonne' %}
+{% trans_default_domain 'TravelCarBundle' %}
 <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -8,28 +8,54 @@
                     <span class="sr-only">TravelCar</span>
                     <i class="fa fa-bars"></i>
                 </button>
-                <img style='position: absolute' width='10%' src='{{asset('img/logo.png')}}' />
+                <a href="{{path('home')}}"><img style='position: absolute' width='140px' src='{{asset('img/logo.png')}}' /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">{{'menue.acceuil'|trans}}</a>
+                        <a href="{{path('home')}}">{{'label.home'|trans}}</a>
                     </li>
                     <li>
-                        <a href="#">{{'menue.a_propos'|trans}}</a>
+                        <a href="{{path('tc_travelcarbundle_about')}}">{{'label.about'|trans}}</a>
                     </li>
                     <li>
-                        <a href="#">{{'menue.proposer_trajet'|trans}}</a>
+                        <a href="{{path('add_advert')}}">{{'label.submitARoute'|trans}}</a>
                     </li>
                     <li>
-                        {%if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li><a href="{{ path('fos_user_security_logout')}}">{{'btn.deconnexion'|trans}}</a></li>
-                        {% else %}
-                            <li><a href="{{ path('fos_user_security_login')}}">{{'btn.connexion'|trans}}</a></li>
-                        {%endif%}
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ path('fos_user_security_login')}}">{{'label.signIn'|trans}}</a>
+                        {% endif %}
                     </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img style='margin: 0px;width: 20px;' src="{{asset(img|default('img/profile.png'))}}"></a>
+                            <ul class="dropdown-menu">
+                              <li>
+                                    <a href="{{path('fos_user_profile_show')}}" class="animate">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <span class="desc animate"> Mon profile </span>  
+                                    </a>
+                              </li>
+                              <li>
+                                    <a href="#blog" class="animate">
+                                        <span class="glyphicon glyphicon-info-sign"></span>
+                                        <span class="desc animate"> What We Say </span>
+                                    </a>
+                              </li>
+                              <li>
+                                    <a href="#contact-us" class="animate">
+                                        <span class="glyphicon glyphicon-comment"></span>
+                                        <span class="desc animate"> How To Reach Us </span>
+                                    </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('fos_user_security_logout')}}">{{'label.signOut'|trans}}</a>
+                              </li>
+                            </ul>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

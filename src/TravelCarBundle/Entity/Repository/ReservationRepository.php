@@ -1,7 +1,7 @@
 <?php
 
 namespace TravelCarBundle\Entity\Repository;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * ReservationRepository
  *
@@ -10,4 +10,15 @@ namespace TravelCarBundle\Entity\Repository;
  */
 class ReservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByUser($user, $page, $numberPerPage){
+        $queryBuilder = $this->createQueryBuilder('r');
+        $queryBuilder->where('r.user = :user')
+                ->setParameter('user', $user)
+                ->orderBy('r.date', 'ASC');
+        $reservations = $queryBuilder->getQuery();
+        $reservations->setFirstResult(($page-1)*$numberPerPage)
+                ->setMaxResults($numberPerPage);
+        
+        return new Paginator($reservations, TRUE);
+    }
 }

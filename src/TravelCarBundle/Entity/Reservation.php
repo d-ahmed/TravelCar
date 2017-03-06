@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
 * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\ReservationRepository")
 * @ORM\Table(name="travelCar_reservations")
+ *@ORM\HasLifecycleCallbacks()
 */
 class Reservation
 {
@@ -33,8 +34,15 @@ class Reservation
      */
     private $numberOfPlace;
 
-    
+    /**
+     * 
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $date;
 
+    function __construct() {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Set numberOfPlace
@@ -42,12 +50,30 @@ class Reservation
      * @param integer $numberOfPlace
      *
      * @return Reservation
+     * @ORM\PostPersist
      */
     public function setNumberOfPlace($numberOfPlace)
     {
         $this->numberOfPlace = $numberOfPlace;
-
+        
         return $this;
+    }
+    
+    /**
+     * @ORM\PostRemove
+     */
+    public function increaseNbPlaces(){
+
+        $this->getAdvert()->increaseNbPlaces($this->getNumberOfPlace());
+
+    }
+    
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function decreaseNbPlaces(){
+        $this->getAdvert()->decreaseNbPlaces($this->getNumberOfPlace());
     }
 
     /**
@@ -92,7 +118,8 @@ class Reservation
      * @return Reservation
      */
     public function setAdvert(Advert $advert)
-    {
+    {   
+        //$advert->decreaseNbPlaces($this->numberOfPlace);
         $this->advert = $advert;
 
         return $this;
@@ -106,5 +133,33 @@ class Reservation
     public function getAdvert()
     {
         return $this->advert;
+    }
+    
+    /*public function deleteReservation(){
+        $this->advert->increaseNbPlaces($this->numberOfPlace);
+    }*/
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Reservation
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

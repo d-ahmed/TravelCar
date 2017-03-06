@@ -5,7 +5,6 @@ namespace TravelCarBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class VehicleType extends AbstractType
 {
@@ -14,12 +13,7 @@ class VehicleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-                ->add('idNumber', TextType::class)
-                ->add('model', TextType::class)
-                ->add('color', TextType::class)
-                ->add('fuel', TextType::class)  
-                ;
+        $builder->add('idNumber')->add('model')->add('color')->add('fuel')        ;
     }
     
     /**

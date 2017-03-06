@@ -24,12 +24,12 @@ class Advert
     
    /**
    * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Vehicle", cascade={"persist"})
-   * @ORM\JoinColumn(referencedColumnName="id_number", nullable=false)
+   * @ORM\JoinColumn(referencedColumnName="id_number", nullable=true)
    */
     private $vehicle;
     
     /**
-   * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\User", inversedBy="advert", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\User", inversedBy="adverts", cascade={"persist"})
    * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
    * @Assert\Valid()
    */
@@ -92,10 +92,23 @@ class Advert
      * @ORM\Column(type="integer", nullable=false)
      */
     private $numberOfPlace;
+    
+    /**
+     * 
+     * 
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberOfReservation;
 
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $detail;
     
     function __construct() {
         $this->date = new \Datetime();
+        $this->numberOfReservation = 0;
     }
     
     /**
@@ -104,10 +117,10 @@ class Advert
      * @return Annonce
      */
     public function increaseNbPlaces($numberOfPlace = null){
-        if($nbPalace){
-            $this->numberOfPlace+=$numberOfPlace;
+        if($numberOfPlace){
+            $this->numberOfReservation-=$numberOfPlace;
         }else{
-            $this->numberOfPlace++;
+            $this->numberOfReservation--;
         }
         return $this;
     }
@@ -118,12 +131,22 @@ class Advert
      * @return Annonce
      */
     public function decreaseNbPlaces($numberOfPlace = null){
-        if($nbPalace){
-            $this->numberOfPlace-=$numberOfPlace;
+        if($numberOfPlace){
+            $this->numberOfReservation+=$numberOfPlace;
         }else{
-            $this->numberOfPlace--;
+            $this->numberOfReservation++;
         }
         return $this;
+    }
+    
+    /**
+     * Get departureTime
+     *
+     * @return \DateTime
+     */
+    public function getDepartureTime()
+    {
+        return $this->departureDate->format('h:m');
     }
 
     /**
@@ -350,5 +373,53 @@ class Advert
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param string $detail
+     *
+     * @return Advert
+     */
+    public function setDetail($detail)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return string
+     */
+    public function getDetail()
+    {
+        return $this->detail;
+    }
+
+    /**
+     * Set numberOfReservation
+     *
+     * @param integer $numberOfReservation
+     *
+     * @return Advert
+     */
+    public function setNumberOfReservation($numberOfReservation)
+    {
+        $this->numberOfReservation = $numberOfReservation;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfReservation
+     *
+     * @return integer
+     */
+    public function getNumberOfReservation()
+    {
+        return $this->numberOfReservation;
     }
 }

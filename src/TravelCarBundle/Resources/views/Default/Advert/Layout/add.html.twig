@@ -1,0 +1,58 @@
+{% extends "::base.html.twig" %}
+
+{% form_theme form "bootstrap.html.twig" %}
+
+{% trans_default_domain 'TravelCarBundle' %}
+
+{% block stylesheets %} 
+<link rel="stylesheet" type="text/css" href="{{ asset('css/process.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.datetimepicker.css')}}">
+{% endblock %}
+
+{% block title %} ajouter {% endblock %}
+
+{% block header_heading %} {{'label.heading.addAdvert'|trans}} {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="breadcrumb">
+                <li role="presentation" class="active">
+                    <a class="versItineraire" href="">{{'label.panel.route'|trans}}</a>
+                </li>
+                <li role="presentation">
+                    <a class="versAnnonce" href="">Annonce</a>
+                </li>
+                <li role="presentation">
+                    <a class="versPoster" href="">Poster</a>
+                </li>
+            </ul>
+            {%include 'TravelCarBundle:Default:Advert/Containts/advert.html.twig'%}
+        </div>
+        
+        <div class="col-md-4">
+            <h3>Column title</h3> 
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
+        </div>
+    </div>
+{%endblock%}
+
+ {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/process.js')}}"></script>
+         <script type="text/javascript">
+             $.datetimepicker.setLocale('fr');
+             $('.dateTimePicker').datetimepicker({
+                mask:'19/39/9999 29:59',
+                format:'d/m/Y H:m',
+                formatDate:'d/m/Y',
+                minDate:'0'
+             });
+             
+             $('.timePicker').datetimepicker({
+                mask:'29:59',
+                format:'H:m',
+                datepicker: false
+             });
+             
+         </script>
+{% endblock %}

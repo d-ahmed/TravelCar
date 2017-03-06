@@ -1,8 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-{% if app.request.hasPreviousSession %}
+<div class="row">
+    {% if app.request.hasPreviousSession %}
     {% for type, messages in app.session.flashbag.all() %}
         {% for message in messages %}
             <div class="flash-{{ type }}">
@@ -10,11 +10,78 @@
             </div>
         {% endfor %}
     {% endfor %}
-{% endif %}
+    {% endif %}
+    <div class="col-md-3 col-md-push-9 col-sm-3 col-sm-push-9">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                        </span> Informations</a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5})}}">Annonces</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{path('my_reservations')}}">Reservations</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{path('my_vehicles')}}">Vehicles</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon_profile glyphicon glyphicon-comment text-success"></span><a href=#">Comments</a>
+                                    <span class="badge">42</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-<div>
-    {% block fos_user_content %}
-    {% endblock fos_user_content %}
-</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
+                        </span> Account</a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a href="#">Change profile</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class=" glyphicon_profile glyphicon glyphicon-trash text-danger"></span><a href="#" class="text-danger">
+                                        Delete Account</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        {% endif %}
     </div>
+    <div class="col-md-9 col-md-pull-3 col-sm-9 col-sm-pull-3">
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+</div>
 {% endblock %}

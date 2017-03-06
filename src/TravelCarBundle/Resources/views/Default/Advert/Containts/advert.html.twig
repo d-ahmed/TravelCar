@@ -1,0 +1,78 @@
+{% trans_default_domain 'TravelCarBundle' %}
+{{ form_start(form) }}
+
+<div class="tab-content">
+    <div id="itineraire" class="tab-pane active">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'label.panel.route'|trans}}</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>{{'label.city.departure'|trans}}</label>
+                        {{ form_widget(form.departureCity, {'attr': {'placeholder': 'Exemple : Nantes' } }) }}
+                        {{form_errors(form.departureCity)}}
+                    </div>
+                    <div class="form-group">
+                        <label>{{'label.city.arrival'|trans}}</label>
+                        {{ form_widget(form.cityOfArrival, {'attr': {'placeholder': 'Exemple : Paris' } }) }}
+                        {{form_errors(form.cityOfArrival)}}
+                    </div>
+                    
+                </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'label.panel.time'|trans}}</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>{{'label.advert.time'|trans}}</label>
+                        {{ form_widget(form.departureDate, {'attr':{'class':'dateTimePicker', 'placeholder' : date().format('d/m/Y h:m') } }) }}
+                        {{form_errors(form.departureDate)}}
+                    </div>
+                    <div class="form-group">
+                        <label>{{'label.adverte.travel_time'|trans}}</label>
+                        {{ form_widget(form.travelTime, {'attr':{'class':'timePicker'} }) }}
+                        {{form_errors(form.travelTime)}}
+                    </div>
+                </div>      
+        </div>
+        <button class="btn btn-default versAnnonce" >Suivant</button>
+    </div>
+    <div id="annonce" class="tab-pane">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"> {{'label.advert.info'|trans}} </h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+                <label>{{'label.advert.price'|trans}}</label>
+                    {{ form_widget(form.pricePerPersonne, {'attr': {'placeholder': 'Exemple : 18' } }) }}
+                    {{form_errors(form.pricePerPersonne)}}
+                </div>
+                <div class="form-group">
+                    <label>{{'label.advert.nb_places'|trans}}</label>
+                    {{ form_widget(form.numberOfPlace, {'attr': {'placeholder': 'Exemple : 5' } }) }}
+                    {{form_errors(form.numberOfPlace)}}
+                </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"> {{'label.advert.more_info'|trans}} </h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+                <label for="more">More</label>
+                <textarea class="form-control" name="more"></textarea>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-default versPoster" >Suivant</button>
+    </div>
+    <div id="poster" class="tab-pane">
+        <h3>Column title</h3> 
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <input type="submit" class="btn btn-primary" value="Poster">
+    </div>
+</div>
+
+{{ form_end(form) }}
+   

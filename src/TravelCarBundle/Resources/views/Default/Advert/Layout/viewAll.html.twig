@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain 'TravelCarBundle' %}
+
+{% block header_heading %} {{'text.found'|trans}} {% endblock %}
+
+{% block header_subheading %}
+
+        {{ render(controller( "TravelCarBundle:Advert:search")) }}
+                          
+{% endblock %}
+
+{% block body %}
+    
+    <div class="jumbotron">
+        <h2>{{numberOfAdvert}} {% if numberOfAdvert <= 1 %} annonce trouvée {% else %} annonces trouvées {% endif %}</h2>
+        <p>...</p>  
+     </div>
+    
+    {% include 'TravelCarBundle:Default:Advert/Containts/listView.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+         <script type="text/javascript">
+             $.datetimepicker.setLocale('fr');
+             $('#form_date_dep').datetimepicker({
+                mask:'19 39 9999',
+                format:'d m Y',
+                timepicker:false,
+             });
+         </script>
+{% endblock %}

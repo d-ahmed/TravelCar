@@ -1,3 +1,7 @@
+travel_car_vehicle:
+    resource: "@TravelCarBundle/Controller/VehicleController.php"
+    type:     annotation
+
 travel_car:
     resource: "@TravelCarBundle/Resources/config/routing.yml"
     prefix:   /{_locale}
@@ -5,3 +9,13 @@ travel_car:
         _locale: fr
     requirements:
         _locale: en|fr
+
+
+travel_anno_car:
+    resource: "@TravelCarBundle/Controller/"
+    prefix:   /{_locale}
+    defaults:
+        _locale: fr
+    requirements:
+        _locale: en|fr
+    type: annotation

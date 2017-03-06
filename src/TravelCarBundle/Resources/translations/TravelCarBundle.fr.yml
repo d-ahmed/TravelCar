@@ -1,63 +1,33 @@
 form:
  nom: Nom
  prenom: Prénom
- date_naissance: Date de naissance
+ dateNaissance: Date de naissance
  numero: Portable
- 
-text:
-    complet: Complet
-    exemple: Exemple
-    demande: Vous êtes un nouvel utilisateur?
-    demande_compte: Vous avez déjà un compte?
-    mdp_oublie: Mot de passe oublié?
-    nb:
-        reservation: Nombre de reservation
-    ville:
-        arriv: Ville d'arrivée
-        dep: Ville de départ
-    date:
-        dep: Date de départ
-    heading: Voyagez
-    panel:
-        itineraire: Itinéraire
-        horaire: Date et horaire
-        info_voit: Infos sur la voiture
-    annonce:
-        prix: Prix par personne
-        horaire: Date et heure de départ
-        temps_trajet: Temps trajet
-        heading: Ajouter votre annonce.
-        trouve: Annonces trouvées.
-        nb_place: Nombre de places
-        voiture:
-            matricule: Matricule
-            modele: Modèle
-            carburant: Carburant
-            couleur: Couleur
-            
-btn:
-    cherche: Chercher
-    ajouter: Ajouter
-    reserver: Réserver
-    inscription: Inscrivez-vous
-    connexion: Se connecter
-    deconnexion: Se déconnecter
+  
+label:
+    search: Chercher
+    add: Ajouter
+    reserve: Reserver
+    signUp: Créer un compte
+    signIn: Se connecter
+    signOut: Se déconnecter
+    continueWithFb: Continuer avec Facebook
+    continueWithGo: Continuer avec Google +
+    home: Accueil
+    about: À propos
+    submitARoute: Proposer un trajet
+    createAccount: Créer votre compte
+    search: Chercher
+    title:
+        home: Accueil
+    heading:
+        home: Voyagez.
+        addAdvert: Ajoutez une annonce
+    city:
+        departure: Ville de départ
+        arrival: Ville d'arrivée
 
-header:
-    connexion:
-         titre: Connectez-vous.
-    registration:
-         titre: Créer votre compte.
-         
-connexion:
-    avec:
-        fb: continuer avec Facebook
-        tw: continuer avec Twitter
-        go: continuer avec Google +
-        
-menue:
-  acceuil: Accueil
-  a_propos: A propos
-  proposer_trajet: Proposer un trajet
-  connexion: Se connecter
-  deconnexion: Se déconnecter
+    panel:
+        route: Itinéraire
+
+
