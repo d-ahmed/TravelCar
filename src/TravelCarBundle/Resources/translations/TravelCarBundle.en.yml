@@ -7,6 +7,8 @@ form:
 label:
     search: Search
     add: Add
+    show: Show
+    edit: Edit
     reserve: Reserve
     signUp: Sign up
     signIn: Sign in
@@ -17,3 +19,13 @@ label:
     about: About
     submitARoute: Submit a route
     createAccount: Create your account
+    title:
+        myVehicles: My Vehicles
+    vehicle:
+        idNumber: ID Number
+        model: Model
+        color: Color
+        fuel: Fuel
+        actions: Actions
+        new: Create a new vehicle
+        list: List of your vehicles

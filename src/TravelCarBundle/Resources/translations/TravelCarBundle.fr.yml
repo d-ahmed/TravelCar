@@ -7,6 +7,9 @@ form:
 label:
     search: Chercher
     add: Ajouter
+    show: Voir
+    showMode: Voir +
+    edit: Editer
     reserve: Reserver
     signUp: Créer un compte
     signIn: Se connecter
@@ -17,9 +20,18 @@ label:
     about: À propos
     submitARoute: Proposer un trajet
     createAccount: Créer votre compte
+    vehicle:
+        idNumber: Matricule
+        model: Modele
+        color: Couleur
+        fuel: Carburant
+        actions: Actions
+        new: Ajouter une voiture
+        list: Liste de vos voitures
     search: Chercher
     title:
         home: Accueil
+        myVehicles: Mes voitures
     heading:
         home: Voyagez.
         addAdvert: Ajoutez une annonce

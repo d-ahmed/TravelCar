@@ -8,6 +8,7 @@
 
 namespace TravelCarBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use  \TravelCarBundle\Entity\Reservation;
@@ -23,11 +24,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class ReservationController extends Controller
 {
-    public function renderFormAction()
-    {
-        return $this->render();
-    }
-
     /**
      * @param Request $request
      * @return int|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -69,12 +65,8 @@ class ReservationController extends Controller
                 $reservation = new Reservation();
             
                 $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
-
-                $em = $this->getDoctrine()->getManager();
-
-                $em->persist($reservation);
-
-                $em->flush();
+                $this->getUser()->addReservation($reservation);
+                $this->getDoctrine()->getManager()->flush();
             }
             
             return $this->redirectToRoute('view_advert', array(
@@ -93,7 +85,8 @@ class ReservationController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @ParamConverter("advert", options={"id": "advertId"})
      * @Security("has_role('ROLE_USER')")
-     * @Route("reservations/remove/{advertId}", name="remove_reservation", requirements={"advertId"="\d+"})
+     * @Route("reservations/{advertId}", name="remove_reservation", requirements={"advertId"="\d+"})
+     * @Method("DELETE")
      */
     public function removeAction(Advert $advert, Request $request)
     {
@@ -104,16 +97,14 @@ class ReservationController extends Controller
                 ->findOneBy(array('advert'=>$advert,'user'=> $user));
 
         if ($reservation) {
-            $reservation->deleteReservation();
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($reservation);
-            $em->flush();
+            $this->getUser()->removeReservation($reservation);
+            $this->getDoctrine()->getManager()->flush();
         } else {
             throw $this->createNotFoundException('Permission non accordée');
         }
 
         return $this->redirectToRoute('view_advert', array(
-        'id' => $advert->getId()
+            'id' => $advert->getId()
         ));
     }
     
@@ -159,5 +150,22 @@ class ReservationController extends Controller
         $numberPage = ceil(count($reservations)/$numberPerPage);
 
         return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array('reservation'=>$reservations,'page'=>$page,'numberPage'=>$numberPage));
+    }
+
+    /**
+     * Creates a form to delete a vehicle entity.
+     *
+     * @param Reservation $reservation the advert entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     *
+     */
+    private function createDeleteForm(Reservation $reservation)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('remove_reservation', array('id' => $reservation->getAdvert()->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+            ;
     }
 }

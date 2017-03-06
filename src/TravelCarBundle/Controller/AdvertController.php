@@ -2,6 +2,7 @@
 
 namespace TravelCarBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TravelCarBundle\Entity\Advert;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,7 @@ class AdvertController extends Controller
     }
 
     /**
+     *
      * @param $page
      * @param $numberPerPage
      * @param Request $request
@@ -28,6 +30,7 @@ class AdvertController extends Controller
      * @Route("search/adverts/{page}/{numberPerPage}", name="searchTreatment_adverts",
      *     defaults={"page"=1, "numberPerPage"=5}, requirements={"page"="\d+", "numberPerPage"="\d+"}
      * )
+     * @Method({"GET", "POST"})
      */
     public function searchTreatmentAction($page, $numberPerPage, Request $request)
     {
@@ -77,7 +80,8 @@ class AdvertController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Security("has_role('ROLE_USER')")
-     * @Route("adverts/add", name="add_advert", methods={"GET", "POST"})
+     * @Route("adverts/add", name="add_advert")
+     * @Method({"GET", "POST"})
      */
     public function addAction(Request $request)
     {
@@ -93,21 +97,19 @@ class AdvertController extends Controller
             if (count($advertConflict)>0) {
                 throw $this->createNotFoundException('Traduction : Conflit d annonce');
             }
+
             $advert->setUser($this->getUser());
-            $em = $this->getDoctrine()->getManager(); // Recupération entityManager
+            $this->getUser()->addAdvert($advert);
+            $this->getDoctrine()->getManager()->flush();; // Recupération entityManager
 
-                $em->merge($advert);
-
-            $em->flush();
-                // Permet de récuperer l'id de la dernière annonce créee
-                $last = $this->getDoctrine()
-                            ->getRepository('TravelCarBundle:Advert')
-                            ->findOneBy(array('user' => $this->getUser()),
-                                        array('id' => 'desc'));
+            // Permet de récuperer l'id de la dernière annonce créee
+            $last = $this->getDoctrine()
+                        ->getRepository('TravelCarBundle:Advert')
+                        ->findOneBy(array('user' => $this->getUser()), array('id' => 'desc'));
                 
             return $this->redirectToRoute('view_advert', array(
                 'id' => $last->getId(),
-                ));
+            ));
         }
         
         return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array(
@@ -119,7 +121,8 @@ class AdvertController extends Controller
     /**
      * @param Advert $advert
      * @return Response
-     * @Route("/view/{id}", name="view_advert", requirements={"id"="\d+"})
+     * @Route("/advert/{id}", name="view_advert", requirements={"id"="\d+"})
+     * @Method("GET")
      */
     public function viewAction(Advert $advert)
     {
@@ -134,6 +137,7 @@ class AdvertController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Security("has_role('ROLE_DRIVER')")
      * @Route("adverts/modify/{id}", name="modify_advert", requirements={"id"="\d+"})
+     * @Method({"GET", "POST"})
      */
     public function modifyAction(Advert $advert, Request $request)
     {
@@ -149,16 +153,12 @@ class AdvertController extends Controller
             if (count($advertConflict)>0) {
                 throw $this->createNotFoundException('Traduction : Conflit d annonce');
             }
-                
-            $em = $this->getDoctrine()->getManager(); // Recupération entityManager
 
-                $em->merge($advert);
-
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
                 
             return $this->redirectToRoute('view_advert', array(
                 'id' => $advert->getId(),
-                ));
+            ));
         }
         
         return $this->render('TravelCarBundle:Default:Advert/Layout/add.html.twig', array(
@@ -173,6 +173,7 @@ class AdvertController extends Controller
      * @return Response
      * @Security("has_role('ROLE_DRIVER')")
      * @Route("adverts/remove/{id}", name="remove_advert", requirements={"id"="\d+"})
+     * @Method("DELETE")
      */
     public function removeAction(Advert $advert, Request $request)
     {
@@ -180,13 +181,28 @@ class AdvertController extends Controller
             if ($advert->getUser()!=$this->getUser()) {
                 throw $this->createNotFoundException('Pas le doit');
             } else {
-                $em = $this->getDoctrine()->getManager();
-                $em->remove($advert);
-                $em->flush();
+                $this->getUser()->removeAdvert($advert);
+                $this->getDoctrine()->getManager()->flush();; // Recupération entityManager
                 // Message annonce bien supprimé
             }
         }
         return new Response('Annonce supprimer');
+    }
+
+    /**
+     * Creates a form to delete a vehicle entity.
+     *
+     * @param Advert $advert the advert entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Advert $advert)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('remove_advert', array('id' => $advert->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+            ;
     }
     
     /**

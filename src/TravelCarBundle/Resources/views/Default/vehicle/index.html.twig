@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends '@FOSUser/layout.html.twig' %}
+{% trans_default_domain 'TravelCarBundle' %}
+{% block title %}{{ 'label.title.myVehicles'|trans }}{% endblock %}
+{% block fos_user_content %}
+    <h1>{{ 'label.vehicle.list'|trans }}</h1>
 
-{% block body %}
-    <h1>Vehicles list</h1>
-
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Idnumber</th>
-                <th>Model</th>
-                <th>Color</th>
-                <th>Fuel</th>
-                <th>Actions</th>
+                <th>{{ 'label.vehicle.idNumber'|trans }}</th>
+                <th>{{ 'label.vehicle.model'|trans }}</th>
+                <th>{{ 'label.vehicle.color'|trans }}</th>
+                <th>{{ 'label.vehicle.fuel'|trans }}</th>
+                <th>{{ 'label.vehicle.actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -23,10 +24,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('vehicle_show', { 'id': vehicle.idNumber }) }}">show</a>
+                            <a href="{{ path('vehicle_show', { 'id': vehicle.idNumber }) }}">{{ 'label.show'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}">edit</a>
+                            <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}">{{ 'label.edit'|trans }}</a>
                         </li>
                     </ul>
                 </td>
@@ -35,9 +36,6 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('vehicle_new') }}">Create a new vehicle</a>
-        </li>
-    </ul>
+    <a class="btn btn-default" href="{{ path('vehicle_new') }}">{{ 'label.vehicle.new'|trans }}</a>
+
 {% endblock %}

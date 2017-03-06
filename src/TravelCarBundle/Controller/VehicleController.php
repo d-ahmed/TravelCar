@@ -42,9 +42,8 @@ class VehicleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($vehicle);
-            $em->flush($vehicle);
+            $this->getUser()->addVehicle($vehicle);
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('vehicle_show', array('id' => $vehicle->getIdNumber()));
         }
@@ -109,12 +108,11 @@ class VehicleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($vehicle);
-            $em->flush($vehicle);
+            $this->getUser()->removeVehicle($vehicle);
+            $this->getDoctrine()->getManager()->flush();
         }
 
-        return $this->redirectToRoute('vehicle_index');
+        return $this->redirectToRoute('my_vehicles');
     }
 
     /**

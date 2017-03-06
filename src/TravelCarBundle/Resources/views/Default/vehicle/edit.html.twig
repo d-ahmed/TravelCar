@@ -1,6 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends '@FOSUser/layout.html.twig' %}
+{% trans_default_domain 'TravelCarBundle' %}
+{% block title %}{{ 'label.title.myVehicles'|trans }}{% endblock %}
 
-{% block body %}
+{% block fos_user_content %}
     <h1>Vehicle edit</h1>
 
     {{ form_start(edit_form) }}
@@ -10,7 +12,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('vehicle_index') }}">Back to the list</a>
+            <a href="{{ path('my_vehicles') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
