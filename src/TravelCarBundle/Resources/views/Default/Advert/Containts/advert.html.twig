@@ -8,12 +8,12 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label>{{'label.city.departure'|trans}}</label>
-                        {{ form_widget(form.departureCity, {'attr': {'placeholder': 'Exemple : Nantes' } }) }}
+                        {{ form_widget(form.departureCity, {'attr': {'placeholder': 'label.advert.example_departure'|trans } }) }}
                         {{form_errors(form.departureCity)}}
                     </div>
                     <div class="form-group">
                         <label>{{'label.city.arrival'|trans}}</label>
-                        {{ form_widget(form.cityOfArrival, {'attr': {'placeholder': 'Exemple : Paris' } }) }}
+                        {{ form_widget(form.cityOfArrival, {'attr': {'placeholder': 'label.advert.example_arrival'|trans } }) }}
                         {{form_errors(form.cityOfArrival)}}
                     </div>
                     
@@ -28,7 +28,7 @@
                         {{form_errors(form.departureDate)}}
                     </div>
                     <div class="form-group">
-                        <label>{{'label.adverte.travel_time'|trans}}</label>
+                        <label>{{'label.advert.travel_time'|trans}}</label>
                         {{ form_widget(form.travelTime, {'attr':{'class':'timePicker'} }) }}
                         {{form_errors(form.travelTime)}}
                     </div>
@@ -44,12 +44,12 @@
           <div class="panel-body">
             <div class="form-group">
                 <label>{{'label.advert.price'|trans}}</label>
-                    {{ form_widget(form.pricePerPersonne, {'attr': {'placeholder': 'Exemple : 18' } }) }}
+                    {{ form_widget(form.pricePerPersonne, {'attr': {'placeholder': 'label.advert.example_price'|trans } }) }}
                     {{ form_errors(form.pricePerPersonne) }}
                 </div>
                 <div class="form-group">
                     <label>{{'label.advert.nb_places'|trans}}</label>
-                    {{ form_widget(form.numberOfPlace, {'attr': {'placeholder': 'Exemple : 5' } }) }}
+                    {{ form_widget(form.numberOfPlace, {'attr': {'placeholder': 'label.advert.example_nb_places'|trans } }) }}
                     {{ form_errors(form.numberOfPlace) }}
                 </div>
               <div class="form-group">
@@ -70,17 +70,17 @@
           </div>
           <div class="panel-body">
             <div class="form-group">
-                <label for="more">More</label>
+                <label for="more"> {{'label.advert.more'|trans}} </label>
                 <textarea class="form-control" name="more"></textarea>
             </div>
           </div>
         </div>
-        <button class="btn btn-default versPoster" >Suivant</button>
+        <button class="btn btn-default versPoster" >{{'label.panel.btn_next'|trans}} </button>
     </div>
     <div id="poster" class="tab-pane">
         <h3>Column title</h3> 
         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <input type="submit" class="btn btn-primary" value="Poster">
+        <input type="submit" class="btn btn-primary" value={{'label.panel.submit'|trans}} >
     </div>
 </div>
 

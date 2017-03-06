@@ -1,19 +1,19 @@
 {% trans_default_domain 'TravelCarBundle' %}
 <form id="contactForm" class="form-inline" action="{{path('searchTreatment_adverts',{'page': page|default(1), 'numberPerPage': numberPerPage|default(5)})}}" method="POST">
     <div  class="form-group col-md-3 col-sm-3 floating-label-form-group controls">
-        <label>{{'text.ville.dep'|trans}}</label>
+        <label>{{'label.city.departure'|trans}}</label>
         {{form_widget(search.departureCity, {'attr':{'class':'form-control search', 'placeholder':'label.city.departure'|trans, 'required':'required'} })}}
         
         <p class="help-block text-danger"></p>
     </div>
     <div class="form-group col-md-3 col-sm-3 floating-label-form-group controls">
-        <label>{{'text.ville.arriv'|trans}}</label>
+        <label>{{'label.city.arrival'|trans}}</label>
         {{form_widget(search.cityOfArrival, {'attr':{'class':'form-control search', 'placeholder':'label.city.arrival'|trans, 'required':'required'} })}}
         <p class="help-block text-danger"></p>
     </div>
     <div class="form-group col-md-3 col-sm-3 floating-label-form-group controls">
         <label>{{'text.date.dep'|trans}}</label>
-        {{form_widget(search.departureDate, {'attr':{'class':'form-control form_date_dep search', 'placeholder':'text.ville.dep'|trans, 'required':'required'} })}}
+        {{form_widget(search.departureDate, {'attr':{'class':'form-control form_date_dep search', 'placeholder':'label.panel.date'|trans, 'required':'required'} })}}
         <p class="help-block text-danger"></p>
     </div>
     <div class="form-group ">

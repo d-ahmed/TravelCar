@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.datetimepicker.css')}}">
 {% endblock %}
 
-{% block title %} ajouter {% endblock %}
+{% block title %} {{'label.heading.addAdvert'|trans}} {% endblock %}
 
 {% block header_heading %} {{'label.heading.addAdvert'|trans}} {% endblock %}
 
@@ -18,13 +18,13 @@
         <div class="col-md-8">
             <ul class="breadcrumb">
                 <li role="presentation" class="active">
-                    <a class="versItineraire" href="">{{'label.panel.route'|trans}}</a>
+                    <a class="versItineraire" href="">{{'label.panel.route'|trans}} </a>
                 </li>
                 <li role="presentation">
-                    <a class="versAnnonce" href="">Annonce</a>
+                    <a class="versAnnonce" href="">{{'label.panel.advert'|trans}} </a>
                 </li>
                 <li role="presentation">
-                    <a class="versPoster" href="">Poster</a>
+                    <a class="versPoster" href="">{{'label.panel.submit'|trans}} </a>
                 </li>
             </ul>
             {%include 'TravelCarBundle:Default:Advert/Containts/advert.html.twig'%}

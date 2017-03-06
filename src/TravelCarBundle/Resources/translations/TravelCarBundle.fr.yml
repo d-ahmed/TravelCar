@@ -41,5 +41,25 @@ label:
 
     panel:
         route: Itinéraire
+        time: Horaire du trajet
+        date: Date du trajet
+        advert: Annonce
+        submit: Poster
+        btn_next : Suivant
+    advert:
+        time: Horaire du trajet
+        travel_time: Temps de trajet
+        example_departure: Exemple Nantes
+        example_arrival: Exemple Paris
+        price: Prix par personne
+        nb_places: Nombre de places
+        info: Informations supplémentaires
+        highway: Autoroute
+        luggage: Taille des bagages
+        more_info: Plus d'informations?
+        more: Informations supplémentaires
+        example_price: Exemple 13
+        example_nb_places: Exemple 3
+
 
 
