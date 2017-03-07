@@ -5,6 +5,7 @@ namespace TravelCarBundle\Entity;
 use TravelCarBundle\Entity\Vehicle;
 use TravelCarBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -116,12 +117,26 @@ class Advert
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $highway;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="advert", cascade={"persist", "remove"})
+     */
+    private $reservations;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Post", mappedBy="advert", cascade={"persist", "remove"})
+     */
+    private $posts;
     
     
     public function __construct()
     {
         $this->date = new \Datetime();
         $this->numberOfReservation = 0;
+        $this->posts = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
     
     /**
@@ -484,5 +499,73 @@ class Advert
     public function getHighway()
     {
         return $this->highway;
+    }
+
+    /**
+     * Add reservation
+     *
+     * @param \TravelCarBundle\Entity\Reservation $reservation
+     *
+     * @return Advert
+     */
+    public function addReservation(\TravelCarBundle\Entity\Reservation $reservation)
+    {
+        $this->reservations[] = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservation
+     *
+     * @param \TravelCarBundle\Entity\Reservation $reservation
+     */
+    public function removeReservation(\TravelCarBundle\Entity\Reservation $reservation)
+    {
+        $this->reservations->removeElement($reservation);
+    }
+
+    /**
+     * Get reservations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * Add post
+     *
+     * @param \TravelCarBundle\Entity\Post $post
+     *
+     * @return Advert
+     */
+    public function addPost(\TravelCarBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \TravelCarBundle\Entity\Post $post
+     */
+    public function removePost(\TravelCarBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }

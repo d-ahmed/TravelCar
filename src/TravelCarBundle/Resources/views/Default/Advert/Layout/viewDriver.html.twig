@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+{% trans_default_domain 'TravelCarBundle' %}
+
+{% block title %} advert {% endblock %}
+{% block header_heading %} {{ advert.departureCity }} - {{ advert.cityOfArrival }} {% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div  class="col-md-8">
+                {% include 'TravelCarBundle:Default:Advert/Containts/view.html.twig' %}
+                <div  class="col-md-12">
+                    {{ render(controller('TravelCarBundle:Post:renderForm', { 'advertId': advert.id })) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% if app.user.id is defined and app.user.id != advert.user.id %}
+                    {% if advert.numberOfPlace %}
+                        <div class="col-md-12">
+                            {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
+                        </div>
+
+                    {% else %}
+                        <p class="text-danger" > {{'text.complet'|trans}} </p>
+                    {% endif %}
+                {% elseif app.user.id is not defined %}
+                    {% if advert.numberOfPlace %}
+                        <div class="col-md-12">
+                            {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
+                        </div>
+                    {% else %}
+                        <p class="text-danger" > {{'text.complet'|trans}} </p>
+                    {% endif %}
+                {% else %}
+                    <p class="text-danger" >{{'text.addedByYou'|trans}}</p>
+                {% endif %}
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+                <a href="{{ path('my_adverts') }}">back to list</a>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-8">
+                {{ render(controller('TravelCarBundle:Post:view', { 'advertId': advert.id })) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $('document').ready(function(){
+            $('#comment').keypress(function(e){
+                if(e.keyCode == 13){
+                    $('#comment').parent().submit();
+                }
+            })
+        })
+    </script>
+{% endblock %}
+

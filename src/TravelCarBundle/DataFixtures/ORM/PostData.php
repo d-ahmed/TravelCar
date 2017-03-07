@@ -33,28 +33,28 @@ class PostData extends AbstractFixture implements OrderedFixtureInterface
         $post1->setAdvert($this->getReference('advert1'))
                 ->setUser($this->getReference('user2'))
                 ->setComment('Tu passes par quelle ville ?');
-        $manager->persist($post1);
+        $manager->merge($this->getReference('advert1')->addPost($post1));
         
         $post2 = new Post();
         $post2->setAdvert($this->getReference('advert1'))
                 ->setUser($this->getReference('user2'))
                 ->setComment('Tu part d ou?')
                 ->setResponse('Je part de la Gare');
-        $manager->persist($post2);
+        $manager->persist($this->getReference('advert1')->addPost($post2));
         
         $post3 = new Post();
         $post3->setAdvert($this->getReference('advert3'))
                 ->setUser($this->getReference('user2'))
                 ->setComment('Tu part d ou?')
                 ->setResponse('Je part de la Gare');
-        $manager->persist($post3);
+        $manager->persist($this->getReference('advert3')->addPost($post3));
         
         $post4 = new Post();
         $post4->setAdvert($this->getReference('advert3'))
                 ->setUser($this->getReference('user1'))
                 ->setComment('Tu part d ou?')
                 ->setResponse('Je part de la Gare');
-        $manager->persist($post4);
+        $manager->persist($this->getReference('advert2')->addPost($post4));
         
         $manager->flush();
     }

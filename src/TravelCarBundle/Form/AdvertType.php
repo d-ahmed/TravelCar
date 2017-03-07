@@ -24,7 +24,7 @@ class AdvertType extends AbstractType
                 ->add('travelTime', DateTimeType::class, array('widget' => 'single_text', 'format' => 'H:m'))
                 ->add('departureCity', TextType::class)
                 ->add('cityOfArrival', TextType::class)
-                ->add('pricePerPersonne', MoneyType::class)
+                ->add('pricePerPersonne', IntegerType::class)
                 ->add('numberOfPlace', IntegerType::class)
                 ->add('luggage', ChoiceType::class, array(
                     'choices' => array('Petite'=>'Petite', 'Moyenne'=>'Moyenne', 'Grande'=>'Grande'),

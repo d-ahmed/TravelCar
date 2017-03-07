@@ -29,7 +29,7 @@ class Post
     
     /**
      *
-     * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Advert", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Advert", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $advert;

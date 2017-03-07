@@ -77,9 +77,8 @@ class PostController extends Controller
             if ($form->isValid()) {
                 if ($this->getUser()) {
                     $post->setAdvert($advert)->setUser($this->getUser());
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($post);
-                    $em->flush();
+                    $advert->addPost($post);
+                    $this->getDoctrine()->getManager()->flush();
                 } else {
                     return $this->redirectToRoute('fos_user_security_login');
                 }
@@ -99,11 +98,12 @@ class PostController extends Controller
     public function viewAllAction()
     {
     }
-    
+
     /**
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function removeAction()
     {
+
     }
 }

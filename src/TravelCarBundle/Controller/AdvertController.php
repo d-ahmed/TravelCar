@@ -55,10 +55,6 @@ class AdvertController extends Controller
                         );
                 $numberPage = ceil(count($adverts)/$numberPerPage);
 
-                if ($page>$numberPage) {
-                    throw $this->createNotFoundException('Traduction : page n existe pas');
-                }
-
                 return $this->render('TravelCarBundle:Default:Advert/Layout/viewAll.html.twig', array(
                     'adverts' => $adverts,
                     'numberOfAdvert' => count($adverts),
@@ -127,10 +123,14 @@ class AdvertController extends Controller
     public function viewAction(Advert $advert)
     {
         $deleteForm = $this->createDeleteForm($advert);
-
+        if ($advert->getUser()->getId()==$this->getUser()->getId()) {
+            return $this->render('TravelCarBundle:Default:Advert/Layout/viewDriver.html.twig', array(
+                'advert' => $advert,
+                'delete_form' => $deleteForm->createView()
+            ));
+        }
         return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
             'advert' => $advert,
-            'deleteForm' => $deleteForm->createView()
         ));
     }
 
@@ -138,7 +138,7 @@ class AdvertController extends Controller
      * @param Advert $advert
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Security("has_role('ROLE_DRIVER')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("adverts/modify/{id}", name="modify_advert", requirements={"id"="\d+"})
      * @Method({"GET", "POST"})
      */
@@ -147,7 +147,6 @@ class AdvertController extends Controller
         $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $advert->setUser($this->getUser()->setRoles(array("ROLE_CONDUCTEUR")));
                 
             $advertConflict = $this->getDoctrine()
                         ->getRepository('TravelCarBundle:Advert')
@@ -174,22 +173,22 @@ class AdvertController extends Controller
      * @param Advert $advert
      * @param Request $request
      * @return Response
-     * @Security("has_role('ROLE_DRIVER')")
+     * @Security("has_role('ROLE_USER')")
      * @Route("adverts/remove/{id}", name="remove_advert", requirements={"id"="\d+"})
      * @Method("DELETE")
      */
     public function removeAction(Advert $advert, Request $request)
     {
-        if ($request->isMethod('GET')) {
-            if ($advert->getUser()!=$this->getUser()) {
-                throw $this->createNotFoundException('Pas le doit');
-            } else {
-                $this->getUser()->removeAdvert($advert);
-                $this->getDoctrine()->getManager()->flush();; // Recupération entityManager
-                // Message annonce bien supprimé
-            }
+        if ($advert->getUser()!=$this->getUser()) {
+            throw $this->createNotFoundException('Pas le doit');
+        } else {
+            $this->getUser()->removeAdvert($advert);
+            $em = $this->getDoctrine()->getManager();; // Recupération entityManager
+            $em->remove($advert);
+            $em->flush();
+            
         }
-        return new Response('Annonce supprimer');
+        return $this->redirectToRoute('my_adverts');
     }
 
     /**
@@ -211,6 +210,7 @@ class AdvertController extends Controller
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/myAdverts/{mode}/{page}/{numberPerPage}", name="my_adverts",
+     *     defaults={"page"=1, "numberPerPage"=5, "mode"="block"},
      *     requirements={"page"="\d*", "numberPerPage"="\d*", "mode"="list|block"}
      * )
      */

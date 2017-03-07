@@ -23,7 +23,7 @@ class Reservation
     
     /**
     * @ORM\ID
-    * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Advert", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\Advert", inversedBy="reservations",cascade={"persist"})
     * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
     */
     private $advert;

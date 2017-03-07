@@ -65,6 +65,7 @@ class ReservationController extends Controller
                 $reservation = new Reservation();
             
                 $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
+                $advert->add($reservation);
                 $this->getUser()->addReservation($reservation);
                 $this->getDoctrine()->getManager()->flush();
             }
@@ -98,6 +99,7 @@ class ReservationController extends Controller
 
         if ($reservation) {
             $this->getUser()->removeReservation($reservation);
+            $advert->removeReservation($reservation);
             $this->getDoctrine()->getManager()->flush();
         } else {
             throw $this->createNotFoundException('Permission non accordée');

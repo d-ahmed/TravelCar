@@ -36,7 +36,7 @@ class AdvertData extends AbstractFixture implements OrderedFixtureInterface
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(21)
                 ->setTravelTime($date1);
-        $manager->persist($advert1);
+        $manager->persist($this->getReference('user1')->addAdvert($advert1));
         
         $date2 = new \DateTime();
         $advert2 = new Advert();
@@ -49,7 +49,7 @@ class AdvertData extends AbstractFixture implements OrderedFixtureInterface
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(21)
                 ->setTravelTime($date2->setTime(3, 30, 00));
-        $manager->persist($advert2);
+        $manager->persist($this->getReference('user2')->addAdvert($advert2));
         
         $date3 = new \DateTime();
         $advert3 = new Advert();
@@ -62,7 +62,7 @@ class AdvertData extends AbstractFixture implements OrderedFixtureInterface
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(22)
                 ->setTravelTime($date3->setTime(3, 30, 00));
-        $manager->persist($advert3);
+        $manager->persist($this->getReference('user1')->addAdvert($advert3));
         
         $date4 = new \DateTime();
         $advert4 = new Advert();
@@ -75,7 +75,7 @@ class AdvertData extends AbstractFixture implements OrderedFixtureInterface
                 ->setNumberOfPlace(3)
                 ->setPricePerPersonne(22)
                 ->setTravelTime($date4->setTime(3, 30, 00));
-        $manager->persist($advert4);
+        $manager->persist($this->getReference('user2')->addAdvert($advert4));
         
         
         $manager->flush();
