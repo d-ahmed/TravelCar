@@ -60,6 +60,38 @@ label:
         more: Informations supplémentaires
         example_price: Exemple 13
         example_nb_places: Exemple 3
+        no_advert: Vous n'avez aucune annonce actuellement.
+        no_advert_found: Il n'y'a aucune annonce actuellement.
+        has_advert: Ici sont présentes les annonces passées et en cours.
+        your_adverts: Vos annonces
+        found: Annonces trouvées
+        nb_found: annonces trouvées
+        nb_found_zero: annonce trouvée
+        addedByYou: Gérer votre annonce
+        full : Le voyage est complet!
+        info_route: Informations sur le trajet
+        nb_places_available: Nombre de places disponibles
+
+    ordre:
+        date: Date
+        traject_time: Temps trajet
+        price_croi: Prix croissant
+        price desc: Prix décroissant
+    presentation:
+        today_at: Aujourd'hui à
+        tomorrow_at: Demain à
+        places_available: places disponibles.
+        voyage_incoming: Voyage à venir.
+        voyage_done: Voyage effectué
+        see_more: Voir +
+        one_reservation: reservation
+        reservations: reservations
+        at: à
+        ask_question: Posez une question
+        reservation: Réserver
+        nb_reservation: Vous pouvez réserver plusieurs places d'un coup.
+        nb_places: nombre de places
+        example_reservation: Exemple
 
 
 

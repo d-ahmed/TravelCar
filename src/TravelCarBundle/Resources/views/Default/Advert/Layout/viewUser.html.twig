@@ -20,7 +20,7 @@
                     </div>
 
                 {% else %}
-                    <p class="text-danger" > {{'text.complet'|trans}} </p>
+                    <p class="text-danger" > {{'label.advert.full'|trans}} </p>
                 {% endif %}
             {% elseif app.user.id is not defined %}
                 {% if advert.numberOfPlace %}
@@ -28,10 +28,10 @@
                         {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
                     </div>
                 {% else %}
-                    <p class="text-danger" > {{'text.complet'|trans}} </p>
+                    <p class="text-danger" > {{'label.advert.full'|trans}} </p>
                 {% endif %}
             {% else %}
-                <p class="text-danger" >{{'text.addedByYou'|trans}}</p>
+                <p class="text-danger" >{{'label.advert.addedByYou'|trans}}</p>
             {% endif %}                    
         </div>                     
     </div>

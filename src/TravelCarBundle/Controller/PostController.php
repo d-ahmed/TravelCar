@@ -15,6 +15,7 @@ use TravelCarBundle\Entity\Post;
 use \Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use TravelCarBundle\Form\PostType;
 
 /**
  * Description of PostController
@@ -91,6 +92,38 @@ class PostController extends Controller
         }
         return 0;
     }
+
+    /**
+     * @param Post $post
+     * @param Request $request
+     * @return int|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/post/{id}", name="past_edit")
+     */
+    public function editAction(Post $post, Request $request)
+    {
+        if (!$post) {
+            $this->createNotFoundException('Problème de serveur');
+        }
+
+        $form = $this->createForm(PostType::class, $post);
+
+
+        if ($request->isMethod('POST') && $post->getAdvert()->getUser()->getId()==$this->getUser()->getId()) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                $this->getDoctrine()->getManager()->flush();
+            }
+            return $this->redirectToRoute('view_advert', array(
+                'id' => $post->getAdvert()->getId(),
+            ));
+        } else {
+            throw $this->createNotFoundException('Page non trouvée');
+        }
+        return 0;
+    }
     
     /**
      * @Security("has_role('ROLE_ADMIN')")
@@ -105,5 +138,15 @@ class PostController extends Controller
     public function removeAction()
     {
 
+    }
+
+    public function myReservationsAction(Request $request)
+    {
+
+        $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
+            ->findBy(array('user'=>$this->getUser()));
+        return $this->render('TravelCarBundle:Default:Advert/Layout/myResrvations.html.twig', array(
+            'reservations'=>$reservations
+        ));
     }
 }

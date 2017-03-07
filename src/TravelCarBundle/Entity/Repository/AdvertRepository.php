@@ -24,6 +24,7 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         
         return new Paginator($adverts, true);
     }
+
     public function findByMatchAnnonces($departureCity, $cityOfArrival, $departureDate, $page, $numberPerPage)
     {
         $queryBuilder = $this->createQueryBuilder('a');

@@ -6,17 +6,17 @@
         <nav class="navbar ">
             <ul class="nav navbar-nav">
                 <li style="margin: 18px;">
-                    <strong>Vos annonces</strong>
+                    <strong>{{'label.advert.your_adverts'|trans}}</strong>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 
                 <li style="margin: 18px;">
                     <select class="selectpicker">
-                        <option>Date</option>
-                        <option>Temps trajet</option>
-                        <option>Prix décroissant</option>
-                        <option>Prix croissant</option>
+                        <option>{{'label.odre.date'|trans}}</option>
+                        <option>{{'label.odre.traject_time'|trans}}</option>
+                        <option>{{'label.odre.price_dec'|trans}}</option>
+                        <option>{{'label.odre.price_croi'|trans}}</option>
                     </select>
                 </li>
                 <li>
@@ -30,7 +30,11 @@
         </nav>
         
         <hr>
-        <p>Ici sont présentes les annonces passées et en cours.</p>
+        {% if adverts|length == 0 %}
+            <p>{{'label.advert.no_advert'|trans}}</p>
+        {% else %}
+            <p>{{'label.advert.has_advert'|trans}}</p>
+        {% endif %}  
         {% if mode == 'block' %}
             {% include 'TravelCarBundle:Default:Advert/Containts/myViewBlock.html.twig' %}
         {% else %}

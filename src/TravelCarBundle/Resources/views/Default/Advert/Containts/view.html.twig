@@ -1,18 +1,18 @@
 <div class="col-md-12">
     <div class="col-md-12">
-        <h3><span class="fa fa-map-signs text-primary"></span> {{'text.route'|trans}}</h3>
+        <h3><span class="fa fa-map-signs text-primary"></span> {{'label.advert.info_route'|trans}}</h3>
         <hr>
         <div class="col-md-12">
             <div class="col-md-4">
-                <p>{{'text.departureCity'|trans}}</p> 
+                <p>{{'label.city.departure'|trans}}</p> 
             </div>
             <div class="col-md-8">
-                <p><span class="glyphicon glyphicon-record text-primary"></span> RDV à {{ advert.departureCity }}</p>
+                <p><span class="glyphicon glyphicon-record text-primary"></span> RDV {{'label.presentation.at'|trans}} {{ advert.departureCity }}</p>
             </div>                                     
         </div>
         <div class="col-md-12">
             <div class="col-md-4">
-                <p>{{'text.cityOfArrival'|trans}}</p> 
+                <p>{{'label.city.departure'|trans}}</p> 
             </div>
             <div class="col-md-8">
                 <p><span class="glyphicon glyphicon-record text-danger"></span> {{ advert.cityOfArrival }}</p>
@@ -20,15 +20,15 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-4">
-                <p>{{'text.departureDate'|trans}}</p> 
+                <p>{{'label.panel.time'|trans}}</p> 
             </div>
             <div class="col-md-8">
-                <p><span class="glyphicon glyphicon-calendar text-primary"></span> {{ advert.departureDate.format('d/m/Y') }} à {{ advert.departureTime }}</p>
+                <p><span class="glyphicon glyphicon-calendar text-primary"></span> {{ advert.departureDate.format('d/m/Y') }} {{'label.presentation.at'|trans}} {{ advert.departureTime }}</p>
             </div>                                     
         </div>
         <div class="col-md-12">
             <div class="col-md-4">
-                <p>{{'text.travelTime'|trans}}</p> 
+                <p>{{'label.advert.travel_time'|trans}}</p> 
             </div>
             <div class="col-md-8">
                 <p>{{ advert.travelTime.format('h : m') }}</p>
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-4">
-                <p>{{'text.numberOfPlace'|trans}}</p> 
+                <p>{{'label.advert.nb_places_available'|trans}}</p> 
             </div>
             <div class="col-md-8">
                 <p>{{ advert.numberOfPlace - advert.numberOfReservation }}</p>
@@ -46,5 +46,5 @@
 </div>
 <div class="col-md-12">
     <h3>{{advert.user.name}} {{advert.user.lastName}}</h3> 
-    <p>infos sur le trajet</p> 
+    <p> {{ advert.detail }} </p> 
 </div>

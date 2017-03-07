@@ -2,7 +2,7 @@
 
 {% trans_default_domain 'TravelCarBundle' %}
 
-{% block header_heading %} {{'text.found'|trans}} {% endblock %}
+{% block header_heading %} {{'label.advert.found'|trans}} {% endblock %}
 
 {% block header_subheading %}
 
@@ -13,7 +13,7 @@
 {% block body %}
     
     <div class="jumbotron">
-        <h2>{{numberOfAdvert}} {% if numberOfAdvert <= 1 %} annonce trouvée {% else %} annonces trouvées {% endif %}</h2>
+        <h2>{{numberOfAdvert}} {% if numberOfAdvert <= 1 %} {{'label.advert.nb_found_zero'|trans}} {% else %} {{'label.advert.nb_found'|trans}} {% endif %}</h2>
         <p>...</p>  
      </div>
     

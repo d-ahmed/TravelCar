@@ -1,5 +1,5 @@
-{% extends "base.html.twig" %}
-
+{% extends "::base.html.twig" %}
+{% trans_default_domain 'TravelCarBundle' %}
 {% block body %}
 <div class="row">
     {% if app.request.hasPreviousSession %}
@@ -26,17 +26,17 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5})}}">Annonces</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{ path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5}) }}">Annonces</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{path('my_reservations')}}">Reservations</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{ path('my_reservations',{'mode':'block'}) }}">Reservations</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{path('my_vehicles')}}">Vehicles</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{ path('my_vehicles') }}">Vehicles</a>
                                 </td>
                             </tr>
                             <tr>

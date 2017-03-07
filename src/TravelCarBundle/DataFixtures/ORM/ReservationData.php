@@ -28,19 +28,22 @@ class ReservationData extends AbstractFixture implements OrderedFixtureInterface
         $reservation1->setAdvert($this->getReference('advert1'))
                 ->setUser($this->getReference('user2'))
                 ->setNumberOfPlace(2);
-        $manager->merge($this->getReference('advert1')->addReservation($reservation1));
+        $this->getReference('advert1')->addReservation($reservation1);
+        $manager->merge($this->getReference('user2')->addReservation($reservation1));
         
         $reservation2 = new Reservation();
         $reservation2->setAdvert($this->getReference('advert3'))
                 ->setUser($this->getReference('user2'))
                 ->setNumberOfPlace(2);
-        $manager->merge($this->getReference('advert3')->addReservation($reservation2));
+        $this->getReference('advert3')->addReservation($reservation2);
+        $manager->merge($this->getReference('user2')->addReservation($reservation2));
         
         $reservation3 = new Reservation();
         $reservation3->setAdvert($this->getReference('advert2'))
                 ->setUser($this->getReference('user1'))
                 ->setNumberOfPlace(2);
-        $manager->merge($this->getReference('advert2')->addReservation($reservation3));
+        $this->getReference('advert2')->addReservation($reservation3);
+        $manager->merge($this->getReference('user1')->addReservation($reservation3));
         
         $manager->flush();
     }

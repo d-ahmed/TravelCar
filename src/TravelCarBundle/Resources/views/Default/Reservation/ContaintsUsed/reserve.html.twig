@@ -1,20 +1,20 @@
 {% trans_default_domain 'TravelCarBundle' %}
-<h3>{{'txt.reservation'|trans}}</h3> 
-<p>bla bla bla bla</p>
+<h3>{{'label.presentation.reservation'|trans}}</h3> 
+<p>{{'label.presentation.nb_reservation'|trans}}</p>
 <form role="form" action='{{path('add_reservation')}}' method='POST'>
     <div class='form-group'>
         <div class="form-group">
             <input type="number" name='advertId' class='form-control hidden' value="{{ advert.id }}"  required >
         </div>
         <div class="form-group">
-            <label>{{'text.nb.reservation'|trans({},'TravelCarAnnonceBundle')}}</label>
-            <input type="number" name='nbOfReservation' class='form-control' placeholder="{{'text.exemple'|trans}} : 2" required >
+            <label>{{'label.presentation.reservation'|trans({},'TravelCarAnnonceBundle')}}</label>
+            <input type="number" name='nbOfReservation' class='form-control' placeholder="{{'label.presentation.example_reservation'|trans}} : 2" required >
             {% for flashMessage in app.session.flashbag.get('notice') %}
 
                 <span class="text-danger"><small>{{ flashMessage }}</small></span>
 
             {% endfor %}
         </div>
-        <button type="submit" class="btn">{{'btn.reserve'|trans}}</button> 
+        <button type="submit" class="btn">{{'label.presentation.reservation'|trans}}</button> 
     </div>
 </form>

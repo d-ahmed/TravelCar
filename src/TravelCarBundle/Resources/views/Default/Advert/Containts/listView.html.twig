@@ -13,25 +13,25 @@
 
                             {% if advert.departureDate.format("d/m/Y") == 'now'| date("d/m/Y") %}
 
-                                Aujourd'hui à {{ advert.departureTime }} </h4>
+                                {{'label.presentation.today_at'|trans}} {{ advert.departureTime }} </h4>
 
                             {% elseif advert.departureDate.format("d/m/Y") == date().modify('+1 day').format("d/m/Y") %}
 
-                                Demain à {{ advert.departureTime}} </h4>
+                                {{'label.presentation.tomorrow_at'|trans}} {{ advert.departureTime}} </h4>
 
                             {% else %}    
-                                {{ advert.departureDate|date('d/m/Y')}} à {{ advert.departureTime}}</h4>
+                                {{ advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ advert.departureTime}}</h4>
                             {% endif %}
 
                         <small class="list-group-item-text">{{ advert.departureCity }} <span class="glyphicon glyphicon-arrow-right "></span> {{ advert.cityOfArrival }}</small>
                         <br/>
-                        <small><span class="glyphicon glyphicon-record text-primary"></span> RDV à {{ advert.departureCity }} </small>
+                        <small><span class="glyphicon glyphicon-record text-primary"></span> RDV {{'label.presentation.at'|trans}} {{ advert.departureCity }} </small>
                         <br/>
                         <small><span class="glyphicon glyphicon-record text-danger"></span> {{ advert.cityOfArrival }} </small>
                 </div>
                 <div class="col-md-2">
                     <small class="list-group-item-heading pull-right"> {{ advert.pricePerPersonne}} <span class="glyphicon glyphicon-eur"/></small>
-                    <small class="list-group-item-heading pull-right"> {{ advert.numberOfPlace}} places disponibles</small>
+                    <small class="list-group-item-heading pull-right"> {{ advert.numberOfPlace}} {{'label.presentation.places_available'|trans}}</small>
                 </div>
             </div>
         </a>
@@ -41,7 +41,7 @@
     <ul class="pagination"></ul>
 {% else %}
         <div class="form form-group">
-            Pas de réponse
+             {{'label.advert.no_advert_found'|trans}}
         </div>
 {% endif %}
 

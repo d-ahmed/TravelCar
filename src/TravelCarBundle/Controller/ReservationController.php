@@ -65,7 +65,7 @@ class ReservationController extends Controller
                 $reservation = new Reservation();
             
                 $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
-                $advert->add($reservation);
+                $advert->addReservation($reservation);
                 $this->getUser()->addReservation($reservation);
                 $this->getDoctrine()->getManager()->flush();
             }
@@ -138,20 +138,22 @@ class ReservationController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Security("has_role('ROLE_USER')")
-     * @Route("/myReservations/{page}/{numberPerPage}", name="my_reservations",
-     *      defaults={"page"=1, "numberPerPage"=5}, requirements={"page"="\d+", "numberPerPage"="\d+"}
+     * @Route("/myReservtions/{mode}", name="my_reservations",
+     *     defaults={"page"=1, "numberPerPage"=5, "mode"="block"},
+     *     requirements={"mode"="list|block"}
      * )
      */
-    public function myReservationsAction($page, $numberPerPage, Request $request)
+    public function myReservationsAction($mode, $page, $numberPerPage, Request $request)
     {
         if (!$page) {
             $page=1;
         }
         $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
-                ->findByUser($this->getUser(), $page, $numberPerPage);
-        $numberPage = ceil(count($reservations)/$numberPerPage);
-
-        return $this->render('TravelCarBundle:Default:Advert/Layout/myAdverts.html.twig', array('reservation'=>$reservations,'page'=>$page,'numberPage'=>$numberPage));
+                            ->findBy(array('user'=>$this->getUser()));
+        return $this->render('TravelCarBundle:Default:Advert/Layout/myResrvations.html.twig', array(
+            'reservations'=>$reservations,
+            'mode'=> $mode
+        ));
     }
 
     /**
