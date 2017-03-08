@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    var adverts = [];
     setInterval(function(){
         $.ajax({
             url: Routing.generate('last_adverts_to_expose'),
@@ -27,25 +26,34 @@ $(document).ready(function() {
         });
     }, 4000);
 
-    $.ajax({
-        url:"/ville",
-        dataType: 'JSON',
-        type: 'GET',
+    $('.city').keyup(function () {
+        $(this).preventDefault;
+        var villes = [];
+        $.ajax({
+            url:"http://vicopo.selfbuild.fr/cherche/"+$(this).val(),
+            dataType: 'JSON',
+            type: 'GET',
 
-        success: function (response) {
-            $.each(response,function(i) {
-                villes[i] = response[i].ville;
-            });
+            success: function (response) {
 
-            $('#ville').autocomplete({
-                minLength:3,
-                source:cleanArray(villes)
-            });
-        },
+                $.each(response.cities,function(i) {
+                    villes[i] = response.cities[i].city;
+                });
+                var monSet = new Set(villes);
+                villes = Array.from(monSet);
+                $('.city').autocomplete({
+                    minLength:3,
+                    source: villes,
+                    maxShowItems: 5
+                });
 
-        error: function (data, xhr, status, err) {
-            //console.log("err "+err);
-        },
-    });
+            },
+
+            error: function (data, xhr, status, err) {
+                //console.log("err "+err);
+            },
+        });
+    })
+
 
 });

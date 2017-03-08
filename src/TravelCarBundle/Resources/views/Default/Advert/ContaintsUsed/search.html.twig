@@ -1,14 +1,14 @@
 {% trans_default_domain 'TravelCarBundle' %}
-<form id="contactForm" class="form-inline" action="{{path('searchTreatment_adverts',{'page': page|default(1), 'numberPerPage': numberPerPage|default(5)})}}" method="POST">
+<form id="searchForm" class="form-inline" action="{{path('searchTreatment_adverts',{'page': page|default(1), 'numberPerPage': numberPerPage|default(5)})}}" method="POST">
     <div  class="form-group col-md-3 col-sm-3 floating-label-form-group controls">
         <label>{{'label.city.departure'|trans}}</label>
-        {{form_widget(search.departureCity, {'attr':{'class':'form-control search', 'placeholder':'label.city.departure'|trans, 'required':'required'} })}}
+        {{form_widget(search.departureCity, {'attr':{'class':'typeahead city form-control search', 'placeholder':'label.city.departure'|trans, 'required':'required'} })}}
         
         <p class="help-block text-danger"></p>
     </div>
     <div class="form-group col-md-3 col-sm-3 floating-label-form-group controls">
         <label>{{'label.city.arrival'|trans}}</label>
-        {{form_widget(search.cityOfArrival, {'attr':{'class':'form-control search', 'placeholder':'label.city.arrival'|trans, 'required':'required'} })}}
+        {{form_widget(search.cityOfArrival, {'attr':{'class':'typeahead city form-control search', 'placeholder':'label.city.arrival'|trans, 'required':'required'} })}}
         <p class="help-block text-danger"></p>
     </div>
     <div class="form-group col-md-3 col-sm-3 floating-label-form-group controls">

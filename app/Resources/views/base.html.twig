@@ -26,6 +26,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
         
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block stylesheets %}{% endblock %}
@@ -114,6 +115,12 @@
         <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 
         <script src="{{ asset('js/navbarAnim.js') }}"></script>
+
+        <script src="{{ asset('js/typehead.js') }}"></script>
+
+        <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
+        <script type="text/javascript" src="{{ asset('js/expose.js') }}"></script>
         
         {% block javascripts %}{% endblock %}
     </body>
