@@ -1,23 +1,24 @@
 {% trans_default_domain 'TravelCarBundle' %}
 
 {% if adverts is not empty %}
-    <div class="list-group">
+    <div class="list-group" xmlns="http://www.w3.org/1999/html">
     {% for advert in adverts %}
         <a href="{{path('view_advert', {'id':advert.id})}}" class="list-group-item">
             <div class="row">
                 <div style="border-left: solid; border-width: 0.5px;" class="col-md-9">
-                        <h4 class="list-group-item-heading">
+                        <strong>
 
                             {% if advert.departureDate.format("d/m/Y") == 'now'| date("d/m/Y") %}
 
-                                {{'label.presentation.today_at'|trans}} {{ advert.departureTime }} </h4>
+                                {{'label.presentation.today_at'|trans}} {{ advert.departureTime }}
 
                             {% elseif advert.departureDate.format("d/m/Y") == date().modify('+1 day').format("d/m/Y") %}
 
-                                {{'label.presentation.tomorrow_at'|trans}} {{ advert.departureTime}} </h4>
+                                {{'label.presentation.tomorrow_at'|trans}} {{ advert.departureTime}}
+                        </strong>
 
                             {% else %}    
-                                {{ advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ advert.departureTime}}</h4>
+                                {{ advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ advert.departureTime|date('h:m') }}</h4>
                             {% endif %}
 
                         <small class="list-group-item-text">{{ advert.departureCity }} <span class="glyphicon glyphicon-arrow-right "></span> {{ advert.cityOfArrival }}</small>

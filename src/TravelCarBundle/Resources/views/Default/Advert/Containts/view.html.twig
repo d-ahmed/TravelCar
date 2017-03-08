@@ -1,3 +1,4 @@
+{% trans_default_domain 'TravelCarBundle' %}
 <div class="col-md-12">
     <div class="col-md-12">
         <h3><span class="fa fa-map-signs text-primary"></span> {{'label.advert.info_route'|trans}}</h3>
@@ -23,7 +24,7 @@
                 <p>{{'label.panel.time'|trans}}</p> 
             </div>
             <div class="col-md-8">
-                <p><span class="glyphicon glyphicon-calendar text-primary"></span> {{ advert.departureDate.format('d/m/Y') }} {{'label.presentation.at'|trans}} {{ advert.departureTime }}</p>
+                <p><span class="glyphicon glyphicon-calendar text-primary"></span> {{ advert.departureDate|date('d/m/Y') }} {{'label.presentation.at'|trans}} {{ advert.departureTime|date('h:m') }}</p>
             </div>                                     
         </div>
         <div class="col-md-12">

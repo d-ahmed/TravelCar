@@ -17,7 +17,7 @@
                                 Demain à {{ reservation.advert.departureTime}}
 
                             {% else %}
-                                {{ reservation.advert.departureDate|date('d/m/Y')}} à {{ reservation.advert.departureTime}}
+                                {{ reservation.advert.departureDate|date('d/m/Y')}} à {{ reservation.advert.departureTime|date('h:m')}}
                             {% endif %}
                         </h3>
                         <p><span class="glyphicon glyphicon-road text-primary"></span> {{ reservation.advert.departureCity }}  → {{ reservation.advert.cityOfArrival }}</p>

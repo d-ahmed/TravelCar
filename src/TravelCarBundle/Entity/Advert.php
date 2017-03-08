@@ -176,7 +176,7 @@ class Advert
      */
     public function getDepartureTime()
     {
-        return $this->departureDate->format('h:m');
+        return $this->departureDate;
     }
 
     /**

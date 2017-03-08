@@ -4,6 +4,7 @@
 
 {% block header_heading %} {{'label.heading.home'|trans}} {% endblock %}
 
+
 {% block header_subheading %}
 
             {{ render(controller( "TravelCarBundle:Advert:search")) }}
@@ -11,9 +12,10 @@
 {% endblock %}
 
 {% block body %}
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div id="lastAdvert" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
     </div>
+    {{ render(controller( "TravelCarBundle:TravelCar:loadRss")) }}
 {% endblock %}
 
 
@@ -26,4 +28,5 @@
                 timepicker:false
              });
          </script>
+        <script type="text/javascript" src="{{ asset('js/expose.js') }}"></script>
 {% endblock %}

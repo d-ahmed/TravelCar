@@ -96,21 +96,24 @@
                 
         <!-- jQuery UI libray -->
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-        
-        
+
         <!-- jQuery -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+        <!-- JSBundle -->
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="{{ asset('template/js/clean-blog.min.js') }}"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+        <!-- Theme JavaScript -->
+        <script src="{{ asset('template/js/clean-blog.min.js') }}"></script>
     
-    <!-- Datetimepiker -->
-    <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
+        <!-- Datetimepiker -->
+        <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 
-    <script src="{{ asset('js/navbarAnim.js') }}"></script>
+        <script src="{{ asset('js/navbarAnim.js') }}"></script>
         
         {% block javascripts %}{% endblock %}
     </body>

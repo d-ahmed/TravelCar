@@ -3,6 +3,8 @@
 namespace TravelCarBundle\Entity\Repository;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * AdvertRepository
@@ -65,8 +67,6 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
             $intervalYear = $advert->getDepartureDate()->diff($departureDate)->y;
             $intervalMonth = $advert->getDepartureDate()->diff($departureDate)->d;
             $intervalDay = $advert->getDepartureDate()->diff($departureDate)->m;
-            dump($timeBetween2Advert);
-            dump($travelTime);
             
             if ($timeBetween2Advert <= $travelTime && $intervalDay==0 && $intervalMonth==0 && $intervalYear==0) {
                 $newAdvert[]=$advert;
@@ -74,5 +74,66 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         }
 
         return $newAdvert;
+    }
+
+    public function findByLast()
+    {
+        $queryBuilder = $this->createQueryBuilder('a');
+
+        $queryBuilder->orderBy('a.departureDate', 'desc');
+
+        $adverts = $queryBuilder->getQuery();
+
+        $adverts->setFirstResult(0)
+            ->setMaxResults(3);
+
+        $adverts = $adverts->getResult();
+
+        $dateNormalazer = new DateTimeNormalizer();
+        $objectNormalazer = new ObjectNormalizer();
+        $objectNormalazer->setIgnoredAttributes(array('reservations', 'posts', 'user'));
+
+        foreach ($adverts as $advert){
+            $advert->setDate($dateNormalazer->normalize($advert->getDate()));
+            $advert->setDepartureDate($dateNormalazer->normalize($advert->getDepartureDate()));
+            $advert->setTravelTime($dateNormalazer->normalize($advert->getTravelTime()));
+        }
+
+        foreach ($adverts as $advert){
+            $normalazedAdvert [] = $objectNormalazer->normalize($advert);
+        }
+
+
+        return $normalazedAdvert;
+    }
+
+    public function findLastByPrice($sort)
+    {
+        $queryBuilder = $this->createQueryBuilder('a');
+
+        $queryBuilder->orderBy('a.pricePerPersonne', $sort);
+
+        $adverts = $queryBuilder->getQuery();
+
+        $adverts->setFirstResult(0)
+            ->setMaxResults(3);
+        $adverts = $adverts->getResult();
+
+        $dateNormalazer = new DateTimeNormalizer();
+        $objectNormalazer = new ObjectNormalizer();
+        $objectNormalazer->setIgnoredAttributes(array('reservations', 'posts', 'user'));
+
+        foreach ($adverts as $advert){
+            $advert->setDate($dateNormalazer->normalize($advert->getDate()));
+            $advert->setDepartureDate($dateNormalazer->normalize($advert->getDepartureDate()));
+            $advert->setTravelTime($dateNormalazer->normalize($advert->getTravelTime()));
+        }
+
+        foreach ($adverts as $advert){
+            $normalazedAdvert [] = $objectNormalazer->normalize($advert);
+        }
+
+
+        return $normalazedAdvert;
     }
 }

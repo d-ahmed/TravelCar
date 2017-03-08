@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use TravelCarBundle\Form\AdvertType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 class AdvertController extends Controller
 {
@@ -227,5 +232,24 @@ class AdvertController extends Controller
         'page'=>$page,
         'numberPage'=>$numberPage,
         'mode'=>$mode));
+    }
+
+    /**
+     * @Route("/advert/lastAdverts", name="last_adverts_to_expose", options={"expose"=true} )
+     */
+    public function lastAdvertsAction(){
+        $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')->findByLast();
+
+        return new JsonResponse($adverts);
+    }
+
+    /**
+     * @Route("/advert/price/{sort}", name="price_adverts_to_expose",
+     *     options={"expose"=true}, requirements={"sort"="desc|asc"}
+     *)
+     */
+    public function lastByPriceAdvertsAction($sort){
+        $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')->findLastByPrice($sort);
+        return new JsonResponse($adverts);
     }
 }

@@ -1,9 +1,10 @@
-  <div class="row">
+{% trans_default_domain 'TravelCarBundle' %}
+<div class="row">
     {% for advert in adverts %}
       <div class="col-md-3" >
         <div class="thumbnail">
             <div class="caption">
-              <h3>
+              <strong>
                   {% if advert.departureDate.format("d/m/Y") == 'now'| date("d/m/Y") %}
 
                       {{'label.presentation.today_at'|trans}} {{ advert.departureTime }}
@@ -13,9 +14,9 @@
                       {{'label.presentation.tomorrow_at'|trans}} {{ advert.departureTime}}
 
                   {% else %}    
-                      {{ advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ advert.departureTime}}
+                      {{ advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ advert.departureTime|date('h:m') }}
                   {% endif %}
-              </h3>
+              </strong>
               <p><span class="glyphicon glyphicon-road text-primary"></span> {{ advert.departureCity }}  → {{ advert.cityOfArrival }}</p>
               
               

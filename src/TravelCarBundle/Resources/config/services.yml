@@ -1,4 +1,9 @@
+parameters:
+    url: "http://www.lemonde.fr/m-actu/rss_full.xml"
+
 services:
-#    travel_car.example:
-#        class: TravelCarBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    travel_car_load_rss:
+        class: TravelCarBundle\Service\GestionRSS
+        arguments: ["%url%", "@logger"]
+
+
