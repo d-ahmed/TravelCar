@@ -22,7 +22,7 @@ label:
     createAccount: Créer votre compte
     vehicle:
         idNumber: Matricule
-        model: Modele
+        model: Modèle
         color: Couleur
         fuel: Carburant
         actions: Actions
@@ -32,6 +32,7 @@ label:
     title:
         home: Accueil
         myVehicles: Mes voitures
+        edit_vehicule: Modifier mon véhicule
     heading:
         home: Voyagez.
         addAdvert: Ajoutez une annonce
@@ -63,7 +64,10 @@ label:
         no_advert: Vous n'avez aucune annonce actuellement.
         no_advert_found: Il n'y'a aucune annonce actuellement.
         has_advert: Ici sont présentes les annonces passées et en cours.
+        no_reservation:  Vous n'avez aucune réservation actuellement.
+        has_reservation: Ici sont présentes les réservations passées et en cours.
         your_adverts: Vos annonces
+        your_reservations: Vos réservations
         found: Annonces trouvées
         nb_found: annonces trouvées
         nb_found_zero: annonce trouvée
@@ -71,12 +75,15 @@ label:
         full : Le voyage est complet!
         info_route: Informations sur le trajet
         nb_places_available: Nombre de places disponibles
+        result: Résultats
+        your_advert: Votre annonce
+        see_advert: Voir l'annonce
 
     ordre:
         date: Date
         traject_time: Temps trajet
         price_croi: Prix croissant
-        price desc: Prix décroissant
+        price_desc: Prix décroissant
     presentation:
         today_at: Aujourd'hui à
         tomorrow_at: Demain à
@@ -92,6 +99,13 @@ label:
         nb_reservation: Vous pouvez réserver plusieurs places d'un coup.
         nb_places: nombre de places
         example_reservation: Exemple
-
+        back_to_list: Retour à la liste
+        send: Envoyer !
+        edit_vehicle: Modifier votre véhicule
+        edit_button: Modifier
+        create_vehicule: Ajouter un véhicule
+        create_button: Créer
+        delete_button: Supprimer
+        my_car: Ma voiture
 
 

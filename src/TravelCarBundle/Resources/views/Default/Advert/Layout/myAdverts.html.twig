@@ -1,5 +1,8 @@
 {% extends "@FOSUser/layout.html.twig" %}
 {% trans_default_domain 'TravelCarBundle' %}
+
+{% block title %} {{'label.advert.your_adverts'|trans}} {% endblock %}
+
 {% block fos_user_content %}
     <div class="row">
         <div class="col-md-12">
@@ -13,10 +16,10 @@
                 
                 <li style="margin: 18px;">
                     <select class="selectpicker">
-                        <option>{{'label.odre.date'|trans}}</option>
-                        <option>{{'label.odre.traject_time'|trans}}</option>
-                        <option>{{'label.odre.price_dec'|trans}}</option>
-                        <option>{{'label.odre.price_croi'|trans}}</option>
+                        <option>{{'label.ordre.date'|trans}}</option>
+                        <option>{{'label.ordre.traject_time'|trans}}</option>
+                        <option>{{'label.ordre.price_desc'|trans}}</option>
+                        <option>{{'label.ordre.price_croi'|trans}}</option>
                     </select>
                 </li>
                 <li>

@@ -3,15 +3,15 @@
 {% block title %}{{ 'label.title.myVehicles'|trans }}{% endblock %}
 
 {% block fos_user_content %}
-    <h1>Vehicle creation</h1>
+    <h1>{{ 'label.presentation.create_vehicle'|trans }}</h1>
     <div class="col-md-4 col-sm-4">
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input class="btn btn-default" type="submit" value="Create" />
+            <input class="btn btn-default" type="submit" value={{ 'label.presentation.create_button'|trans }}/>
         {{ form_end(form) }}
     </div>
     <div class="col-md-12">
-        <a href="{{ path('vehicle_index') }}">Back to the list</a>
+        <a href="{{ path('vehicle_index') }}">{{ 'label.presentation.back_to_list'|trans }}</a>
     </div>
 
 

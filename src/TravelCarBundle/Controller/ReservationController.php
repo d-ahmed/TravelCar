@@ -138,7 +138,7 @@ class ReservationController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Security("has_role('ROLE_USER')")
-     * @Route("/myReservtions/{mode}", name="my_reservations",
+     * @Route("/myReservations/{mode}", name="my_reservations",
      *     defaults={"page"=1, "numberPerPage"=5, "mode"="block"},
      *     requirements={"mode"="list|block"}
      * )

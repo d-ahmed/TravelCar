@@ -1,4 +1,7 @@
-<h3>{{'label.presentation.ask_question'|trans}}</h3> 
+{% trans_default_domain 'TravelCarBundle' %}
+
+
+<h3>{{'label.presentation.ask_question'|trans}}</h3>
 {{ form_start(post, {'attr':{'action': path('add_post',{'advertId':advert.id}), 'role':'form'} })}}
 <div class="form-group">
 {{ form_widget(post.comment) }}
@@ -6,5 +9,5 @@
 <div class="form-group">
 {{ form_widget(post.response, {'required':false, 'attr':{'class':'hidden'} }) }}
 </div>
-<button type="submit" class="btn">{{'text.send'|trans}}</button>  
+<button type="submit" class="btn">{{'label.presentation.send'|trans}}</button>
 {{ form_end(post) }}
