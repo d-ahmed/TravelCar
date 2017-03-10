@@ -1,22 +1,25 @@
 {% extends "@FOSUser/layout.html.twig" %}
 {% trans_default_domain 'TravelCarBundle' %}
+
+{% block title %} {{'label.advert.your_reservations'|trans}} {% endblock %}
+
 {% block fos_user_content %}
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar ">
                 <ul class="nav navbar-nav">
                     <li style="margin: 18px;">
-                        <strong>Vos annonces</strong>
+                        <strong>{{'label.advert.your_reservations'|trans}}</strong>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
                     <li style="margin: 18px;">
                         <select class="selectpicker">
-                            <option>Date</option>
-                            <option>Temps trajet</option>
-                            <option>Prix décroissant</option>
-                            <option>Prix croissant</option>
+                            <option>{{'label.ordre.date'|trans}}</option>
+                            <option>{{'label.ordre.traject_time'|trans}}</option>
+                            <option>{{'label.ordre.price_desc'|trans}}</option>
+                            <option>{{'label.ordre.price_croi'|trans}}</option>
                         </select>
                     </li>
                     <li>
@@ -30,7 +33,11 @@
             </nav>
 
             <hr>
-            <p>Ici sont présentes les annonces passées et en cours.</p>
+            {% if reservations|length == 0 %}
+                <p>{{'label.advert.no_reservation'|trans}}</p>
+            {% else %}
+                <p>{{'label.advert.has_reservation'|trans}}</p>
+            {% endif %}
             {% if mode == 'block' %}
                 {% include 'TravelCarBundle:Default:Advert/Containts/myViewBlockReservations.html.twig' %}
             {% else %}

@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% trans_default_domain 'TravelCarBundle' %}
 
-{% block title %} advert {% endblock %}
+{% block title %} {{ 'label.advert.see_advert'|trans }} {% endblock %}
 {% block header_heading %} {{ advert.departureCity }} - {{ advert.cityOfArrival }} {% endblock %}
 {% block body %}
 <div class="row">

@@ -1,39 +1,39 @@
 {% extends '@FOSUser/layout.html.twig' %}
 {% trans_default_domain 'TravelCarBundle' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ 'label.presentation.my_car'|trans }}{% endblock %}
 
 {% block fos_user_content %}
-    <h1>Vehicle</h1>
+    <h1>{{ 'label.presentation.my_car'|trans }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Idnumber</th>
+                <th>{{ 'label.vehicle.idNumber'|trans }}</th>
                 <td>{{ vehicle.idNumber }}</td>
             </tr>
             <tr>
-                <th>Model</th>
+                <th>{{ 'label.vehicle.model'|trans }}</th>
                 <td>{{ vehicle.model }}</td>
             </tr>
             <tr>
-                <th>Color</th>
+                <th>{{ 'label.vehicle.color'|trans }}</th>
                 <td>{{ vehicle.color }}</td>
             </tr>
             <tr>
-                <th>Fuel</th>
+                <th>{{ 'label.vehicle.fuel'|trans }}</th>
                 <td>{{ vehicle.fuel }}</td>
             </tr>
         </tbody>
     </table>
 
 
-    <a href="{{ path('my_vehicles') }}">Back to the list</a>
+    <a href="{{ path('my_vehicles') }}">{{ 'label.presentation.back_to_list'|trans }}</a>
     <br>
-    <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}">Edit</a>
+    <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}">{{ 'label.presentation.edit_button'|trans }}</a>
 
     {{ form_start(delete_form) }}
-        <input type="submit" value="Delete">
+        <input type="submit" value={{ 'label.presentation.delete_button'|trans }} />
     {{ form_end(delete_form) }}
 
 {% endblock %}

@@ -2268,7 +2268,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2016-10-13T13:56:07+00:00"
+            "time": "2016-10-13 13:56:07"
         },
         {
             "name": "sensio/generator-bundle",

@@ -10,25 +10,25 @@
                         <h3>
                             {% if reservation.advert.departureDate.format("d/m/Y") == 'now'| date("d/m/Y") %}
 
-                                Aujourd'hui à {{ reservation.advert.departureTime }}
+                                {{'label.presentation.today_at'|trans}} {{ reservation.advert.departureTime }}
 
                             {% elseif reservation.advert.departureDate.format("d/m/Y") == date().modify('+1 day').format("d/m/Y") %}
 
-                                Demain à {{ reservation.advert.departureTime}}
+                                {{'label.presentation.tomorrow_at'|trans}} {{ reservation.advert.departureTime}}
 
                             {% else %}
-                                {{ reservation.advert.departureDate|date('d/m/Y')}} à {{ reservation.advert.departureTime|date('h:m')}}
+                                {{ reservation.advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ reservation.advert.departureTime|date('h:m')}}
                             {% endif %}
                         </h3>
                         <p><span class="glyphicon glyphicon-road text-primary"></span> {{ reservation.advert.departureCity }}  → {{ reservation.advert.cityOfArrival }}</p>
 
 
                         {% if reservation.advert.departureDate > date("now") %}
-                            <p><span class="glyphicon glyphicon-user text-primary"></span> {{ reservation.advert.numberOfPlace - advert.numberOfReservation }} places disponibles.</p>
-                            <p><span class="glyphicon glyphicon-time text-primary"></span> Voyage à venir. </p>
+                            <p><span class="glyphicon glyphicon-user text-primary"></span> {{ reservation.advert.numberOfPlace - advert.numberOfReservation }} {{'label.presentation.places_available'|trans}}</p>
+                            <p><span class="glyphicon glyphicon-time text-primary"></span> {{'label.presentation.voyage_incoming'|trans}} </p>
                         {% else %}
-                            <p><span class="glyphicon glyphicon-user text-primary"></span>  {{ reservation.advert.numberOfReservation }} {% if reservation.advert.numberOfReservation<2 %} reservation {% else %} reservations {% endif %}.</p>
-                            <p><span class="glyphicon glyphicon-ok text-success"></span> Voyage effectué.</p>
+                            <p><span class="glyphicon glyphicon-user text-primary"></span>  {{ reservation.advert.numberOfReservation }} {% if reservation.advert.numberOfReservation<2 %} {{'label.presentation.one_reservation'|trans}} {% else %} {{'label.presentation.reservations'|trans}} {% endif %}.</p>
+                            <p><span class="glyphicon glyphicon-ok text-success"></span> {{'label.presentation.voyage_done'|trans}}.</p>
                         {% endif %}
                         <a href="{{path('view_advert', {'id': reservation.advert.id })}}" class="btn btn-warning" type="button"> Voir + <span class="glyphicon glyphicon-search"></span> </a>
                     </div>

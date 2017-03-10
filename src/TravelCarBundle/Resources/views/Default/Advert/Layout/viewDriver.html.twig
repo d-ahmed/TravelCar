@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% trans_default_domain 'TravelCarBundle' %}
 
-{% block title %} advert {% endblock %}
+{% block title %} {{ 'label.advert.your_advert'|trans }} {% endblock %}
 {% block header_heading %} {{ advert.departureCity }} - {{ advert.cityOfArrival }} {% endblock %}
 {% block body %}
     <div class="row">
@@ -20,7 +20,7 @@
                         </div>
 
                     {% else %}
-                        <p class="text-danger" > {{'text.complet'|trans}} </p>
+                        <p class="text-danger" > {{'label.advert.full'|trans}} </p>
                     {% endif %}
                 {% elseif app.user.id is not defined %}
                     {% if advert.numberOfPlace %}
@@ -28,15 +28,15 @@
                             {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
                         </div>
                     {% else %}
-                        <p class="text-danger" > {{'text.complet'|trans}} </p>
+                        <p class="text-danger" > {{'label.advert.full'|trans}} </p>
                     {% endif %}
                 {% else %}
-                    <p class="text-danger" >{{'text.addedByYou'|trans}}</p>
+                    <p class="text-danger" >{{'label.advert.addedByYou'|trans}}</p>
                 {% endif %}
                 {{ form_start(delete_form) }}
-                    <input type="submit" value="Delete">
+                    <input type="submit" value= {{ 'label.presentation.delete'|trans }}>
                 {{ form_end(delete_form) }}
-                <a href="{{ path('my_adverts') }}">back to list</a>
+                <a href="{{ path('my_adverts') }}">{{'label.presentation.back_to_list'|trans}}</a>
             </div>
         </div>
         <div class="col-md-12">

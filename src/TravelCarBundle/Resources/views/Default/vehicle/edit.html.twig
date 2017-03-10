@@ -1,22 +1,22 @@
 {% extends '@FOSUser/layout.html.twig' %}
 {% trans_default_domain 'TravelCarBundle' %}
-{% block title %}{{ 'label.title.myVehicles'|trans }}{% endblock %}
+{% block title %}{{ 'label.title.edit_vehicule'|trans }}{% endblock %}
 
 {% block fos_user_content %}
-    <h1>Vehicle edit</h1>
+    <h1>{{ 'label.presentation.edit_vehicle'|trans }}</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value={{ 'label.presentation.edit_button'|trans }} />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('my_vehicles') }}">Back to the list</a>
+            <a href="{{ path('my_vehicles') }}">{{ 'label.presentation.back_to_list'|trans }}</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value={{ 'label.presentation.delete_button'|trans }} />
             {{ form_end(delete_form) }}
         </li>
     </ul>
