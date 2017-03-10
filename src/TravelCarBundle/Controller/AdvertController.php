@@ -134,6 +134,8 @@ class AdvertController extends Controller
                 'delete_form' => $deleteForm->createView()
             ));
         }
+        dump($this->getUser()->getReservations());
+        die();
         return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
             'advert' => $advert,
         ));

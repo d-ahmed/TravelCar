@@ -13,7 +13,7 @@
 
             <form action="{{ path("fos_user_security_check") }}" method="post" class="form">
                 
-                <input type="hidden" name="_target_path" value="{{target}}" />
+                <!--<input type="hidden" name="_target_path" value="{#target#}" /> -->
                 
                 {% if csrf_token %}
                     <input class="form-control" type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
