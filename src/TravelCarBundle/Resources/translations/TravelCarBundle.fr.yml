@@ -115,6 +115,9 @@ label:
         vehicles: Véhicules
         account: Compte
         comments: Commentaires
+    rss:
+        news: L'Actualité
+        by_le_monde: Par Le Monde
 
 
 

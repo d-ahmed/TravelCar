@@ -39,6 +39,7 @@ class GestionRSS
                 $itemObject->setLink((string)$item->link);
                 $itemObject->setTitle((string)$item->title);
                 $itemObject->setPubDate((string)$item->pubDate);
+                $itemObject->setEnclosure((string)$item->enclosure->attributes()['url']);
                 $items [] = $itemObject;
 
             }

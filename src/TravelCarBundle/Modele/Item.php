@@ -13,6 +13,7 @@ class Item
     private $description;
 
     private $pubDate;
+    private $enclosure;
 
     /**
      * @return mixed
@@ -86,7 +87,21 @@ class Item
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEnclosure()
+    {
+        return $this->enclosure;
+    }
 
+    /**
+     * @param mixed $enclosure
+     */
+    public function setEnclosure($enclosure)
+    {
+        $this->enclosure = $enclosure;
+    }
 
 
 }

@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log(Routing.generate('last_adverts_to_expose'));
     setInterval(function(){
         $.ajax({
             url: Routing.generate('last_adverts_to_expose'),
