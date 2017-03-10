@@ -24,6 +24,28 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class ReservationController extends Controller
 {
+
+    public function reserveFormAction(Advert $advert, Request $request){
+        $formReserved = $this->createFormBuilder()->setAction($this->generateUrl('remove_reservation', array('advertId' => $advert->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+
+        if($this->getUser()){
+            $reserved = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')->findOneBy(array(
+                'user'=>$this->getUser()->getId(),
+                'advert'=>$advert->getId()
+            ));
+        }
+
+        return $this->render('TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig',array(
+            'advert'=>$advert,
+            'formReserved'=> $formReserved->createView(),
+            'reserved' => $reserved!=null
+        ));
+
+    }
+
     /**
      * @param Request $request
      * @return int|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -47,7 +69,7 @@ class ReservationController extends Controller
                 $canAdd = false;
             }
             
-            if ($nbOfReservation > $advert->getNumberOfPlace()) {
+            if ($nbOfReservation > ($advert->getNumberOfPlace()-$advert->getNumberOfReservation())) {
                 $request->getSession()->getFlashBag()->add('notice', 'Nombre inferieur attendu');
                 $canAdd = false;
             }
@@ -95,12 +117,13 @@ class ReservationController extends Controller
         
         $reservation = $this->getDoctrine()
                 ->getRepository('TravelCarBundle:Reservation')
-                ->findOneBy(array('advert'=>$advert,'user'=> $user));
-
+                ->findOneBy(array('advert'=>$advert->getId(),'user'=> $user->getId()));
         if ($reservation) {
             $this->getUser()->removeReservation($reservation);
             $advert->removeReservation($reservation);
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($reservation);
+            $em->flush();
         } else {
             throw $this->createNotFoundException('Permission non accordée');
         }

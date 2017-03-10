@@ -61,7 +61,7 @@ class Reservation
     }
     
     /**
-     * @ORM\PostRemove
+     * @ORM\PreRemove
      */
     public function increaseNbPlaces()
     {

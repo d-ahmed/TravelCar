@@ -7,6 +7,9 @@ travel_car:
         _locale: en|fr
     type: annotation
 
+travel_car_default:
+    resource: "@TravelCarBundle/Controller/"
+    type: annotation
 
 # User root
 fos_user:

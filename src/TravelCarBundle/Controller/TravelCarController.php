@@ -9,8 +9,15 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
+/**
+ * Class TravelCarController
+ * @package TravelCarBundle\Controller
+ * @Route("/")
+ */
 class TravelCarController extends Controller
 {
+
+
     /**
      * @Route("/load/{format}",name="loadRss_travelCar_format", methods={"GET"},
      *     requirements={"format":"json"}, options={"expose"=true}

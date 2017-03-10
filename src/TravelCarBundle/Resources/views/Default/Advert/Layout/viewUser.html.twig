@@ -16,7 +16,7 @@
             {% if app.user.id is defined and app.user.id != advert.user.id %}
                 {% if advert.numberOfPlace %}
                     <div class="col-md-12">
-                        {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
+                        {{ render(controller('TravelCarBundle:Reservation:reserveForm', { 'id': advert.id })) }}
                     </div>
 
                 {% else %}
@@ -25,7 +25,11 @@
             {% elseif app.user.id is not defined %}
                 {% if advert.numberOfPlace %}
                     <div class="col-md-12">
-                        {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
+                        {% if alreadyReserve %}
+                            {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
+                        {% else %}
+
+                        {% endif %}
                     </div>
                 {% else %}
                     <p class="text-danger" > {{'label.advert.full'|trans}} </p>

@@ -127,15 +127,16 @@ class AdvertController extends Controller
      */
     public function viewAction(Advert $advert)
     {
+
         $deleteForm = $this->createDeleteForm($advert);
         if ($advert->getUser()->getId()==$this->getUser()->getId()) {
             return $this->render('TravelCarBundle:Default:Advert/Layout/viewDriver.html.twig', array(
                 'advert' => $advert,
-                'delete_form' => $deleteForm->createView()
+                'delete_form' => $deleteForm->createView(),
+                'has_reserved'=>1
             ));
         }
-        dump($this->getUser()->getReservations());
-        die();
+
         return $this->render('TravelCarBundle:Default:Advert/Layout/viewUser.html.twig', array(
             'advert' => $advert,
         ));

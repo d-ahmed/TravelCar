@@ -185,7 +185,7 @@ class User extends BaseUser
      */
     public function addAdvert(Advert $advert)
     {
-        $this->adverts[] = $advert;
+        $this->adverts->add($advert);
 
         return $this;
     }
@@ -219,7 +219,7 @@ class User extends BaseUser
      */
     public function addReservation(Reservation $reservation)
     {
-        $this->reservations[] = $reservation;
+        $this->reservations->add($reservation);
 
         return $this;
     }

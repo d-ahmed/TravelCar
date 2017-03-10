@@ -1,5 +1,12 @@
 {% trans_default_domain 'TravelCarBundle' %}
-<h3>{{'label.presentation.reservation'|trans}}</h3> 
+{% dump(reserved) %}
+{% if reserved is defined and reserved == 1 %}
+    {{ form_start(formReserved) }}
+        <input type="submit" class="btn btn-danger" value="label.cancel.reservation">
+    {{ form_end(formReserved) }}
+{% else %}
+
+<h3>{{'label.presentation.reservation'|trans}}</h3>
 <p>{{'label.presentation.nb_reservation'|trans}}</p>
 <form role="form" action='{{path('add_reservation')}}' method='POST'>
     <div class='form-group'>
@@ -15,6 +22,8 @@
 
             {% endfor %}
         </div>
-        <button type="submit" class="btn">{{'label.presentation.reservation'|trans}}</button> 
+        <button type="submit" class="btn">{{'label.presentation.reservation'|trans}}</button>
     </div>
 </form>
+
+{% endif %}
