@@ -106,6 +106,15 @@ label:
         create_vehicule: Ajouter un véhicule
         create_button: Créer
         delete_button: Supprimer
+        delete: Supprimer
         my_car: Ma voiture
+    menu:
+        informations: Informations
+        adverts: Annonces
+        reservations: Réservations
+        vehicles: Véhicules
+        account: Compte
+        comments: Commentaires
+
 
 

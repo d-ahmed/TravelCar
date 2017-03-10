@@ -18,7 +18,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                        </span> Informations</a>
+                        </span> {{ 'label.menu.informations'|trans }}</a>
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in">
@@ -26,22 +26,22 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{ path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5}) }}">Annonces</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{ path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5}) }}">{{ 'label.menu.adverts'|trans }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{ path('my_reservations',{'mode':'block'}) }}">Reservations</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{ path('my_reservations',{'mode':'block'}) }}">{{ 'label.menu.reservations'|trans }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{ path('my_vehicles') }}">Vehicles</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{ path('my_vehicles') }}">{{ 'label.menu.vehicles'|trans }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-comment text-success"></span><a href=#">Comments</a>
+                                    <span class="glyphicon_profile glyphicon glyphicon-comment text-success"></span><a href=#">{{ 'label.menu.comments'|trans }}</a>
                                     <span class="badge">42</span>
                                 </td>
                             </tr>
@@ -54,7 +54,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
-                        </span> Account</a>
+                        </span> {{ 'label.menu.account'|trans }}</a>
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
