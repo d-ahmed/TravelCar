@@ -25,11 +25,8 @@
             {% elseif app.user.id is not defined %}
                 {% if advert.numberOfPlace %}
                     <div class="col-md-12">
-                        {% if alreadyReserve %}
-                            {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
-                        {% else %}
+                        {% include 'TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig' %}
 
-                        {% endif %}
                     </div>
                 {% else %}
                     <p class="text-danger" > {{'label.advert.full'|trans}} </p>

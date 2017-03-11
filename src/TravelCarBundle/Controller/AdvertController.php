@@ -129,7 +129,7 @@ class AdvertController extends Controller
     {
 
         $deleteForm = $this->createDeleteForm($advert);
-        if ($advert->getUser()->getId()==$this->getUser()->getId()) {
+        if ($this->getUser() && $advert->getUser()->getId()==$this->getUser()->getId()) {
             return $this->render('TravelCarBundle:Default:Advert/Layout/viewDriver.html.twig', array(
                 'advert' => $advert,
                 'delete_form' => $deleteForm->createView(),
