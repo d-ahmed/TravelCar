@@ -145,9 +145,6 @@ class ReservationController extends Controller
      */
     public function myReservationsAction($mode, $page, $numberPerPage, Request $request)
     {
-        if (!$page) {
-            $page=1;
-        }
         $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
                             ->findBy(array('user'=>$this->getUser()));
         return $this->render('TravelCarBundle:Default:Advert/Layout/myResrvations.html.twig', array(
