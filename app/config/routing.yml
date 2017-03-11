@@ -2,14 +2,12 @@ travel_car:
     resource: "@TravelCarBundle/Controller/"
     prefix:   /{_locale}
     defaults:
-        _locale: fr
+        _locale: en
     requirements:
         _locale: en|fr
     type: annotation
 
-travel_car_default:
-    resource: "@TravelCarBundle/Controller/"
-    type: annotation
+
 
 # User root
 fos_user:

@@ -128,32 +128,9 @@ class ReservationController extends Controller
             throw $this->createNotFoundException('Permission non accordée');
         }
 
-        return $this->redirectToRoute('view_advert', array(
-            'id' => $advert->getId()
-        ));
+        return $this->redirectToRoute('my_reservations');
     }
-    
-    /**
-     * @Security("has_role('ROLE_ADMIN')")
-     *
-     */
-    public function viewAllAction()
-    {
-        $reservations = $this->getDoctrine()
-                    ->getRepository('TravelCarBundle:Reservation')
-                    ->findAll();
-    }
-    
-    /**
-     *
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function viewAllMyAction(Request $request)
-    {
-        $reservations = $this->getDoctrine()
-                    ->getRepository('TravelCarBundle:Reservation')
-                    ->findBy(array('user'=>$this->getUser()));
-    }
+
 
     /**
      * @param $page
