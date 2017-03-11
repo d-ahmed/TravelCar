@@ -11,3 +11,12 @@ services:
         arguments: ["%kernel.default_locale%"]
         tags:
           - { name: kernel.event_subscriber }
+
+    travel_car_style_user:
+            class: TravelCarBundle\Service\StyleUser
+
+    travel_car_login_listener:
+        class: TravelCarBundle\EventListener\LoginListener
+        arguments: ["@travel_car_style_user", "@session"]
+        tags:
+            - { name: kernel.event_listener, event: security.authentication.success, method: onAuthenticationSuccess }

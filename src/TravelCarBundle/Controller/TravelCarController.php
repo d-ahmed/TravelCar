@@ -57,14 +57,6 @@ class TravelCarController extends Controller
      */
     public function homeAction(Request $request)
     {
-
-        if($this->getUser() && $this->getUser()->getStyle()){
-            $request->getSession()->set('style',$this->getUser()->getStyle());
-            $request->getSession()->set('font',$this->getUser()->getFont());
-        }else{
-            $request->getSession()->set('style','default');
-            $request->getSession()->set('font','default');
-        }
         return $this->render('TravelCarBundle:Default:TravelCar/Layout/home.html.twig');
     }
 

@@ -8,7 +8,6 @@
 
 namespace TravelCarBundle\EventListener;
 
-
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -17,7 +16,7 @@ class LocaleListener implements EventSubscriberInterface
 {
     private $defaultLocale;
 
-    public function __construct($defaultLocale = 'en')
+    public function __construct($defaultLocale = 'fr')
     {
         $this->defaultLocale = $defaultLocale;
     }
