@@ -5,8 +5,7 @@
 {% trans_default_domain 'TravelCarBundle' %}
 
 {% block stylesheets %} 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/process.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.datetimepicker.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css//process.css') }}">
 {% endblock %}
 
 {% block title %} {{'label.heading.addAdvert'|trans}} {% endblock %}
@@ -38,7 +37,7 @@
 {%endblock%}
 
  {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('js/process.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/process.js')}}"></script>
          <script type="text/javascript">
              $.datetimepicker.setLocale('fr');
              $('.dateTimePicker').datetimepicker({

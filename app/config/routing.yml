@@ -1,22 +1,11 @@
 travel_car:
     resource: "@TravelCarBundle/Controller/"
-    prefix:   /{_locale}
-    defaults:
-        _locale: en
-    requirements:
-        _locale: en|fr
     type: annotation
-
 
 
 # User root
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    prefix:   /{_locale}
-    defaults:
-        _locale: fr
-    requirements:
-        _locale: en|fr
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

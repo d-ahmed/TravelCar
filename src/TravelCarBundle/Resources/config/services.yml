@@ -6,4 +6,8 @@ services:
         class: TravelCarBundle\Service\GestionRSS
         arguments: ["%url%", "@logger"]
 
-
+    travel_car_locale_listener:
+        class: TravelCarBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+          - { name: kernel.event_subscriber }

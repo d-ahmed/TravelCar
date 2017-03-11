@@ -1,0 +1,6 @@
+<form action="{{ path('travel_car_language') }}" method="POST">
+    <select name="language" onchange="this.parentNode.submit()">
+        <option {% if app.request.locale == "fr" %} selected="selected" {% endif %} value="fr">{{ 'label.fr' }}</option>
+        <option {% if app.request.locale == "en" %} selected="selected" {% endif %} value="en">{{ 'label.en' }}</option>
+    </select>
+</form>

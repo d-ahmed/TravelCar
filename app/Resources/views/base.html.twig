@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,14 +13,23 @@
         <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
         <!-- Theme CSS -->
-        <link href="{{ asset('template/css/clean-blog.css')}}" rel="stylesheet">
-        
-        
-        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/annonce.css')}}">
-    
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.datetimepicker.css')}}">
+        {% set style = app.request.session.get('style') %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if style is defined and style == "classic" %}
+                <link href="{{ asset('assets/css/classic.css')}}" rel="stylesheet">
+            {% else %}
+                <link href="{{ asset('assets/css/default.css')}}" rel="stylesheet">
+            {% endif %}
+        {% else %}
+            <link href="{{ asset('assets/css/default.css')}}" rel="stylesheet">
+        {% endif %}
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/navbarAnim.css')}}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/annonce.css')}}">
+    
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.datetimepicker.css')}}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/navbarAnim.css')}}">
         
     <!-- Custom Fonts -->
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
@@ -67,6 +77,7 @@
         <!-- Footer -->
         <footer>
             <div class="container">
+                {%  include 'TravelCarBundle:Default:TravelCar/ContaintsUsed/language.html.twig' %}
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <ul class="list-inline text-center">
@@ -108,18 +119,18 @@
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
         <!-- Theme JavaScript -->
-        <script src="{{ asset('template/js/clean-blog.min.js') }}"></script>
+        <script src="{{ asset('assets/js/clean-blog.min.js') }}"></script>
     
         <!-- Datetimepiker -->
-        <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.datetimepicker.full.js') }}"></script>
 
-        <script src="{{ asset('js/navbarAnim.js') }}"></script>
+        <script src="{{ asset('assets/js/navbarAnim.js') }}"></script>
 
-        <script src="{{ asset('js/typehead.js') }}"></script>
+        <script src="{{ asset('assets/js/typehead.js') }}"></script>
 
         <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 
-        <script type="text/javascript" src="{{ asset('js/expose.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/expose.js') }}"></script>
         
         {% block javascripts %}{% endblock %}
     </body>

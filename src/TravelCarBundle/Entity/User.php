@@ -61,6 +61,18 @@ class User extends BaseUser
     * @ORM\OneToMany(targetEntity="TravelCarBundle\Entity\Reservation", mappedBy="user", cascade={"persist"})
     */
     private $reservations;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $style;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $font;
     
     /**
     * @ORM\ManyToMany(targetEntity="TravelCarBundle\Entity\Vehicle", cascade={"persist"})
@@ -286,5 +298,53 @@ class User extends BaseUser
     public function getVehicles()
     {
         return $this->vehicles;
+    }
+
+    /**
+     * Set style
+     *
+     * @param string $style
+     *
+     * @return User
+     */
+    public function setStyle($style)
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * Get style
+     *
+     * @return string
+     */
+    public function getStyle()
+    {
+        return $this->style;
+    }
+
+    /**
+     * Set font
+     *
+     * @param string $font
+     *
+     * @return User
+     */
+    public function setFont($font)
+    {
+        $this->font = $font;
+
+        return $this;
+    }
+
+    /**
+     * Get font
+     *
+     * @return string
+     */
+    public function getFont()
+    {
+        return $this->font;
     }
 }

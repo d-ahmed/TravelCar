@@ -2,12 +2,16 @@
 
 namespace TravelCarBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Request;
+use TravelCarBundle\Form\StyleType;
 
 /**
  * Class TravelCarController
@@ -51,8 +55,16 @@ class TravelCarController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="home")
      */
-    public function homeAction()
+    public function homeAction(Request $request)
     {
+
+        if($this->getUser() && $this->getUser()->getStyle()){
+            $request->getSession()->set('style',$this->getUser()->getStyle());
+            $request->getSession()->set('font',$this->getUser()->getFont());
+        }else{
+            $request->getSession()->set('style','default');
+            $request->getSession()->set('font','default');
+        }
         return $this->render('TravelCarBundle:Default:TravelCar/Layout/home.html.twig');
     }
 
@@ -63,5 +75,49 @@ class TravelCarController extends Controller
     public function aboutAction()
     {
         return $this->render('TravelCarBundle:Default:TravelCar/Layout/about.html.twig');
+    }
+
+
+    /**
+     * @param Request $request
+     * @Route("profile/style", name="travel_car_style")
+     * @Method({"GET","POST"})
+     */
+    public function styleAclion(Request $request){
+
+        $styleForm = $this->createForm(StyleType::class);
+
+        if($request->isMethod('Post') && $styleForm->handleRequest($request)->isValid()){
+            $this->getUser()->setStyle($styleForm->get('style')->getData());
+            $this->getUser()->setFont($styleForm->get('font')->getData());
+            $this->getDoctrine()->getManager()->flush();
+            $request->getSession()->set('style',$styleForm->get('style')->getData());
+            $request->getSession()->set('font',$styleForm->get('font')->getData());
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->render('TravelCarBundle:Default:TravelCar/Layout/style.html.twig', array(
+            'styleForm'=>$styleForm->createView()
+        ));
+
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/language", name="travel_car_language")
+     * @Method({"GET","POST"})
+     */
+    public function renderLanguageAction(Request $request){
+
+        if($request->isMethod('POST')){
+
+            // On enregistre la langue en session
+            $this->get('session')->set('_locale', $request->get('language'));
+
+            // on tente de rediriger vers la page d'origine
+            $url = $request->headers->get('referer');
+
+        }
+        return new RedirectResponse($url);
     }
 }
