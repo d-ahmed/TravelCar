@@ -26,14 +26,27 @@
             </tr>
         </tbody>
     </table>
-
-
-    <a href="{{ path('my_vehicles') }}">{{ 'label.presentation.back_to_list'|trans }}</a>
-    <br>
-    <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}">{{ 'label.presentation.edit_button'|trans }}</a>
+    <br><br><br><br>
+    <div class="row text-center">
+        <div class="btn-group ">
+            <a href="{{ path('my_vehicles') }}" type="button" class="btn btn-info">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                {{ 'label.presentation.back_to_list'|trans }}
+            </a>
+            <a href="{{ path('vehicle_edit', { 'id': vehicle.idNumber }) }}" type="button" class="btn btn-info">
+                <i class="glyphicon glyphicon-edit"></i>
+                {{ 'label.presentation.edit_button'|trans }}
+            </a>
+        </div>
+    </div>
 
     {{ form_start(delete_form) }}
-        <input type="submit" value={{ 'label.presentation.delete_button'|trans }} />
+        <div class="row text-center">
+            <a class="btn btn-danger" type="button" onclick="this.parentNode.submit()">
+                <i class="glyphicon glyphicon-trash"></i>
+                {{ 'label.presentation.delete_button'|trans }}
+            </a>
+        </div>
     {{ form_end(delete_form) }}
 
 {% endblock %}
