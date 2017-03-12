@@ -16,7 +16,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value={{ 'label.presentation.delete_button'|trans }} />
+            <a class="btn btn-default" onclick="this.parentNode.submit()" type="submit"><span class="glyphicon glyphicon-trash"></span>{{ 'label.presentation.delete_button'|trans }}</a>
             {{ form_end(delete_form) }}
         </li>
     </ul>

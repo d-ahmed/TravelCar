@@ -14,7 +14,7 @@ class VehicleController extends Controller
     /**
      * Lists all vehicle entities.
      *
-     * @Route("/vehicle/", name="vehicle_index")
+     *
      * @Method("GET")
      */
     public function indexAction()
