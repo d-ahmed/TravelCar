@@ -122,7 +122,7 @@ class AdvertController extends Controller
     /**
      * @param Advert $advert
      * @return Response
-     * @Route("/advert/{id}", name="view_advert", requirements={"id"="\d+"})
+     * @Route("/advert/{id}", name="view_advert", requirements={"id"="\d+"}, options={"expose"=true})
      * @Method("GET")
      */
     public function viewAction(Advert $advert)
