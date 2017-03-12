@@ -10,4 +10,6 @@ namespace TravelCarBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
 }

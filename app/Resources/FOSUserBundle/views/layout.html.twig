@@ -65,15 +65,45 @@
                             <tr>
                                 <td>
                                     <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
-                                    <a href="{{ path('user_edit',{id:app.user.id}) }}">{{ 'label.menu.edit'|trans }} </a>
+                                    <a href="{{ path('user_edit') }}">{{ 'label.menu.edit'|trans }} </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <span class=" glyphicon_profile glyphicon glyphicon-trash text-danger"></span>
-                                    <a href="#" class="text-danger">
+                                    <a data-toggle="modal" data-target="#myModal" href="#" class="text-danger">
                                         {{ 'label.menu.delete'|trans }}
                                     </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">{{ 'label.advert.cancel_acount'|trans }}</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>{{ 'label.advert.are_you_sure_cancel'|trans }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-6">
+                                                            <a href="{{ path('user_remove') }}" class="btn btn-danger">
+                                                                {{ 'label.menu.delete'|trans }}
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'label.presentation.back_to_list'|trans }}</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
