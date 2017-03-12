@@ -26,22 +26,26 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-pencil text-primary"></span><a href="{{ path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5}) }}">{{ 'label.menu.adverts'|trans }}</a>
+                                    <i class="fa fa-user text-info" aria-hidden="true"></i></span>
+                                    <a href="{{ path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5}) }}">{{ 'label.menu.adverts'|trans }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-flash text-success"></span><a href="{{ path('my_reservations',{'mode':'block'}) }}">{{ 'label.menu.reservations'|trans }}</a>
+                                    <i class="fa fa-shopping-basket text-success" aria-hidden="true"></i>
+                                    <a href="{{ path('my_reservations',{'mode':'block'}) }}">{{ 'label.menu.reservations'|trans }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon glyphicon-file text-info"></span><a href="{{ path('my_vehicles') }}">{{ 'label.menu.vehicles'|trans }}</a>
+                                    <span class="fa fa-car text-primary" aria-hidden="true" ></span>
+                                    <a href="{{ path('my_vehicles') }}">{{ 'label.menu.vehicles'|trans }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class="glyphicon_profile glyphicon  text-info"></span><a href="{{ path('travel_car_style') }}">{{ 'label.menu.style'|trans }}</a>
+                                    <i class="fa fa-cogs text-warning" aria-hidden="true"></i>
+                                    <a href="{{ path('travel_car_style') }}">{{ 'label.presentation.style'|trans }}</a>
                                 </td>
                         </table>
                     </div>
@@ -60,13 +64,16 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <a href="#">Change profile</a>
+                                    <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
+                                    <a href="#">{{ 'label.menu.edit'|trans }} </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <span class=" glyphicon_profile glyphicon glyphicon-trash text-danger"></span><a href="#" class="text-danger">
-                                        Delete Account</a>
+                                    <span class=" glyphicon_profile glyphicon glyphicon-trash text-danger"></span>
+                                    <a href="#" class="text-danger">
+                                        {{ 'label.menu.delete'|trans }}
+                                    </a>
                                 </td>
                             </tr>
                         </table>

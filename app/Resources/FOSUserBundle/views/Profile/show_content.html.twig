@@ -15,35 +15,38 @@
                         <div class="col-xs-12 col-sm-4 text-center">
                             <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
                             <ul class="list-inline ratings text-center" title="Ratings">
-                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+                                <li><span class="fa fa-star fa-lg"></span></li>
+                                <li><span class="fa fa-star fa-lg"></span></li>
+                                <li><span class="fa fa-star fa-lg"></span></li>
+                                <li><span class="fa fa-star fa-lg"></span></li>
+                                <li><span class="fa fa-star fa-lg"></span></li>
                             </ul>
                         </div><!--/col-->
-
+                        <br><br><br><br><br><br><br><br><br><br><br>
                         <div class="col-xs-12 col-sm-4">
-                            <h2><strong> 20,7K </strong></h2>
-                            <p><small>Followers</small></p>
-                            <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
+                            <a href="{{ path('my_adverts',{'mode':'block','page':1, 'numberPerPage':5}) }}">
+                                <button class="btn btn-success btn-block"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    {{ 'label.advert.your_reservations'|trans }}
+                                </button>
+                            </a>
                         </div><!--/col-->
                         <div class="col-xs-12 col-sm-4">
-                            <h2><strong>245</strong></h2>
-                            <p><small>Following</small></p>
-                            <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
+                            <a href="{{ path('my_reservations',{'mode':'block'}) }}">
+                                <button class="btn btn-info btn-block"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    {{ 'label.advert.your_adverts'|trans }}
+                                </button>
+                            </a>
                         </div><!--/col-->
                         <div class="col-xs-12 col-sm-4">
-                            <h2><strong>43</strong></h2>
-                            <p><small>Snippets</small></p>
-                            <button type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span> Options </button>
+                            <a href="{{ path('my_vehicles') }}">
+                                <button type="button" class="btn btn-primary btn-block"><span class="fa fa-car"></span>
+                                    {{ 'label.vehicle.your_vehicles'|trans }}
+                                </button>
+                            </a>
                         </div><!--/col-->
                     </div><!--/row-->
                 </div><!--/panel-body-->
             </div><!--/panel-->
-
-
-
         </div>
  </div>
 
