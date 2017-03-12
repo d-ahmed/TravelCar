@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- permet de parametrer le responsive -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <title>{% block title %}{% endblock %} - TravelCar</title>
         
         
@@ -70,7 +70,8 @@
         <!-- Main Content -->
         <div class="container">
             
-                {% block body %}{% endblock %}  
+            {% block body %}{% endblock %}
+            {{ render(controller('TravelCarBundle:TravelCar:loadRss')) }}
         </div>
 
 

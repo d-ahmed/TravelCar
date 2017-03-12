@@ -1,14 +1,15 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
+{%trans_default_domain 'TravelCarBundle'%}
 {% block stylesheets %} 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
-{% block header_heading %} {{'text.found'|trans}} {% endblock %}
+{% block title %} {{ app.user.lastname }} - {{ app.user.name}} {% endblock %}
+{% block header_heading %} {{'label.presentation.ur_profil'|trans}} {% endblock %}
 
 {% block header_subheading %}
 
-        {{ render(controller( "TravelCarBundle:Advert:search")) }}
+    {#{{ render(controller( "TravelCarBundle:Advert:search")) }} #}
                           
 {% endblock %}
 

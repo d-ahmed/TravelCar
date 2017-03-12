@@ -78,6 +78,8 @@ label:
         result: Résultats
         your_advert: Votre annonce
         see_advert: Voir l'annonce
+        last_adverts: Dernières annonces
+        wanna_travel: Partir dès maintenant?
 
     ordre:
         date: Date
@@ -108,6 +110,7 @@ label:
         delete_button: Supprimer
         delete: Supprimer
         my_car: Ma voiture
+        ur_profil: Votre profil
     menu:
         informations: Informations
         adverts: Annonces
@@ -118,6 +121,18 @@ label:
     rss:
         news: L'Actualité
         by_le_monde: Par Le Monde
+    about_page:
+        what_give_me_travelcar: Que vous apporte TravelCar?
+        start_now: Commencez dès maintenant.
+        meeting_people: Faire des rencontres
+        meeting_desc: Rencontrez des gens de tout milieu lors de vos voyages.
+        saving_money: Economisez !
+        saving_desc: Partagez vos frais de voyages afin d'aléger vos fins de mois.
+        travelling: Visiter le pays
+        travelling_desc: Avec des prix parfois jusqu'à 74% moins cher qu'ailleurs changer d'air devient une réalité.
+        something_to_tell_us: Une remarque?
+        sttu_desc1: N'hésitez pas à nous faire remonter quoique ce soit, questions, remarques, bug
+        sttu_desc2: Nous vous répondrons le plus vite possible.
 
 
 
