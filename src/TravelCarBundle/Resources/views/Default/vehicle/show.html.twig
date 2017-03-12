@@ -37,16 +37,14 @@
                 <i class="glyphicon glyphicon-edit"></i>
                 {{ 'label.presentation.edit_button'|trans }}
             </a>
-        </div>
-    </div>
-
-    {{ form_start(delete_form) }}
-        <div class="row text-center">
-            <a class="btn btn-danger" type="button" onclick="this.parentNode.submit()">
+            {{ form_start(delete_form) }}
+            <a class="btn btn-danger" type="submit" onclick="this.parentNode.submit()">
                 <i class="glyphicon glyphicon-trash"></i>
                 {{ 'label.presentation.delete_button'|trans }}
             </a>
+            {{ form_end(delete_form) }}
+
         </div>
-    {{ form_end(delete_form) }}
+    </div>
 
 {% endblock %}
