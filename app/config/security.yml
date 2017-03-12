@@ -24,8 +24,8 @@ security:
                     facebook:           "/connect/check-facebook"
                     google:             "/connect/check-google"
                     twitter:            "/connect/check-twitter"
-                login_path:        /connect
-                failure_path:      /connect
+                login_path:        /login
+                failure_path:      /login
                 oauth_user_provider:
                     service: hwi_oauth.user.provider.fosub_bridge
             logout: true
