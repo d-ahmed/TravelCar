@@ -8,12 +8,12 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label>{{'label.city.departure'|trans}}</label>
-                        {{ form_widget(form.departureCity, {'attr': {'placeholder': 'label.advert.example_departure'|trans } }) }}
+                        {{ form_widget(form.departureCity, {'attr': {'class':'city', 'placeholder': 'label.advert.example_departure'|trans } }) }}
                         {{form_errors(form.departureCity)}}
                     </div>
                     <div class="form-group">
                         <label>{{'label.city.arrival'|trans}}</label>
-                        {{ form_widget(form.cityOfArrival, {'attr': {'placeholder': 'label.advert.example_arrival'|trans } }) }}
+                        {{ form_widget(form.cityOfArrival, {'attr': {'class':'city', 'placeholder': 'label.advert.example_arrival'|trans } }) }}
                         {{form_errors(form.cityOfArrival)}}
                     </div>
                     
