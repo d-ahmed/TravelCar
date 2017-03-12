@@ -20,7 +20,7 @@ $(document).ready(function() {
                         "<strong>"+departureDate.toLocaleDateString()+" à "+departureDate.toLocaleTimeString()+"</strong>"+
                         "<p><span class=\"glyphicon glyphicon-road text-primary\"></span> "+ departureCity + " → "+ cityOfArrival +
                         "<p><span class=\"glyphicon glyphicon-user text-primary\"></span> " + places_availables +  " places disponibles.</p>"+
-                        "<a href=\"\" class=\"btn btn-info\" type=\"button\"> Réserver </a>"+
+                        "<a href=\""+Routing.generate('view_advert', {id:id}, true)+"\" class=\"btn btn-info\" type=\"button\"> Réserver </a>"+
                         "</div> " +
                         "</div>" +
                         " </div>"

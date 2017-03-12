@@ -16,8 +16,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class, array('label' => 'form.name', 'translation_domain' => 'TravelCarBundle'))
-                ->add('lastName', TextType::class, array('label' => 'form.lastName', 'translation_domain' => 'TravelCarBundle'))
-                ->add('birthDate', DateType::class, array('label' => 'form.birthDate', 'translation_domain' => 'TravelCarBundle'))
+                ->add('lastName', TextType::class, array(
+                    'label' => 'form.lastName',
+                    'translation_domain' => 'TravelCarBundle'
+                ))
+                ->add('birthDate', DateType::class, array(
+                    'widget' => 'single_text',
+                    'format' => 'dd/mm/yyyy',
+                    'data' => new \DateTime(),
+                    'label' => 'form.birthDate',
+                    'translation_domain' => 'TravelCarBundle',
+                    'attr'=>array('placeholder'=>'dd/mm/yyyy')
+                ))
                 ->add('phoneNumber', TextType::class, array('label' => 'form.phoneNumber', 'translation_domain' => 'TravelCarBundle'));
     }
     
