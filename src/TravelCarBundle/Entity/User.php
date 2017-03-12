@@ -73,6 +73,24 @@ class User extends BaseUser
      * @ORM\Column(type="string", nullable=true)
      */
     private $font;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $facebookId;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $googleId;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $twitterId;
     
     /**
     * @ORM\ManyToMany(targetEntity="TravelCarBundle\Entity\Vehicle", cascade={"persist"})
@@ -346,5 +364,77 @@ class User extends BaseUser
     public function getFont()
     {
         return $this->font;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param string $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * Set googleId
+     *
+     * @param string $googleId
+     *
+     * @return User
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    /**
+     * Get googleId
+     *
+     * @return string
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * Set twitterId
+     *
+     * @param string $twitterId
+     *
+     * @return User
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return string
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
     }
 }

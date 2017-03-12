@@ -40,10 +40,6 @@
             </form>
         </div>
         <div class="col-sm-6" style="">
-            
-            <a href="#" class="button b facebook col-md-12 vcenter"><span><i class="fa fa-facebook"></i></span>{{'connexion.avec.fb'|trans({}, 'TravelCarBundlePersonne') }}</a>
+            {{ render(path('hwi_oauth_connect')) }}
 
-            <a href="#" class="button b twitter col-md-12 vcenter"><span><i class="fa fa-twitter"></i></span>{{'connexion.avec.tw'|trans({}, 'TravelCarBundlePersonne') }}</a>
-
-            <a href="#" class="button b google-plus col-md-12 vcenter"><span><i class="fa fa-google-plus"></i></span>{{'connexion.avec.go'|trans({}, 'TravelCarBundlePersonne') }}</a>
         </div>
