@@ -81,6 +81,8 @@ label:
         see_advert: Voir l'annonce
         last_adverts: Dernières annonces
         wanna_travel: Partir dès maintenant?
+        cancel_reservation: Annuler la réservation
+        are_you_sure_cancel: Êtes-vous sûr?
 
     ordre:
         date: Date
@@ -113,6 +115,9 @@ label:
         my_car: Ma voiture
         ur_profil: Votre profil
         style: Changer de thème
+        select_nb_places: Sélectionner le nombre de places
+        cancel: Annuler
+        wanna_cancel: Voulez-vous annuler votre réservation?
     menu:
         informations: Informations
         adverts: Annonces
