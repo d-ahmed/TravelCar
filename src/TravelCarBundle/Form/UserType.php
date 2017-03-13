@@ -3,6 +3,7 @@
 namespace TravelCarBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,13 +23,16 @@ class UserType extends AbstractType
                 ))
                 ->add('birthDate', DateType::class, array(
                     'widget' => 'single_text',
-                    'format' => 'dd/mm/yyyy',
+                    'format' => 'd/m/yyyy',
                     'data' => new \DateTime(),
                     'label' => 'form.birthDate',
                     'translation_domain' => 'TravelCarBundle',
-                    'attr'=>array('placeholder'=>'dd/mm/yyyy')
+                    'attr'=>array('placeholder'=>'d/m/yyyy', 'class'=>'form_date')
                 ))
-                ->add('phoneNumber', TextType::class, array('label' => 'form.phoneNumber', 'translation_domain' => 'TravelCarBundle'));
+                ->add('phoneNumber', TextType::class, array(
+                    'label' => 'form.phoneNumber',
+                    'translation_domain' => 'TravelCarBundle'
+                ));
     }
     
     /**

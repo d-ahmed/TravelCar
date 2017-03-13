@@ -13,7 +13,11 @@
                             <p><strong> {{ 'label.profil.birthDate'|trans }} </strong> {{ user.birthDate|date('Y-m-d') }}</p>
                         </div><!--/col-->
                         <div class="col-xs-12 col-sm-4 text-center">
-                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
+                            {% if user.img is not empty %}
+                                <img src="{{ asset('/uploads/avatars/' ~ user.img) }}" alt="" class="center-block img-circle img-responsive">
+                            {% else %}
+                                <img src="{{ asset('assets/img/profile.png') }}" alt="" class="center-block img-circle img-responsive">
+                            {% endif %}
                             <ul class="list-inline ratings text-center" title="Ratings">
                                 <li><span class="fa fa-star fa-lg"></span></li>
                                 <li><span class="fa fa-star fa-lg"></span></li>

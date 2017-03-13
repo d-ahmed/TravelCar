@@ -100,6 +100,13 @@ class User extends BaseUser
     * )
     */
      private $vehicles;
+
+     /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+     private $img;
+
     
     public function __construct()
     {
@@ -436,5 +443,29 @@ class User extends BaseUser
     public function getTwitterId()
     {
         return $this->twitterId;
+    }
+
+    /**
+     * Set img
+     *
+     * @param string $img
+     *
+     * @return User
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * Get img
+     *
+     * @return string
+     */
+    public function getImg()
+    {
+        return $this->img;
     }
 }
