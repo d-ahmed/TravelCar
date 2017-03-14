@@ -24,7 +24,7 @@
 
 
                         {% if reservation.advert.departureDate > date("now") %}
-                            <p><span class="glyphicon glyphicon-user text-primary"></span> {{ reservation.advert.numberOfPlace - advert.numberOfReservation }} {{'label.presentation.places_available'|trans}}</p>
+                            <p><span class="glyphicon glyphicon-user text-primary"></span> {{ reservation.advert.numberOfPlace - reservation.advert.numberOfReservation }} {{'label.presentation.places_available'|trans}}</p>
                             <p><span class="glyphicon glyphicon-time text-primary"></span> {{'label.presentation.voyage_incoming'|trans}} </p>
                         {% else %}
                             <p><span class="glyphicon glyphicon-user text-primary"></span>  {{ reservation.advert.numberOfReservation }} {% if reservation.advert.numberOfReservation<2 %} {{'label.presentation.one_reservation'|trans}} {% else %} {{'label.presentation.reservations'|trans}} {% endif %}.</p>
