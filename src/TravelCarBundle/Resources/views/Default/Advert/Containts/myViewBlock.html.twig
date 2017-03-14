@@ -7,11 +7,11 @@
               <strong>
                   {% if advert.departureDate.format("d/m/Y") == 'now'| date("d/m/Y") %}
 
-                      {{'label.presentation.today_at'|trans}} {{ advert.departureTime }}
+                      {{'label.presentation.today_at'|trans}} {{ advert.departureTime|date('h:m')  }}
 
                   {% elseif advert.departureDate.format("d/m/Y") == date().modify('+1 day').format("d/m/Y") %}
 
-                      {{'label.presentation.tomorrow_at'|trans}} {{ advert.departureTime}}
+                      {{'label.presentation.tomorrow_at'|trans}} {{ advert.departureTime|date('h:m') }}
 
                   {% else %}    
                       {{ advert.departureDate|date('d/m/Y')}} {{'label.presentation.at'|trans}} {{ advert.departureTime|date('h:m') }}

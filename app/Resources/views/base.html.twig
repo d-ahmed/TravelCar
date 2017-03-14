@@ -78,23 +78,21 @@
         <!-- Footer -->
         <footer>
             <div class="container">
-                {%  include 'TravelCarBundle:Default:TravelCar/ContaintsUsed/language.html.twig' %}
+                {#{%  include 'TravelCarBundle:Default:TravelCar/ContaintsUsed/language.html.twig' %}#}
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <ul class="list-inline text-center">
                             <li>
-                                <a href="#">
+                                <a href="{{ path('travel_car_language', {'local': 'fr' }) }}">
                                     <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        <img src="{{ asset("/assets/img/drapeau_france.png") }} " alt="" class="center-block img-circle img-responsive"/>
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ path('travel_car_language', {'local': 'en' }) }}">
                                     <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                        <img src="{{ asset("/assets/img/drapeau_angleterre.jpg") }} " alt="" class="center-block img-circle img-responsive"/>
                                     </span>
                                 </a>
                             </li>

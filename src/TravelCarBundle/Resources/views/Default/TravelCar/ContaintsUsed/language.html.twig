@@ -1,6 +1,13 @@
 <form action="{{ path('travel_car_language') }}" method="POST">
-    <select name="language" onchange="this.parentNode.submit()">
-        <option {% if app.request.locale == "fr" %} selected="selected" {% endif %} value="fr">{{ 'label.fr' }}</option>
-        <option {% if app.request.locale == "en" %} selected="selected" {% endif %} value="en">{{ 'label.en' }}</option>
-    </select>
+    <input name="language" type="text" hidden="hidden">
+        <img src="{{ asset("/assets/img/drapeau_france.png") }} " alt="fr" class="center-block img-circle img-responsive"/>
+        <img src="{{ asset("/assets/img/drapeau_france.png") }} " alt="en" class="center-block img-circle img-responsive"/>
 </form>
+{% block javascript %}
+<script>
+    $('img').onclick(function () {
+        console.log($(this).attributes('alt'));
+        //$("name language").val($(this).attributes(alt));
+    })
+</script>
+{% endblock %}
