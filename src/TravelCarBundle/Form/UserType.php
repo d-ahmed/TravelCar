@@ -22,16 +22,13 @@ class UserType extends AbstractType
                 ))
                 ->add('birthDate', DateType::class, array(
                     'widget' => 'single_text',
-                    'format' => 'd/m/yyyy',
+                    'format' => 'dd/mm/yyyy',
                     'data' => new \DateTime(),
                     'label' => 'form.birthDate',
                     'translation_domain' => 'TravelCarBundle',
-                    'attr'=>array('placeholder'=>'d/m/yyyy', 'class'=>'form_date')
+                    'attr'=>array('placeholder'=>'dd/mm/yyyy')
                 ))
-                ->add('phoneNumber', TextType::class, array(
-                    'label' => 'form.phoneNumber',
-                    'translation_domain' => 'TravelCarBundle'
-                ));
+                ->add('phoneNumber', TextType::class, array('label' => 'form.phoneNumber', 'translation_domain' => 'TravelCarBundle'));
     }
     
     /**
@@ -46,7 +43,7 @@ class UserType extends AbstractType
     
     public function getParent()
     {
-        return 'fos_user_profile';
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
 
         // Or for Symfony < 2.8
         // return 'fos_user_registration';

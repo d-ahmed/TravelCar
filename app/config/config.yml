@@ -81,9 +81,6 @@ fos_user:
     registration:
         form:
             type: TravelCarBundle\Form\UserType
-    profile:
-        form:
-            type: TravelCarBundle\Form\UserProfileType
     from_email:
         address: you@example.com
         sender_name: You
