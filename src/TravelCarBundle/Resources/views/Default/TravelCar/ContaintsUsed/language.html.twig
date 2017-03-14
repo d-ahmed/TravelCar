@@ -3,4 +3,12 @@
         <option {% if app.request.locale == "fr" %} selected="selected" {% endif %} value="fr">{{ 'label.fr' }}</option>
         <option {% if app.request.locale == "en" %} selected="selected" {% endif %} value="en">{{ 'label.en' }}</option>
     </select>
+    <span class="fa-stack fa-1x">
+        <img alt="fr" class="language center-block img-circle img-responsive" type="icon" src="{{ asset('assets/img/fr.png') }}" >
+    </span>
+
+
 </form>
+{% block javascripts %}
+
+{% endblock %}

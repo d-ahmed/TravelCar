@@ -132,7 +132,13 @@
         <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 
         <script type="text/javascript" src="{{ asset('assets/js/expose.js') }}"></script>
-        
+
+        <script type="text/javascript">
+            $(".language").click(function () {
+                console.log($(this))
+            })
+        </script>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
