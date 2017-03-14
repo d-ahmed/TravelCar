@@ -2,10 +2,8 @@
 
 namespace TravelCarBundle\Modele;
 
-
 class Item
 {
-
     private $link;
 
     private $title;
@@ -102,6 +100,4 @@ class Item
     {
         $this->enclosure = $enclosure;
     }
-
-
 }

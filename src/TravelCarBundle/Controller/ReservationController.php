@@ -24,26 +24,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class ReservationController extends Controller
 {
-
-    public function reserveFormAction(Advert $advert, Request $request){
+    public function reserveFormAction(Advert $advert, Request $request)
+    {
         $formReserved = $this->createFormBuilder()->setAction($this->generateUrl('remove_reservation', array('advertId' => $advert->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
 
-        if($this->getUser()){
+        if ($this->getUser()) {
             $reserved = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')->findOneBy(array(
                 'user'=>$this->getUser()->getId(),
                 'advert'=>$advert->getId()
             ));
         }
 
-        return $this->render('TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig',array(
+        return $this->render('TravelCarBundle:Default:Reservation/ContaintsUsed/reserve.html.twig', array(
             'advert'=>$advert,
             'formReserved'=> $formReserved->createView(),
             'reserved' => $reserved!=null
         ));
-
     }
 
     /**

@@ -1,7 +1,9 @@
 <?php
 
 namespace TravelCarBundle\Entity\Repository;
+
 use TravelCarBundle\Entity\User;
+
 /**
  * UserRepository
  *
@@ -20,13 +22,13 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $posts = $em->getRepository('TravelCarBundle:Post')
             ->findBy(array('user'=>$user->getId()));
 
-        foreach ($posts as $post){
+        foreach ($posts as $post) {
             $em->remove($post);
         }
-        foreach ($adverts as $advert){
+        foreach ($adverts as $advert) {
             $em->remove($advert);
         }
-        foreach ($reservations as $reservation){
+        foreach ($reservations as $reservation) {
             $em->remove($reservation);
         }
         $em->flush();

@@ -93,13 +93,13 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         $objectNormalazer = new ObjectNormalizer();
         $objectNormalazer->setIgnoredAttributes(array('reservations', 'posts', 'user'));
 
-        foreach ($adverts as $advert){
+        foreach ($adverts as $advert) {
             $advert->setDate($dateNormalazer->normalize($advert->getDate()));
             $advert->setDepartureDate($dateNormalazer->normalize($advert->getDepartureDate()));
             $advert->setTravelTime($dateNormalazer->normalize($advert->getTravelTime()));
         }
 
-        foreach ($adverts as $advert){
+        foreach ($adverts as $advert) {
             $normalazedAdvert [] = $objectNormalazer->normalize($advert);
         }
 
@@ -123,13 +123,13 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
         $objectNormalazer = new ObjectNormalizer();
         $objectNormalazer->setIgnoredAttributes(array('reservations', 'posts', 'user'));
 
-        foreach ($adverts as $advert){
+        foreach ($adverts as $advert) {
             $advert->setDate($dateNormalazer->normalize($advert->getDate()));
             $advert->setDepartureDate($dateNormalazer->normalize($advert->getDepartureDate()));
             $advert->setTravelTime($dateNormalazer->normalize($advert->getTravelTime()));
         }
 
-        foreach ($adverts as $advert){
+        foreach ($adverts as $advert) {
             $normalazedAdvert [] = $objectNormalazer->normalize($advert);
         }
 

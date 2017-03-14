@@ -101,7 +101,8 @@ class AdvertController extends Controller
 
             $advert->setUser($this->getUser());
             $this->getUser()->addAdvert($advert);
-            $this->getDoctrine()->getManager()->flush();; // Recupération entityManager
+            $this->getDoctrine()->getManager()->flush();
+            ; // Recupération entityManager
 
             // Permet de récuperer l'id de la dernière annonce créee
             $last = $this->getDoctrine()
@@ -127,7 +128,6 @@ class AdvertController extends Controller
      */
     public function viewAction(Advert $advert)
     {
-
         $deleteForm = $this->createDeleteForm($advert);
         if ($this->getUser() && $advert->getUser()->getId()==$this->getUser()->getId()) {
             return $this->render('TravelCarBundle:Default:Advert/Layout/viewDriver.html.twig', array(
@@ -155,7 +155,6 @@ class AdvertController extends Controller
         $form = $this->createForm('TravelCarBundle\Form\AdvertType', $advert);
         
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-                
             $advertConflict = $this->getDoctrine()
                         ->getRepository('TravelCarBundle:Advert')
                         ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());
@@ -191,10 +190,10 @@ class AdvertController extends Controller
             throw $this->createNotFoundException('Pas le doit');
         } else {
             $this->getUser()->removeAdvert($advert);
-            $em = $this->getDoctrine()->getManager();; // Recupération entityManager
+            $em = $this->getDoctrine()->getManager();
+            ; // Recupération entityManager
             $em->remove($advert);
             $em->flush();
-            
         }
         return $this->redirectToRoute('my_adverts');
     }
@@ -240,7 +239,8 @@ class AdvertController extends Controller
     /**
      * @Route("/advert/lastAdverts", name="last_adverts_to_expose", options={"expose"=true} )
      */
-    public function lastAdvertsAction(){
+    public function lastAdvertsAction()
+    {
         $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')->findByLast();
 
         return new JsonResponse($adverts);
@@ -251,7 +251,8 @@ class AdvertController extends Controller
      *     options={"expose"=true}, requirements={"sort"="desc|asc"}
      *)
      */
-    public function lastByPriceAdvertsAction($sort){
+    public function lastByPriceAdvertsAction($sort)
+    {
         $adverts = $this->getDoctrine()->getRepository('TravelCarBundle:Advert')->findLastByPrice($sort);
         return new JsonResponse($adverts);
     }

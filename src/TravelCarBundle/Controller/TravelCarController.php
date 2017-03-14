@@ -33,8 +33,7 @@ class TravelCarController extends Controller
 
         $items = $fluxRss->load();
 
-        if($format){
-
+        if ($format) {
             $normalizers = array(new ObjectNormalizer(), new GetSetMethodNormalizer());
 
             $serializer = new Serializer($normalizers);
@@ -47,7 +46,6 @@ class TravelCarController extends Controller
         return $this->render('TravelCarBundle:Default:TravelCar/ContaintsUsed/rssActu.html.twig', array(
             'items'=> $items,
         ));
-
     }
 
 
@@ -75,23 +73,22 @@ class TravelCarController extends Controller
      * @Route("profile/style", name="travel_car_style")
      * @Method({"GET","POST"})
      */
-    public function styleAction(Request $request){
-
+    public function styleAction(Request $request)
+    {
         $styleForm = $this->createForm(StyleType::class);
 
-        if($request->isMethod('Post') && $styleForm->handleRequest($request)->isValid()){
+        if ($request->isMethod('Post') && $styleForm->handleRequest($request)->isValid()) {
             $this->getUser()->setStyle($styleForm->get('style')->getData());
             $this->getUser()->setFont($styleForm->get('font')->getData());
             $this->getDoctrine()->getManager()->flush();
-            $request->getSession()->set('style',$styleForm->get('style')->getData());
-            $request->getSession()->set('font',$styleForm->get('font')->getData());
+            $request->getSession()->set('style', $styleForm->get('style')->getData());
+            $request->getSession()->set('font', $styleForm->get('font')->getData());
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
         return $this->render('TravelCarBundle:Default:TravelCar/Layout/style.html.twig', array(
             'styleForm'=>$styleForm->createView()
         ));
-
     }
 
     /**
@@ -99,16 +96,15 @@ class TravelCarController extends Controller
      * @Route("/language", name="travel_car_language")
      * @Method({"GET","POST"})
      */
-    public function renderLanguageAction(Request $request){
-
-        if($request->isMethod('POST')){
+    public function renderLanguageAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
 
             // On enregistre la langue en session
             $this->get('session')->set('_locale', $request->get('language'));
 
             // on tente de rediriger vers la page d'origine
             $url = $request->headers->get('referer');
-
         }
         return new RedirectResponse($url);
     }

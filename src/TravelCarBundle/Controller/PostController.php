@@ -113,7 +113,6 @@ class PostController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-
                 $this->getDoctrine()->getManager()->flush();
             }
             return $this->redirectToRoute('view_advert', array(
@@ -137,12 +136,10 @@ class PostController extends Controller
      */
     public function removeAction()
     {
-
     }
 
     public function myReservationsAction(Request $request)
     {
-
         $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
             ->findBy(array('user'=>$this->getUser()));
         return $this->render('TravelCarBundle:Default:Advert/Layout/myResrvations.html.twig', array(

@@ -8,15 +8,11 @@
 
 namespace TravelCarBundle\Service;
 
-
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use TravelCarBundle\Entity\User;
 
 class StyleUser
 {
-
-
     public function setTheme(User $user, SessionInterface $session)
     {
         if ($user->getStyle()) {
@@ -26,8 +22,5 @@ class StyleUser
             $session->set('style', 'default');
             $session->set('font', 'default');
         }
-
-
     }
-
 }

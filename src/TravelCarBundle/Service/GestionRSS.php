@@ -7,6 +7,7 @@
  */
 
 namespace TravelCarBundle\Service;
+
 use Psr\Log\LoggerInterface;
 use TravelCarBundle\Modele\Item;
 
@@ -24,16 +25,15 @@ class GestionRSS
         $this->logger = $logger;
     }
 
-    public function load(){
-
-        try{
+    public function load()
+    {
+        try {
             $this->rss = new \SimpleXMLElement($this->link, null, true);
             $this->logger->debug('load_rss', array('link'=>$this->link, 'response'=>$this->rss));
             $channel = $this->rss->channel;
 
             $items = array();
-            foreach ($channel->item as $item){
-
+            foreach ($channel->item as $item) {
                 $itemObject= new Item();
                 $itemObject->setDescription((string)$item->description);
                 $itemObject->setLink((string)$item->link);
@@ -41,20 +41,13 @@ class GestionRSS
                 $itemObject->setPubDate((string)$item->pubDate);
                 $itemObject->setEnclosure((string)$item->enclosure->attributes()['url']);
                 $items [] = $itemObject;
-
             }
 
 
 
             return $items;
-
-        }catch (\Exception $e){
-            $this->logger->error('load_rss',array('link'=>$this->link, 'message'=> $e->getMessage()) );
+        } catch (\Exception $e) {
+            $this->logger->error('load_rss', array('link'=>$this->link, 'message'=> $e->getMessage()));
         }
-
-
-
-
-
     }
 }

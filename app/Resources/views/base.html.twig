@@ -10,17 +10,21 @@
         
         
         
-        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
 
         <!-- Theme CSS -->
         {% set style = app.request.session.get('style') %}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {% if style is defined and style == "classic" %}
+                <link href="{{ asset('vendor/bootstrap/css/bootstrap.classic.css')}}" rel="stylesheet">
                 <link href="{{ asset('assets/css/classic.css')}}" rel="stylesheet">
             {% else %}
+                <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
                 <link href="{{ asset('assets/css/default.css')}}" rel="stylesheet">
+
             {% endif %}
         {% else %}
+            <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
             <link href="{{ asset('assets/css/default.css')}}" rel="stylesheet">
         {% endif %}
 

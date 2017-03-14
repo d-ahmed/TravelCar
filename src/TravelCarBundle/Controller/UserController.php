@@ -36,6 +36,5 @@ class UserController extends Controller
         $this->getDoctrine()->getRepository('TravelCarBundle:User')->remove($this->getUser());
         $this->get('session')->getFlashBag()->add('notice', 'Votre compte a été supprimer avec succes');
         return $this->redirectToRoute('fos_user_security_login');
-
     }
 }

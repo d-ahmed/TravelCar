@@ -8,7 +8,6 @@
 
 namespace TravelCarBundle\EventListener;
 
-
 use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use TravelCarBundle\Service\StyleUser;
@@ -26,10 +25,8 @@ class LoginListener
 
     public function onAuthenticationSuccess(AuthenticationEvent $event)
     {
-        if($event->getAuthenticationToken()->getUser() !== "anon."){
+        if ($event->getAuthenticationToken()->getUser() !== "anon.") {
             $this->styleUser->setTheme($event->getAuthenticationToken()->getUser(), $this->session);
         }
-
     }
-
 }

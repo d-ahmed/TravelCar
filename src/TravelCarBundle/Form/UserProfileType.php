@@ -8,7 +8,6 @@
 
 namespace TravelCarBundle\Form;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -66,5 +65,4 @@ class UserProfileType extends AbstractType
     {
         return 'travelcarbundle_user_profile';
     }
-
 }
