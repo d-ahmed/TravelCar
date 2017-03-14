@@ -37,11 +37,11 @@
                               <li>
                                     <a href="{{path('fos_user_profile_show')}}" class="animate">
                                         <span class="glyphicon glyphicon-user"></span>
-                                        <span class="desc animate"> Mon profile </span>  
+                                        <span class="desc animate"> {{ 'label.presentation.my_profil'|trans }}</span>
                                     </a>
                               </li>
                               <li>
-                                  <a href="{{ path('fos_user_security_logout')}}">{{'label.signOut'|trans}}</a>
+                                  <a href="{{ path('fos_user_security_logout')}}"><span class="glyphicon glyphicon-off"></span> {{'label.signOut'|trans}}</a>
                               </li>
                             </ul>
                         </li>

@@ -75,7 +75,7 @@ class TravelCarController extends Controller
      * @Route("profile/style", name="travel_car_style")
      * @Method({"GET","POST"})
      */
-    public function styleAclion(Request $request){
+    public function styleAction(Request $request){
 
         $styleForm = $this->createForm(StyleType::class);
 

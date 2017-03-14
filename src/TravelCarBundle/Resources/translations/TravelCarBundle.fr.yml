@@ -83,6 +83,8 @@ label:
         wanna_travel: Partir dès maintenant?
         cancel_reservation: Annuler la réservation
         are_you_sure_cancel: Êtes-vous sûr?
+        finish: Tout est prêt
+        you_can_submit: Toutes les informations ont étaients renseigné, plus qu'à valider !
 
     ordre:
         date: Date
@@ -118,6 +120,7 @@ label:
         select_nb_places: Sélectionner le nombre de places
         cancel: Annuler
         wanna_cancel: Voulez-vous annuler votre réservation?
+        my_profil: Mon profil
     menu:
         informations: Informations
         adverts: Annonces
