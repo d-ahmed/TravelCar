@@ -66,4 +66,5 @@ class UserProfileType extends AbstractType
     {
         return 'travelcarbundle_user_profile';
     }
+
 }

@@ -101,12 +101,11 @@ class User extends BaseUser
     */
      private $vehicles;
 
-     /**
+    /**
      *
      * @ORM\Column(type="string", nullable=true)
      */
      private $img;
-
     
     public function __construct()
     {
