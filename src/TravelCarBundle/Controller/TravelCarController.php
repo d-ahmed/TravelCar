@@ -43,7 +43,9 @@ class TravelCarController extends Controller
 
             return new JsonResponse($normalized);
         }
-        shuffle($items);
+        if($items) {
+            shuffle($items);
+        }
         return $this->render('TravelCarBundle:Default:TravelCar/ContaintsUsed/rssActu.html.twig', array(
             'items'=> $items,
         ));
