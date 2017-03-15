@@ -1,0 +1,13 @@
+{% trans_default_domain 'TravelCarBundle' %}
+
+
+<h3>{{'label.presentation.ask_question'|trans}}</h3>
+{{ form_start(postView, {'attr':{'action': path('post_edit',{'id':post.id}), 'role':'form'} })}}
+<div class="form-group">
+        {{ form_widget(postView.comment) }}
+</div>
+<div class="form-group">
+        {{ form_widget(postView.response) }}
+</div>
+<button type="submit" class="btn">{{'label.presentation.send'|trans}}</button>
+{{ form_end(postView) }}

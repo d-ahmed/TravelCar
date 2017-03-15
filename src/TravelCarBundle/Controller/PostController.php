@@ -97,8 +97,8 @@ class PostController extends Controller
      * @param Post $post
      * @param Request $request
      * @return int|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/post/{id}", name="past_edit")
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/post/{id}", name="post_edit")
      */
     public function editAction(Post $post, Request $request)
     {
@@ -109,19 +109,17 @@ class PostController extends Controller
         $form = $this->createForm(PostType::class, $post);
 
 
-        if ($request->isMethod('POST') && $post->getAdvert()->getUser()->getId()==$this->getUser()->getId()) {
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
-            }
+        if ($request->isMethod('POST') &&  $form->handleRequest($request)->isValid() && $post->getAdvert()->getUser()->getId()==$this->getUser()->getId()) {
+            $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('view_advert', array(
                 'id' => $post->getAdvert()->getId(),
             ));
-        } else {
-            throw $this->createNotFoundException('Page non trouvée');
         }
-        return 0;
+
+        return $this->render('TravelCarBundle:Default:Post/ContaintsUsed/edit.html.twig', array(
+            'postView'=>$form->createView(),
+            'post' => $post
+        ));
     }
     
     /**

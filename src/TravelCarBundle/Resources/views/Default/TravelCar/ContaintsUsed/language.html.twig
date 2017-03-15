@@ -1,9 +1,9 @@
 <form action="{{ path('travel_car_language') }}" method="POST">
     <input name="language" hidden="hidden">
-    <span class="fa-stack fa-1x">
+    <span class="fa-stack {% if app.request.locale == "fr" %}fa-2x{% else %}fa-1x {% endif %}">
         <img alt="fr" class="center-block img-circle img-responsive" type="icon" src="{{ asset('assets/img/drapeau_france.png') }}" >
     </span>
-    <span class="fa-stack fa-1x">
+    <span class="fa-stack {% if app.request.locale == "en" %}fa-2x{% else %}fa-1x {% endif %}">
         <img alt="en" class="center-block img-circle img-responsive" type="icon" src="{{ asset('assets/img/drapeau_angleterre.jpg') }}" >
     </span>
 

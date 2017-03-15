@@ -4,10 +4,20 @@
 <h3>{{'label.presentation.ask_question'|trans}}</h3>
 {{ form_start(post, {'attr':{'action': path('add_post',{'advertId':advert.id}), 'role':'form'} })}}
 <div class="form-group">
-{{ form_widget(post.comment) }}
+    {% if advert.id != app.user.id %}
+        {{ form_widget(post.comment) }}
+    {% else %}
+        {{ form_widget(post.comment, {'required':false, 'attr':{'class':'hidden'} }) }}
+    {% endif %}
+
 </div>
 <div class="form-group">
-{{ form_widget(post.response, {'required':false, 'attr':{'class':'hidden'} }) }}
+    {% if advert.id == app.user.id %}
+        <h3>{{'label.presentation.ask_response'|trans}}</h3>
+        {{ form_widget(post.response) }}
+    {% else %}
+        {{ form_widget(post.response, {'required':false, 'attr':{'class':'hidden'} }) }}
+    {% endif %}
 </div>
 <button type="submit" class="btn">{{'label.presentation.send'|trans}}</button>
 {{ form_end(post) }}

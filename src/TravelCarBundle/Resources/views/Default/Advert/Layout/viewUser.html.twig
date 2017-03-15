@@ -9,7 +9,9 @@
         <div  class="col-md-8">
             {% include 'TravelCarBundle:Default:Advert/Containts/view.html.twig' %}
             <div  class="col-md-12">
-                {{ render(controller('TravelCarBundle:Post:renderForm', { 'advertId': advert.id })) }}
+                {% if app.user.id != advert.user.id %}
+                    {{ render(controller('TravelCarBundle:Post:renderForm', { 'advertId': advert.id })) }}
+                {% endif %}
             </div>                         
         </div>
         <div class="col-md-4">
@@ -37,8 +39,8 @@
         </div>                     
     </div>
     <div class="col-md-12">
-        <div class="col-md-8"> 
-            {{ render(controller('TravelCarBundle:Post:view', { 'advertId': advert.id })) }}                                                 
+        <div class="col-md-8">
+            {{ render(controller('TravelCarBundle:Post:view', { 'advertId': advert.id })) }}
         </div>                  
     </div>
 </div>

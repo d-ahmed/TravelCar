@@ -126,9 +126,16 @@
             $("img").click(function () {
                 $("input[name=language]").val($(this).attr("alt"));
                 $(this).parent().parent().submit();
-            })
-        </script>
+            });
 
+            $.datetimepicker.setLocale('fr');
+            $('.form_date').datetimepicker({
+                mask:'19/39/9999',
+                format:'d/m/Y',
+                timepicker:false,
+                minDate:'0'
+            });
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -1,3 +1,4 @@
+{% trans_default_domain 'TravelCarBundle' %}
 <div class="panel">
 {% if posts is defined and posts is not empty %}
 {% for post in posts %}
@@ -11,6 +12,34 @@
             <small>{{post.response}}</small>
         {% endif %}
     </div>
+    {% if app.user is defined and post.response is empty and app.user.id == post.advert.user.id %}
+        <a data-toggle="modal" data-target="#myModal" href="#"  class="">{{ 'label.response'|trans }}</a>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{ 'label.post.ask_response'|trans }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ render(controller('TravelCarBundle:Post:edit', { 'id': post.id })) }}
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'label.presentation.back_to_list'|trans }}</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endfor %}
 {% endif %}

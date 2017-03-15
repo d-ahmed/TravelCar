@@ -8,9 +8,6 @@
         <div class="col-md-12">
             <div  class="col-md-8">
                 {% include 'TravelCarBundle:Default:Advert/Containts/view.html.twig' %}
-                <div  class="col-md-12">
-                    {{ render(controller('TravelCarBundle:Post:renderForm', { 'advertId': advert.id })) }}
-                </div>
             </div>
             <div class="col-md-4">
                 {% if app.user.id is defined and app.user.id != advert.user.id %}
@@ -34,15 +31,13 @@
                     <p class="text-danger" >{{'label.advert.addedByYou'|trans}}</p>
                 {% endif %}
                 {{ form_start(delete_form) }}
-                    <input type="submit" value= {{ 'label.presentation.delete'|trans }}>
+                    <input type="submit" class="btn btn-danger" value= {{ 'label.presentation.delete'|trans }}>
                 {{ form_end(delete_form) }}
                 <a href="{{ path('my_adverts') }}">{{'label.presentation.back_to_list'|trans}}</a>
             </div>
         </div>
         <div class="col-md-12">
-            <div class="col-md-8">
                 {{ render(controller('TravelCarBundle:Post:view', { 'advertId': advert.id })) }}
-            </div>
         </div>
     </div>
 {% endblock %}

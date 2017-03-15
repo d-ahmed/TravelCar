@@ -23,10 +23,10 @@ h5,
 h6 {
     font-family: 'Open Sans', Verdana , Arial, sans-serif;
     font-weight: 100;
+
 }
-a {
-    color: black;
-}
+
+
 a:hover,
 a:focus {
     color: blue;

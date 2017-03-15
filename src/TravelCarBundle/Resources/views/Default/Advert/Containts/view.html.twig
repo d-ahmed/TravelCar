@@ -43,6 +43,24 @@
                 <p>{{ advert.numberOfPlace - advert.numberOfReservation }}</p>
             </div>                                     
         </div>
+        {% if advert.luggage is not empty %}
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <p>{{'label.advert.luggage'|trans}}</p>
+            </div>
+            <div class="col-md-8">
+                <p>{{ advert.luggage }}</p>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <p>{{'label.advert.highway'|trans}}</p>
+            </div>
+            <div class="col-md-8">
+                <p>{% if advert.highway is not empty and  advert.highway == true %} {{ 'label.yes'|trans }} {% else %} {{ 'label.no'|trans }} {% endif %}</p>
+            </div>
+        </div>
     </div>
 </div>
 <div class="col-md-12">
