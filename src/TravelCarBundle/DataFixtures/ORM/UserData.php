@@ -19,7 +19,9 @@ class UserData extends AbstractFixture implements OrderedFixtureInterface
                 ->setEmail('admin@admin.com')
                 ->setPlainPassword('admin')
                 ->setRoles(array('ROLE_ADMIN'))
-                ->setLastName('Daniel')
+                ->setLastName('Ahmed')
+                ->setName('Daniel')
+                ->setPhoneNumber(0602457898)
                 ->setEnabled(true)
                 ->addVehicle($this->getReference('vehicle2'));
         
@@ -28,11 +30,12 @@ class UserData extends AbstractFixture implements OrderedFixtureInterface
         
         $user2 = new User();
         $user2->setUsername('test')
-                ->setEmail('test@test.com')
+                ->setEmail('anasse@gmail.com')
                 ->setPlainPassword('user')
                 ->setRoles(array('ROLE_USER'))
                 ->setName('Anasse')
                 ->setLastName('Zougarh')
+                ->setPhoneNumber(0602457898)
                 ->setEnabled(true)
                 ->addVehicle($this->getReference('vehicle1'))
                 ->addVehicle($this->getReference('vehicle3'));
