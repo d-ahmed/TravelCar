@@ -16,13 +16,13 @@ class StyleType extends AbstractType
     {
         $builder->add('style', ChoiceType::class, array(
             'choices'=>array(
-                'label.default'=>'default',
-                'label.classic'=>'classic'
+                'Defaut'=>'default',
+                'Classique'=>'classic'
             )
         ))->add('font', ChoiceType::class, array(
             'choices'=>array(
-                'label.default'=>'default',
-                'label.time_new_roman'=>'time_new_roman'
+                'Defaut'=>'default',
+                'Time new roman'=>'time_new_roman'
             )
         ));
     }

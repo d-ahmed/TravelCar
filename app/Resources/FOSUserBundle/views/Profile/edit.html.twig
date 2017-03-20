@@ -1,5 +1,7 @@
+{% trans_default_domain 'TravelCarBundle' %}
 {% extends "@FOSUser/layout.html.twig" %}
-
+{% block title %} {{ 'label.menu.edit'|trans }} {% endblock %}
+{% block header_heading %} {{ 'label.menu.edit'|trans }} {% endblock %}
 {% block fos_user_content %}
 {% include "@FOSUser/Profile/edit_content.html.twig" %}
 {% endblock fos_user_content %}

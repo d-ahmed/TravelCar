@@ -139,6 +139,7 @@ label:
         comments: Commentaires
         edit: Modifier vos informations
         delete: Supprimer votre compte
+        change_pwd: Changer de mot de passe
     rss:
         news: L'Actualité
         by_le_monde: Par Le Monde

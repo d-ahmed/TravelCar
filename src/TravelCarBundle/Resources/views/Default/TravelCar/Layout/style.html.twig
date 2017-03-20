@@ -1,21 +1,22 @@
 {%extends "@FOSUser/layout.html.twig"%}
 {%trans_default_domain 'TravelCarBundle'%}
-{% block title %} {{'text.about'|trans}}  {% endblock %}
+{% block title %} {{ 'label.presentation.style'|trans }}  {% endblock %}
 
-{% block header_heading %} {{'text.about'|trans}} {% endblock %}
+{% block header_heading %} {{ 'label.presentation.style'|trans }}   {% endblock %}
 
 
 
 {% block fos_user_content %}
+    <h1>{{ 'label.presentation.style'|trans }} </h1>
     <div class="form-group col-md-4">
         {{ form_start(styleForm) }}
-            <label>Style</label>
+            <label>Background</label>
             {{ form_widget(styleForm.style) }}
             <label>Font</label>
             {{ form_widget(styleForm.font) }}
             <br>
             <div class="form-group">
-                <input type="submit" value="{{ 'label.change_style'|trans }}" class="btn btn-default">
+                <input type="submit" value="{{ 'label.presentation.change_style'|trans }}" class="btn btn-default">
             </div>
         {{ form_end(styleForm) }}
     </div>
