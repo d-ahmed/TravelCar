@@ -35,7 +35,7 @@ class UserData extends AbstractFixture implements OrderedFixtureInterface
                 ->setRoles(array('ROLE_USER'))
                 ->setName('Anasse')
                 ->setLastName('Zougarh')
-                ->setPhoneNumber(060245789)
+                ->setPhoneNumber(0602457898)
                 ->setEnabled(true)
                 ->addVehicle($this->getReference('vehicle1'))
                 ->addVehicle($this->getReference('vehicle3'));
