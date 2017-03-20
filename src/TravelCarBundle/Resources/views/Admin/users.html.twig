@@ -15,6 +15,7 @@
         <tbody>
         {% if users is not empty %}
             {% for user in users %}
+                {% if app.user.id != user.id %}
                 <tr>
                     <td>{{ user.name }}</td>
                     <td>{{ user.lastName }}</td>
@@ -26,6 +27,7 @@
                         </ul>
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
         {% endif %}
         </tbody>
