@@ -14,6 +14,19 @@
 {% endblock %}
 
 
+{% block stylesheets %} 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block header_heading %} {{'text.found'|trans}} {% endblock %}
+
+{% block header_subheading %}
+
+        {{ render(controller( "TravelCarBundle:Advert:search")) }}
+                          
+{% endblock %}
+
+
 {% block fos_user_content %}
     {% include 'FOSUserBundle:Profile:show_content.html.twig' %}
 {% endblock fos_user_content %}

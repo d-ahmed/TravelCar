@@ -1,0 +1,20 @@
+my_adverts:
+    path: /myAdverts/{mode}/{page}/{numberPerPage}
+    defaults:
+        _controller: TravelCarBundle:Advert:myAdverts
+    requirements:
+        page: \d*
+        numberPerPage: \d*
+        mode: list|block
+        
+        
+        
+my_reservations:
+    path: /myReservations/{page}/{numberPerPage}
+    defaults:
+        _controller: TravelCarBundle:Reservation:myReservations
+        page: 1
+        numberPerPage: 5
+    requirements:
+        page: \d*
+        numberPerPage: \d*
