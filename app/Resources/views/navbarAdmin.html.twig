@@ -16,9 +16,6 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.name }} {{ app.user.lastName }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
                 <li>
                     <a href="{{ path('fos_user_security_logout')}}"><i class="fa fa-fw fa-power-off"></i> {{'label.signOut'|trans}}</a>
                 </li>
@@ -32,16 +29,16 @@
                 <a href="{{ path('admin_home') }}"><i class="fa fa-fw fa-dashboard"></i> {{ 'label.home'|trans }}</a>
             </li>
             <li>
-                <a href="{{ path('admin_users') }}"><i class="fa fa-fw fa-bar-chart-o"></i> {{ 'label.admin.users'|trans }}</a>
+                <a href="{{ path('admin_users') }}"><i class="fa fa-fw fa-bar-chart-o"></i> {{ 'label.presentation.users'|trans }}</a>
             </li>
             <li>
-                <a href="{{ path('admin_adverts') }}"><i class="fa fa-fw fa-table"></i> {{ 'label.admin.adverts'|trans }}</a>
+                <a href="{{ path('admin_adverts') }}"><i class="fa fa-fw fa-table"></i> {{ 'label.menu.adverts'|trans }}</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-edit"></i> {{ 'label.admin.reservations'|trans }}</a>
+                <a href="{{ path('admin_reservations') }}"><i class="fa fa-fw fa-edit"></i> {{ 'label.menu.reservations'|trans }}</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-desktop"></i> {{ 'label.admin.vehicles'|trans }}</a>
+                <a href="#"><i class="fa fa-fw fa-desktop"></i> {{ 'label.menu.vehicles'|trans }}</a>
             </li>
 
         </ul>

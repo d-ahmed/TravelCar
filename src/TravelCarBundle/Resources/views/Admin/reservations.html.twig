@@ -1,0 +1,32 @@
+{% extends '::baseAdmin.html.twig' %}
+{% trans_default_domain 'TravelCarBundle' %}
+{% block title %}{{ 'label.menu.reservations'|trans }}{% endblock %}
+{% block body %}
+    <h1>{{ 'label.menu.reservations'|trans }}</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>{{ 'form.name'|trans }}</th>
+            <th>{{ 'form.lastName'|trans }}</th>
+            <th>{{ 'label.presentation.nb_places'|trans }}</th>
+            <th>{{ 'label.panel.advert'|trans }}</th>
+            <th>{{ 'label.panel.date'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if reservations is not empty %}
+            {% for reservation in reservations  %}
+                <tr>
+                    <td>{{ reservation.user.getName}}</td>
+                    <td>{{ reservation.user.getLastName }}</td>
+                    <td>{{ reservation.numberOfPlace }}</td>
+                    <td>{{ reservation.advert.getId }}</td>
+                    <td>{{ reservation.date.format("d/m/Y") }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -24,7 +24,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/users/", name="admin_users")
+     * @Route("users/", name="admin_users")
      */
     public function viewUsersAction()
     {
@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/adverts/", name="admin_adverts")
+     * @Route("adverts/", name="admin_adverts")
      */
     public function viewAdvertsAction()
     {
@@ -46,9 +46,20 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("reservations/", name="admin_reservations")
+     */
+    public function viewReservationsAction()
+    {
+        $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')->findAll();
+        return $this->render('TravelCarBundle:Admin:reservations.html.twig', array(
+            'reservations'=>$reservations
+        ));
+    }
+
+    /**
      * @param Advert $advert
      * @return Response
-     * @Route("/advert/{id}", name="admin_advert", requirements={"id"="\d+"}, options={"expose"=true})
+     * @Route("advert/{id}", name="admin_advert", requirements={"id"="\d+"}, options={"expose"=true})
      * @Method("GET")
      */
     public function showAdvertAction(Advert $advert){
