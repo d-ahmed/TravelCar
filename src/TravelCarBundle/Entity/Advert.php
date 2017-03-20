@@ -84,6 +84,12 @@ class Advert
      *
      *
      * @ORM\Column(type="float", nullable=false)
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 100,
+     *      minMessage = "You must be at least {{ limit }} tall to enter",
+     *      maxMessage = "You cannot be taller than {{ limit }} to enter"
+     * )
      */
     private $pricePerPersonne;
     
