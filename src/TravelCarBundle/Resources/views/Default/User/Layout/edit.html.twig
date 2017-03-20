@@ -4,7 +4,12 @@
 {% block header_heading %} {{ 'label.menu.edit'|trans }} {% endblock %}
 
 {% block fos_user_content %}
-    <a href="{{ path('fos_user_profile_edit') }}">{{ 'label.menu.edit'|trans }}</a>
-    <br>
-    <a href="{{ path('fos_user_profile_edit') }}">{{ 'label.menu.change_pwd'|trans }}</a>
+<div class="col-md-12">
+    <div class="col-md-6">
+        <a class="btn btn-lg btn-primary" href="{{ path('fos_user_profile_edit') }}">{{ 'label.menu.edit'|trans }}</a>
+    </div>
+    <div class="col-md-6">
+        <a class="btn btn-lg btn-danger" href="{{ path('fos_user_change_password') }}">{{ 'label.menu.change_pwd'|trans }}</a>
+    </div>
+</div>
 {% endblock %}
