@@ -3,8 +3,15 @@ form:
  prenom: Prénom
  dateNaissance: Date de naissance
  numero: Portable
+ name: Prénom
+ lastName: Nom
+ birthDate: Date de naissance
+ phoneNumber: Numéro de téléphone
+ message: Votre Message...
+ email: Adresse e-mail
   
 label:
+    demande_compte: Avez-vous un compte ?
     no: Non
     yes: Oui
     search: Chercher
@@ -89,11 +96,6 @@ label:
         you_can_submit: Toutes les informations ont étaients renseigné, plus qu'à valider !
 
 
-    ordre:
-        date: Date
-        traject_time: Temps trajet
-        price_croi: Prix croissant
-        price_desc: Prix décroissant
     presentation:
         today_at: Aujourd'hui à
         tomorrow_at: Demain à
@@ -125,6 +127,8 @@ label:
         wanna_cancel: Voulez-vous annuler votre réservation?
         my_profil: Mon profil
         response: Répondre
+        response1: Réponse
+        registration: S'inscrire
 
     menu:
         informations: Informations

@@ -9,7 +9,7 @@
         <div  class="col-md-8">
             {% include 'TravelCarBundle:Default:Advert/Containts/view.html.twig' %}
             <div  class="col-md-12">
-                {% if app.user.id != advert.user.id %}
+                {% if app.user.id is defined and app.user.id != advert.user.id %}
                     {{ render(controller('TravelCarBundle:Post:renderForm', { 'advertId': advert.id })) }}
                 {% endif %}
             </div>                         

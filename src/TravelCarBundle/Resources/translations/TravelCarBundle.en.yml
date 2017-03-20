@@ -1,31 +1,163 @@
 form:
-  name: Name
-  lastName: First name
-  birthDate: Birth date
-  phoneNumber: Phone number
-  
+ nom: Last name
+ prenom: Name
+ dateNaissance: Birthday
+ numero: Cellphone number
+ name: Name
+ lastName: Last name
+ birthDate: Birthday
+ phoneNumber: Cellphone nunmber
+ message: Your message...
+ email: E-mail address
+
 label:
+    demande_compte: Do you have an account?
+    no: No
+    yes: Yes
     search: Search
     add: Add
     show: Show
+    showMode: See more
     edit: Edit
     reserve: Reserve
-    signUp: Sign up
+    signUp: Create an account
     signIn: Sign in
     signOut: Sign out
-    continueWithFb: Continue with Facebook
-    continueWithGo: Continue with Google +
+    continueWithFb: Continu with Facebook
+    continueWithGo: Continu with Google +
     home: Home
     about: About
     submitARoute: Submit a route
     createAccount: Create your account
-    title:
-        myVehicles: My Vehicles
     vehicle:
-        idNumber: ID Number
+        idNumber: Id Number
         model: Model
         color: Color
         fuel: Fuel
         actions: Actions
-        new: Create a new vehicle
+        new: Add a vehicle
         list: List of your vehicles
+        your_vehicles: Your vehicles
+    search: Search
+    title:
+        home: Home
+        myVehicles: My vehicles
+        edit_vehicule: Edit my vehicle
+    heading:
+        home: Travel.
+        addAdvert: Add an advert
+    city:
+        departure: Departure city
+        arrival: City of arrival
+
+    panel:
+        route: Route
+        time: Departure time
+        date: Departure date
+        advert: Advert
+        submit: Submit
+        btn_next : Next
+    advert:
+        time: Departure time
+        travel_time: Travelling time
+        example_departure: Example Nantes
+        example_arrival: Example Paris
+        price: Price per person
+        nb_places: Number of places
+        info: Additional information
+        highway: Highway
+        luggage: Luggage size
+        more_info: More informations?
+        more: Informations supplémentaires
+        example_price: Exemple 13
+        example_nb_places: Exemple 3
+        no_advert: You don't have any adverts yet.
+        no_advert_found: There is no adverts yet.
+        has_advert: Here are your adverts.
+        no_reservation:  You don't have any reservations yet.
+        has_reservation: Here are your adverts.
+        your_adverts: Your adverts
+        your_reservations: Your reservations
+        found: Adverts found
+        nb_found: adverts found
+        nb_found_zero: advert found
+        addedByYou: Manage your advert
+        full : It's full !
+        info_route: About the route
+        nb_places_available: Places available
+        result: Results
+        your_advert: Your advert
+        see_advert: See advert
+        last_adverts: Last adverts
+        wanna_travel: Do you want to go now?
+        cancel_reservation: Cancel the reservation
+        are_you_sure_cancel: Are you sure?
+        finish: Everything is perfect.
+        you_can_submit: Everything is fine, just submit !
+
+
+    presentation:
+        today_at: Today at
+        tomorrow_at: Tomorrow at
+        places_available: places availables.
+        voyage_incoming: Voyage incoming.
+        voyage_done: Voyage done
+        see_more: See +
+        one_reservation: reservation
+        reservations: reservations
+        at: at
+        ask_question: Ask a question
+        reservation: Reserve
+        nb_reservation: You can choose more than one place.
+        nb_places: number of places
+        example_reservation: Example
+        back_to_list: Back
+        send: Send !
+        edit_vehicle: Edit your vehicle
+        edit_button: Edit
+        create_vehicule: Add a vehicle un véhicule
+        create_button: Create
+        delete_button: Delete
+        delete: Delete
+        my_car: My Vehicle
+        ur_profil: Your profil
+        style: Change the theme
+        select_nb_places: Select number of places
+        cancel: Cancel
+        wanna_cancel: Do you want to cancel your reservation?
+        my_profil: My profil
+        response: Reply to
+        response1: Reply
+        registration: Sign up
+
+    menu:
+        informations: Informations
+        adverts: Adverts
+        reservations: Reservations
+        vehicles: Vehicles
+        account: Account
+        comments: Comments
+        edit: Edit your informations
+        delete: Delete your account
+    rss:
+        news: News
+        by_le_monde: By Le Monde
+    about_page:
+        what_give_me_travelcar: What TravelCar brings you?
+        start_now: Start now.
+        meeting_people: Meeting people
+        meeting_desc: Meet people from all over the world when you travel.
+        saving_money: Saving moyen !
+        saving_desc: Share your travel expenses and start saving money.
+        travelling: Visit the country
+        travelling_desc: Our prices are 74% lower than the competition.
+        something_to_tell_us: Something to tell us?
+        sttu_desc1: Please, be free to submit any problems or improvements you saw.
+        sttu_desc2: We will reply very soon and find with you the best solution to reply to your need.
+    profil:
+        birthDate: Birth date
+        phonenumber: Phone number
+        mail: E-mail
+
+
+

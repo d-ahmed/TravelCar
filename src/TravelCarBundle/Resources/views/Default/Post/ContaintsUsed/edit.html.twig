@@ -1,10 +1,10 @@
 {% trans_default_domain 'TravelCarBundle' %}
 
 
-<h3>{{'label.presentation.ask_question'|trans}}</h3>
+<h3>{{'label.presentation.response'|trans}}</h3>
 {{ form_start(postView, {'attr':{'action': path('post_edit',{'id':post.id}), 'role':'form'} })}}
 <div class="form-group">
-        {{ form_widget(postView.comment) }}
+        {{ form_widget(postView.comment, {'attr':{'disabled':'disabled'} }) }}
 </div>
 <div class="form-group">
         {{ form_widget(postView.response) }}

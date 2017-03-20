@@ -1,0 +1,38 @@
+{% extends '::baseAdmin.html.twig' %}
+{% trans_default_domain 'TravelCarBundle' %}
+
+{% block title %}{{ 'label.presentation.user'|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'label.presentation.user'|trans }}</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>{{ 'label.name'|trans }}</th>
+            <td>{{ user.name }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'label.lastName'|trans }}</th>
+            <td>{{ user.lastName }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br><br><br><br>
+    <div class="row text-center">
+        <div class="btn-group ">
+            <a href="{{ path('admin_users') }}" type="button" class="btn btn-info">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                {{ 'label.presentation.back_to_list'|trans }}
+            </a>
+            {{ form_start(delete_form) }}
+            <a class="btn btn-danger" type="submit" onclick="this.parentNode.submit()">
+                <i class="glyphicon glyphicon-trash"></i>
+                {{ 'label.presentation.delete_button'|trans }}
+            </a>
+            {{ form_end(delete_form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

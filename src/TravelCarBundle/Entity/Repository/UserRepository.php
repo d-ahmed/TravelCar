@@ -12,6 +12,7 @@ use TravelCarBundle\Entity\User;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
     public function remove(User $user)
     {
         $em = $this->getEntityManager();

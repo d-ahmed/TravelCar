@@ -9,11 +9,11 @@
     </div>
     <div class="col-md-12">
         {% if post.response is not empty %}
-            <small>{{post.response}}</small>
+            <small>{{ 'label.presentation.response1'|trans }}: {{post.response}}</small>
         {% endif %}
     </div>
-    {% if app.user is defined and post.response is empty and app.user.id == post.advert.user.id %}
-        <a data-toggle="modal" data-target="#myModal" href="#"  class="">{{ 'label.response'|trans }}</a>
+    {% if app.user.id is defined and post.response is empty and app.user.id == post.advert.user.id %}
+        <a data-toggle="modal" data-target="#myModal" href="#"  class="text-primary">{{ 'label.presentation.response'|trans }}</a>
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
@@ -22,7 +22,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">{{ 'label.post.ask_response'|trans }}</h4>
+                        <h4 class="modal-title">{{ 'label.presentation.response'|trans }}</h4>
                     </div>
                     <div class="modal-body">
                         {{ render(controller('TravelCarBundle:Post:edit', { 'id': post.id })) }}

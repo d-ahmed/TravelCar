@@ -31,6 +31,7 @@ class Reservation
     /**
      *
      * @ORM\Column(type="integer", nullable=true)
+     *
      */
     private $numberOfPlace;
 
