@@ -90,7 +90,7 @@ class AdvertController extends Controller
         
         $form = $this->createForm(AdvertType::class, $advert);
         
-        if ($request->isMethod('POST') && $form->handleRequest($request)) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $advertConflict = $this->getDoctrine()
                                         ->getRepository('TravelCarBundle:Advert')
                                         ->findByUserDepartureDate($this->getUser(), $advert->getDepartureDate());

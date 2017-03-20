@@ -63,11 +63,7 @@ class ReservationController extends Controller
                 ->find($advertId);
 
             $canAdd = true;
-            if ($nbOfReservation<1) {
-                $request->getSession()->getFlashBag()->add('notice', 'Nombre positif attendu');
-                $canAdd = false;
-            }
-            
+
             if ($nbOfReservation > ($advert->getNumberOfPlace()-$advert->getNumberOfReservation())) {
                 $request->getSession()->getFlashBag()->add('notice', 'Nombre inferieur attendu');
                 $canAdd = false;
@@ -82,10 +78,16 @@ class ReservationController extends Controller
                 $canAdd = false;
             }
 
+            $reservation = new Reservation();
+
+            $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
+
+            if(count($this->get('validator')->validate($reservation)) > 0){
+                $request->getSession()->getFlashBag()->add('notice', 'Nombre positif attendu');
+                $canAdd = false;
+            }
+
             if ($canAdd) {
-                $reservation = new Reservation();
-            
-                $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
                 $advert->addReservation($reservation);
                 $this->getUser()->addReservation($reservation);
                 $this->getDoctrine()->getManager()->flush();

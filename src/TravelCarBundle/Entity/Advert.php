@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity(repositoryClass="TravelCarBundle\Entity\Repository\AdvertRepository")
  * @ORM\Table(name="travelCar_advert")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Advert
 {
@@ -33,7 +34,6 @@ class Advert
     /**
    * @ORM\ManyToOne(targetEntity="TravelCarBundle\Entity\User", inversedBy="adverts", cascade={"persist"})
    * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
-   * @Assert\Valid()
    */
     private $user;
     
@@ -90,8 +90,8 @@ class Advert
     
     /**
      *
-     *
      * @ORM\Column(type="integer", nullable=false)
+     *
      * @Assert\Range(
      *      min = 1,
      *      max = 8,
