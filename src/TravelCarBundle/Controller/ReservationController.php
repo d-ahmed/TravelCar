@@ -82,7 +82,7 @@ class ReservationController extends Controller
 
             $reservation->setNumberOfPlace($nbOfReservation)->setAdvert($advert)->setUser($this->getUser());
 
-            if(count($this->get('validator')->validate($reservation)) > 0){
+            if($canAdd && count($this->get('validator')->validate($reservation)) > 0){
                 $request->getSession()->getFlashBag()->add('notice', 'Nombre positif attendu');
                 $canAdd = false;
             }
