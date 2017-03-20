@@ -84,6 +84,10 @@ fos_user:
     from_email:
         address: you@example.com
         sender_name: You
+    profile:
+        form:
+            type: TravelCarBundle\Form\UserProfileType
+
 
 hwi_oauth:
     connect:
