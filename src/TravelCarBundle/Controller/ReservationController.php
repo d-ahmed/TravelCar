@@ -132,20 +132,16 @@ class ReservationController extends Controller
 
 
     /**
-     * @param $page
-     * @param $numberPerPage
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
      * @Security("has_role('ROLE_USER')")
      * @Route("/myReservations/{mode}", name="my_reservations",
-     *     defaults={"page"=1, "numberPerPage"=5, "mode"="block"},
+     *     defaults={"mode"="block"},
      *     requirements={"mode"="list|block"}
      * )
      */
-    public function myReservationsAction($mode, $page, $numberPerPage, Request $request)
+    public function myReservationsAction($mode, Request $request)
     {
         $reservations = $this->getDoctrine()->getRepository('TravelCarBundle:Reservation')
-                            ->findBy(array('user'=>$this->getUser()));
+                            ->findBy(array('user'=>$this->getUser()->getId()));
         return $this->render('TravelCarBundle:Default:Advert/Layout/myResrvations.html.twig', array(
             'reservations'=>$reservations,
             'mode'=> $mode

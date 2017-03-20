@@ -31,6 +31,8 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('a');
         $departureDate = $departureDate->modify('-1 day');
+        $now = new \DateTime('now');
+        $now = $now->modify('-1 day');
         
         $queryBuilder->where('a.departureCity like :departureCity')
                 ->setParameter('departureCity', $departureCity)
@@ -38,6 +40,8 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('cityOfArrival', $cityOfArrival)
                 ->andWhere('a.departureDate > :departureDate')
                 ->setParameter('departureDate', $departureDate)
+                ->andWhere('a.departureDate > :now')
+                ->setParameter('now', $now)
                 ->orderBy('a.departureDate', 'ASC');
         
         $adverts = $queryBuilder->getQuery();
