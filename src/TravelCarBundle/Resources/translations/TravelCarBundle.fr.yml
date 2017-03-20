@@ -129,6 +129,7 @@ label:
         response: Répondre
         response1: Réponse
         registration: S'inscrire
+        users: Utilisateurs
 
     menu:
         informations: Informations
@@ -160,5 +161,6 @@ label:
         phonenumber: Numéro de téléphone
         mail: E-mail
 
-
+    admin:
+        handle_admin: Gérer l'application
 

@@ -1,18 +1,18 @@
 {% extends '::baseAdmin.html.twig' %}
 {% trans_default_domain 'TravelCarBundle' %}
-{% block title %}{{ 'label.admin.users'|trans }}{% endblock %}
+{% block title %}{{ 'label.menu.adverts'|trans }}{% endblock %}
 {% block body %}
-    <h1>{{ 'label.admin.users'|trans }}</h1>
+    <h1>{{ 'label.menu.adverts'|trans }}</h1>
 
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>{{ 'label.departureCity'|trans }}</th>
-            <th>{{ 'label.cityOfArrival'|trans }}</th>
-            <th>{{ 'label.departureDate'|trans }}</th>
-            <th>{{ 'label.departureTime'|trans }}</th>
-            <th>{{ 'label.pricePerPersonne'|trans }}</th>
-            <th>{{ 'label.numberOfPlace'|trans }}</th>
+            <th>{{ 'label.city.departure'|trans }}</th>
+            <th>{{ 'label.city.arrival'|trans }}</th>
+            <th>{{ 'label.panel.date'|trans }}</th>
+            <th>{{ 'label.panel.time'|trans }}</th>
+            <th>{{ 'label.advert.price'|trans }}</th>
+            <th>{{ 'label.advert.nb_places'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
                     <td>{{ advert.cityOfArrival }}</td>
                     <td>{{ advert.departureDate.format("d/m/Y") }}</td>
                     <td>{{ advert.departureTime|date('h:m') }}</td>
-                    <td>{{ advert.pricePerPersonne }}</td>
+                    <td>{{ advert.pricePerPersonne }}€</td>
                     <td>{{ advert.numberOfPlace }}</td>
                     <td>
                         <ul>
